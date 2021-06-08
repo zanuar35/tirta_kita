@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tirta_kita/screen/login_screen/login_screen.dart';
+import 'package:tirta_kita/screen/sign_up/sign_up_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginScreen(),
+      home: SignUpScreen(),
     );
   }
 }

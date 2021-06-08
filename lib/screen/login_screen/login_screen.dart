@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:tirta_kita/shared/widget/input_text.dart';
 import 'package:tirta_kita/shared/widget/label_text.dart';
 
 import 'widget/loginBtn.dart';
@@ -60,8 +61,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(100),
-                    ),
+                        topRight: Radius.circular(12),
+                        topLeft: Radius.circular(12)),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(24.0),
@@ -82,28 +83,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         LabelText(
                           text: "Email",
                         ),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: 'type your email',
-                            hintStyle: GoogleFonts.rubik(
-                              textStyle: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xff2A2A2A).withOpacity(0.40),
-                              ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(4),
-                              borderSide: BorderSide(
-                                  color: Color(0xfff8f8f8f).withOpacity(0.3),
-                                  width: 2),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(4),
-                              borderSide:
-                                  BorderSide(color: Colors.blue, width: 2),
-                            ),
-                          ),
+                        InputText(
+                          hintText: 'type tour email',
                         ),
                         SizedBox(
                           height: 20,

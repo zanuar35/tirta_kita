@@ -79,16 +79,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.05,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 10),
-                          child: Text(
-                            "Email",
-                            style: GoogleFonts.rubik(
-                              textStyle: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w400),
-                            ),
-                          ),
+                        LabelText(
+                          text: "Email",
                         ),
                         TextField(
                           decoration: InputDecoration(
@@ -116,7 +108,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        LabelText(),
+                        LabelText(
+                          text: 'Password',
+                        ),
                         TextField(
                           decoration: InputDecoration(
                             suffixIcon: Icon(LineIcons.eyeSlash),

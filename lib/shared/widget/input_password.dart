@@ -4,20 +4,39 @@ import 'package:line_icons/line_icons.dart';
 
 import '../../constants.dart';
 
-class InputPassword extends StatelessWidget {
+class InputPassword extends StatefulWidget {
+  final TextEditingController controller;
   final String hintText;
+
   const InputPassword({
+    @required this.controller,
     this.hintText,
     Key key,
   }) : super(key: key);
 
   @override
+  _InputPasswordState createState() => _InputPasswordState();
+}
+
+class _InputPasswordState extends State<InputPassword> {
+  bool _showPassword = false;
+
+  @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      obscureText: !_showPassword,
+      controller: widget.controller,
       decoration: InputDecoration(
-        suffixIcon: Icon(LineIcons.eyeSlash),
+        suffixIcon: GestureDetector(
+          onTap: () {
+            setState(() {
+              _showPassword = !_showPassword;
+            });
+          },
+          child: Icon(_showPassword ? LineIcons.eye : LineIcons.eyeSlash),
+        ),
         fillColor: Color(0xfff8f8f8),
-        hintText: hintText,
+        hintText: widget.hintText,
         hintStyle: GoogleFonts.rubik(
           textStyle: TextStyle(
             fontSize: 14,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tirta_kita/screen/sign_up/sign_up_screen.dart';
 import 'package:tirta_kita/shared/widget/input_password.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';
 import 'package:tirta_kita/shared/widget/label_text.dart';
@@ -12,7 +13,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
+  void dispose() {
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
@@ -93,6 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           text: 'Password',
                         ),
                         InputPassword(
+                          controller: _passwordController,
                           hintText: 'type your password',
                         ),
                         SizedBox(
@@ -128,7 +137,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignUpScreen()),
+                                );
+                              },
                               child: Text(
                                 "Daftar Akun",
                                 style: GoogleFonts.rubik(

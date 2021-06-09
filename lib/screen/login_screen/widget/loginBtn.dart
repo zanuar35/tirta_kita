@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tirta_kita/constants.dart';
 
 
 class LoginBtn extends StatelessWidget {
@@ -17,7 +18,7 @@ class LoginBtn extends StatelessWidget {
         onPressed: () {},
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-            Color(0xFF2BBAEC),
+           kPrimaryColor,
           ),
         ),
         child: Text(

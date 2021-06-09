@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:tirta_kita/constants.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';
 import 'package:tirta_kita/shared/widget/label_text.dart';
 
@@ -107,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(4),
                               borderSide: BorderSide(
-                                  color: Color(0xfff8f8f8f).withOpacity(0.3),
+                                  color: kBorderColor.withOpacity(0.3),
                                   width: 2),
                             ),
                             focusedBorder: OutlineInputBorder(

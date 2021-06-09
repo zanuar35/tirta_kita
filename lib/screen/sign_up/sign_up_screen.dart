@@ -37,18 +37,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 36, horizontal: 24),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Center(
-                        child: Text(
-                          "Tirta Kita",
-                          style: GoogleFonts.montserrat(
-                            textStyle: TextStyle(
-                                color: Colors.white,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold),
-                          ),
+                      Text(
+                        "Register",
+                        style: GoogleFonts.rubik(
+                          textStyle: TextStyle(
+                              color: Colors.white,
+                              fontSize: 34,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ],
@@ -62,8 +60,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(12),
-                        topLeft: Radius.circular(12)),
+                        topRight: Radius.circular(15),
+                        topLeft: Radius.circular(15)),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(24.0),
@@ -72,10 +70,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         LabelText(text: 'Name'),
+                        InputText(hintText: 'type your email'),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.05,
+                          height: MediaQuery.of(context).size.height / 50,
                         ),
-                        InputText(hintText: 'type your email')
+                        InputNo(
+                          prefixText: '+62',
+                          hintText: 'type your phone number',
+                        )
                       ],
                     ),
                   ),

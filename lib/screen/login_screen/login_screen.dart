@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:line_icons/line_icons.dart';
-import 'package:tirta_kita/constants.dart';
+import 'package:tirta_kita/shared/widget/input_password.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';
 import 'package:tirta_kita/shared/widget/label_text.dart';
 
@@ -93,30 +92,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         LabelText(
                           text: 'Password',
                         ),
-                        TextField(
-                          decoration: InputDecoration(
-                            suffixIcon: Icon(LineIcons.eyeSlash),
-                            fillColor: Color(0xfff8f8f8),
-                            hintText: 'type your password',
-                            hintStyle: GoogleFonts.rubik(
-                              textStyle: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xff2A2A2A).withOpacity(0.40),
-                              ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(4),
-                              borderSide: BorderSide(
-                                  color: kBorderColor.withOpacity(0.3),
-                                  width: 2),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(4),
-                              borderSide:
-                                  BorderSide(color: Colors.blue, width: 2.4),
-                            ),
-                          ),
+                        InputPassword(
+                          hintText: 'type your password',
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 50,

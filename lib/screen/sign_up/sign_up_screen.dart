@@ -1,7 +1,11 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:tirta_kita/constants.dart';
 import 'package:tirta_kita/screen/login_screen/widget/loginBtn.dart';
+import 'package:tirta_kita/shared/widget/input_password.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';
 import 'package:tirta_kita/shared/widget/label_text.dart';
 
@@ -74,9 +78,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 50,
                         ),
+                        LabelText(text: 'Phone Number'),
                         InputNo(
-                          prefixText: '+62',
                           hintText: 'type your phone number',
+                          prefixText: '+62',
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 50,
+                        ),
+                        LabelText(text: 'Password'),
+                        InputPassword(hintText: 'type your password'),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 50,
+                        ),
+                        LabelText(text: 'Confirm Password'),
+                        InputPassword(
+                          hintText: 'type your password once again',
                         )
                       ],
                     ),

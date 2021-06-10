@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               Expanded(
-                flex: 5,
+                flex: 6,
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -120,10 +120,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                         SizedBox(
-                            height: MediaQuery.of(context).size.height / 15),
+                            height: MediaQuery.of(context).size.height / 20),
                         LoginBtn(),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 25,
+                          height: 5,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

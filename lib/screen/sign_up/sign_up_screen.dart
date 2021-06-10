@@ -1,7 +1,6 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tirta_kita/screen/login_screen/widget/loginBtn.dart';
 import 'package:tirta_kita/shared/widget/input_password.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';
 import 'package:tirta_kita/shared/widget/label_text.dart';
@@ -55,7 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               Expanded(
-                flex: 8,
+                flex: 9,
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -65,7 +64,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         topLeft: Radius.circular(15)),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(24.0),
+                    padding:
+                        const EdgeInsets.only(left: 24, right: 24, top: 10),
                     child: Column(
                       //mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         LabelText(text: 'Name'),
                         InputText(hintText: 'type your email'),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 50,
+                          height: MediaQuery.of(context).size.height / 62,
                         ),
                         LabelText(text: 'Phone Number'),
                         InputNo(
@@ -81,17 +81,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           prefixText: '+62',
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 50,
+                          height: MediaQuery.of(context).size.height / 62,
                         ),
                         LabelText(text: 'Password'),
                         InputPassword(hintText: 'type your password'),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 50,
+                          height: MediaQuery.of(context).size.height / 62,
                         ),
                         LabelText(text: 'Confirm Password'),
                         InputPassword(
                           hintText: 'type your password once again',
-                        )
+                        ),
+                        SizedBox(
+                          height: 14,
+                        ),
+                        LoginBtn()
                       ],
                     ),
                   ),

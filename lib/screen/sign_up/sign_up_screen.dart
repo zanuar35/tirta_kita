@@ -13,6 +13,9 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordController1 = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,12 +87,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           height: MediaQuery.of(context).size.height / 62,
                         ),
                         LabelText(text: 'Password'),
-                        InputPassword(hintText: 'type your password'),
+                        InputPassword(
+                          hintText: 'type your password',
+                          controller: _passwordController,
+                        ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 62,
                         ),
                         LabelText(text: 'Confirm Password'),
                         InputPassword(
+                          controller: _passwordController1,
                           hintText: 'type your password once again',
                         ),
                         SizedBox(

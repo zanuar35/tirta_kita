@@ -3,7 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tirta_kita/constants.dart';
 
 class LoginBtn extends StatelessWidget {
+  final GestureTapCallback onpressed; 
+
   const LoginBtn({
+    this.onpressed,
     Key key,
   }) : super(key: key);
 
@@ -14,7 +17,7 @@ class LoginBtn extends StatelessWidget {
       height: MediaQuery.of(context).size.height / 13,
       decoration: BoxDecoration(),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onpressed,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
             kPrimaryColor,

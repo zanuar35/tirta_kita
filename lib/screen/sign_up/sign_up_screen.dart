@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tirta_kita/screen/home_screen/home_screen.dart';
 import 'package:tirta_kita/screen/login_screen/widget/loginBtn.dart';
 import 'package:tirta_kita/shared/widget/input_password.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';
@@ -26,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               maxWidth: MediaQuery.of(context).size.width),
           decoration: BoxDecoration(
             gradient: LinearGradient(
-                colors: [Colors.blue[800], Colors.blue[600]],
+                colors: [Color(0xff254D9E), Color(0xff2BBAEC)],
                 begin: Alignment.topLeft,
                 end: Alignment.centerRight),
           ),
@@ -102,7 +103,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(
                           height: 14,
                         ),
-                        LoginBtn()
+                        LoginBtn(
+                          onpressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()));
+                          },
+                        )
                       ],
                     ),
                   ),

@@ -18,7 +18,7 @@ class CategoryWidget extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
+              padding: const EdgeInsets.only(left: 8, right: 10),
               child: Column(
                 children: [
                   Card(
@@ -30,8 +30,8 @@ class CategoryWidget extends StatelessWidget {
                         image: NetworkImage(url),
                         fit: BoxFit.scaleDown,
                       ),
-                      height: 60,
-                      width: 60,
+                      height: MediaQuery.of(context).size.height / 15,
+                      width: MediaQuery.of(context).size.height / 15,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                       ),

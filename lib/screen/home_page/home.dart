@@ -1,25 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:tirta_kita/screen/edit_profile/edit_profile.dart';
+import 'package:tirta_kita/screen/home_screen/home_screen.dart';
+import 'package:tirta_kita/screen/product_screen/product_screen.dart';
+import 'package:tirta_kita/screen/profile_screen/profile_screen.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   // const HomePage({ Key? key }) : super(key: key);
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+
+  final List<Widget> _children = [
+    HomeScreen(),
+    ProductScreen(),
+    ProfileScreen()
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0, // this will be set when a new tab is tapped
+        onTap: onTabTapped,
+        currentIndex:
+            _currentIndex, // this will be set when a new tab is tapped
         items: [
           BottomNavigationBarItem(
-            icon: new Icon(Icons.home),
+            icon: new Icon(LineIcons.archive),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: new Icon(Icons.mail),
+            icon: new Icon(LineIcons.archive),
             label: 'Product',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile')
+          BottomNavigationBarItem(
+            icon: Icon(LineIcons.user),
+            label: 'Profile',
+          )
         ],
       ),
     );
+  }
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
   }
 }

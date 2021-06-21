@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tirta_kita/constants.dart';
 
-class LoginBtn extends StatelessWidget {
-  final GestureTapCallback onpressed; 
+class CustomButton extends StatelessWidget {
+  final GestureTapCallback onpressed;
+  final double height;
+  final String text;
+  final Color color;
 
-  const LoginBtn({
+  const CustomButton({
+    this.color,
+    @required this.text,
+    this.height,
     this.onpressed,
     Key key,
   }) : super(key: key);
@@ -14,17 +20,17 @@ class LoginBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height / 13,
+      height: height,
       decoration: BoxDecoration(),
       child: ElevatedButton(
         onPressed: onpressed,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-            kPrimaryColor,
+            color,
           ),
         ),
         child: Text(
-          "Login",
+          text,
           style: GoogleFonts.rubik(
             textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
           ),

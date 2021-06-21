@@ -17,12 +17,17 @@ class CardProduct extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            decoration: BoxDecoration(color: Colors.white, boxShadow: [
-              BoxShadow(
-                  offset: Offset(1, 1),
-                  blurRadius: 10,
-                  color: Colors.black.withOpacity(0.3))
-            ]),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(6),
+                    bottomLeft: Radius.circular(6)),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      offset: Offset(1, 1),
+                      blurRadius: 10,
+                      color: Colors.black.withOpacity(0.3))
+                ]),
             child: Column(
               children: [
                 Container(

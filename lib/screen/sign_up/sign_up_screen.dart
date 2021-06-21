@@ -103,7 +103,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(
                           height: 14,
                         ),
-                        LoginBtn(
+                        CustomButton(
+                          text: 'Daftar'
+                          ,
                           onpressed: () {
                             Navigator.push(
                                 context,

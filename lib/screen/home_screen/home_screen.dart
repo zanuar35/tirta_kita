@@ -22,14 +22,14 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              height: size.height * 0.28,
+              height: size.height * 0.25,
               child: Stack(
                 children: <Widget>[
                   Container(
                     child: Image(
                       image:
                           NetworkImage('https://i.ibb.co/WPpq4mk/image-4.png'),
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                     height: size.height * 0.25 - 27,
                     width: size.width / 1,
@@ -134,7 +134,8 @@ class HomeScreen extends StatelessWidget {
             /*
               Card Produk
             */
-            CardProduct(size: size)
+
+            //CardProduct(size: size)
           ],
         ),
       ),

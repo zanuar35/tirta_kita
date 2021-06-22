@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tirta_kita/constants.dart';
 import 'package:tirta_kita/screen/sign_up/sign_up_screen.dart';
 import 'package:tirta_kita/shared/widget/input_password.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';
 import 'package:tirta_kita/shared/widget/label_text.dart';
 
-import 'widget/loginBtn.dart';
+import 'widget/custom_button.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -121,7 +122,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(
                             height: MediaQuery.of(context).size.height / 20),
-                        CustomButton(text: 'Login'),
+                        CustomButton(
+                          height: MediaQuery.of(context).size.height / 16,
+                          text: 'Login',
+                          onpressed: () {},
+                          color: kBlueColor,
+                        ),
                         SizedBox(
                           height: 5,
                         ),

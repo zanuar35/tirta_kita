@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tirta_kita/screen/home_page/home.dart';
 import 'package:tirta_kita/screen/home_screen/home_screen.dart';
-import 'package:tirta_kita/screen/login_screen/widget/loginBtn.dart';
+import 'package:tirta_kita/screen/login_screen/widget/custom_button.dart';
 import 'package:tirta_kita/shared/widget/input_password.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';
 import 'package:tirta_kita/shared/widget/label_text.dart';
+
+import '../../constants.dart';
 
 class SignUpScreen extends StatefulWidget {
   // const SignUpScreen({ Key? key }) : super(key: key);
@@ -16,6 +19,12 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _passwordController1 = TextEditingController();
+
+  void dispose() {
+    _passwordController.dispose();
+    _passwordController1.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,16 +110,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           hintText: 'type your password once again',
                         ),
                         SizedBox(
-                          height: 14,
+                          height: 30,
                         ),
                         CustomButton(
-                          text: 'Daftar'
-                          ,
+                          text: 'Daftar',
+                          color: kBlueColor,
+                          height: MediaQuery.of(context).size.height / 16,
                           onpressed: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomeScreen()));
+                                    builder: (context) => HomePage()));
                           },
                         )
                       ],

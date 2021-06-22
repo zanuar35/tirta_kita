@@ -3,7 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 
 class CardProduct extends StatelessWidget {
+  final String url;
+
   const CardProduct({
+    @required this.url,
     Key key,
     @required this.size,
   }) : super(key: key);

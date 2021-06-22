@@ -6,9 +6,11 @@ class CustomButton extends StatelessWidget {
   final GestureTapCallback onpressed;
   final double height;
   final String text;
+  final FontWeight fontWeight;
   final Color color;
 
   const CustomButton({
+    this.fontWeight,
     this.color,
     @required this.text,
     this.height,
@@ -21,7 +23,13 @@ class CustomButton extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: height,
-      decoration: BoxDecoration(),
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            spreadRadius: 4,
+            blurRadius: 2,
+            offset: Offset(2, 3))
+      ]),
       child: ElevatedButton(
         onPressed: onpressed,
         style: ButtonStyle(
@@ -32,7 +40,8 @@ class CustomButton extends StatelessWidget {
         child: Text(
           text,
           style: GoogleFonts.rubik(
-            textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            textStyle: TextStyle(
+                fontSize: 18, fontWeight: fontWeight, color: Colors.white),
           ),
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/category_widget.dart';
 
+
 class ProductScreen extends StatelessWidget {
   //const ProductScreen({ Key? key }) : super(key: key);
 
@@ -82,6 +83,14 @@ class ProductScreen extends StatelessWidget {
             SizedBox(height: 20),
             CategoryWidget(
               url: 'https://i.ibb.co/bHrLDGc/image-2-removebg-preview.png',
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height / 2,
+              width: MediaQuery.of(context).size.width / 1,
+              color: Colors.red[100],
             ),
           ],
         ),

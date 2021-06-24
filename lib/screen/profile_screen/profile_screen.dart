@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -5,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:tirta_kita/constants.dart';
+import 'package:tirta_kita/screen/daftar_pesanan/daftar_pesanan.dart';
+import 'package:tirta_kita/screen/help_screen/help_screen.dart';
 import 'package:tirta_kita/screen/login_screen/widget/custom_button.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -13,34 +16,311 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    double blockHorizontal = (MediaQuery.of(context).size.width) / 100;
+    double blockVertical = (MediaQuery.of(context).size.height) / 100;
+
     return Scaffold(
-      backgroundColor: Color(0xffB3B3B3),
+      backgroundColor: Color(0xffE7E7E7),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Container(
-                height: size.height / 4,
-                width: size.width / 1,
-                color: Colors.white,
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-                  color: Colors.red[100],
-                ),
+              Stack(
+                children: <Widget>[
+                  Column(
+                    children: [
+                      Container(
+                        color: Colors.white,
+                        width: size.width / 1,
+                        height: size.height / 4.6,
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(24, 20, 24, 35),
+                          child: Container(
+                            // color: Colors.green[50],
+                            height: size.height / 5,
+                            width: size.width / 1,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  'Profile',
+                                  style: GoogleFonts.rubik(
+                                    textStyle: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w500,
+                                        letterSpacing: 0.2),
+                                  ),
+                                ),
+                                SizedBox(height: blockVertical * 1.1),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    CircleAvatar(
+                                      child: Text(
+                                        "P",
+                                        style: GoogleFonts.rubik(
+                                            textStyle: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                color: Colors.white,
+                                                fontSize: 14)),
+                                      ),
+                                      maxRadius: blockVertical * 3,
+                                      backgroundColor: Colors.amber,
+                                    ),
+                                    SizedBox(
+                                      width: blockHorizontal * 3,
+                                    ),
+                                    Container(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text("Wahyudi Isman"),
+                                          SizedBox(
+                                            height: blockVertical * 0.9,
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Icon(
+                                                LineIcons.certificate,
+                                                size: 30,
+                                              ),
+                                              SizedBox(
+                                                width: blockHorizontal * 1.8,
+                                              ),
+                                              Text('Silver Member')
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: blockHorizontal * 0.8,
+                                          ),
+                                          Text(
+                                            'Edit Profile',
+                                            style: GoogleFonts.rubik(
+                                                textStyle: TextStyle(
+                                                    fontSize: 14,
+                                                    color: Color(0xff265FAA),
+                                                    fontWeight:
+                                                        FontWeight.w700)),
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 15),
+                      Container(
+                        width: size.width / 1,
+                        height: size.height / 4.6,
+                        color: Colors.white,
+                        child: Container(
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text(
+                                    'Daftar Pesanan',
+                                    style: GoogleFonts.rubik(
+                                      textStyle: TextStyle(
+                                          fontSize: blockHorizontal * 3.7,
+                                          fontWeight: FontWeight.w500,
+                                          letterSpacing: 0.2),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  DaftarPesanan()));
+                                    },
+                                    child: Text(
+                                      'Lihat Semua',
+                                      style: GoogleFonts.rubik(
+                                        textStyle: TextStyle(
+                                            fontSize: blockHorizontal * 3.7,
+                                            fontWeight: FontWeight.w700,
+                                            letterSpacing: 0.2),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(
+                                    left: 12,
+                                    right: 12,
+                                    top: (blockVertical) * 1.4),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Column(
+                                      children: <Widget>[
+                                        Icon(
+                                          LineIcons.shoppingBag,
+                                          size: blockHorizontal * 8.8,
+                                        ),
+                                        SizedBox(
+                                          height: (blockVertical) * 0.8,
+                                        ),
+                                        Text(
+                                          "Belum Bayar",
+                                          style: GoogleFonts.rubik(
+                                            textStyle: TextStyle(
+                                                fontSize: blockHorizontal * 3.7,
+                                                fontWeight: FontWeight.w400,
+                                                letterSpacing: 0.2),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Column(
+                                      children: <Widget>[
+                                        Icon(
+                                          LineIcons.shoppingBag,
+                                          size: blockHorizontal * 8.8,
+                                        ),
+                                        SizedBox(
+                                          height: (blockVertical) * 0.8,
+                                        ),
+                                        Text(
+                                          "Sedang Dikirim",
+                                          style: GoogleFonts.rubik(
+                                            textStyle: TextStyle(
+                                                fontSize: blockHorizontal * 3.7,
+                                                fontWeight: FontWeight.w400,
+                                                letterSpacing: 0.2),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Column(
+                                      children: <Widget>[
+                                        Icon(
+                                          LineIcons.shoppingBag,
+                                          size: blockHorizontal * 8.8,
+                                        ),
+                                        SizedBox(
+                                          height: (blockVertical) * 0.8,
+                                        ),
+                                        Text(
+                                          "Selesai",
+                                          style: GoogleFonts.rubik(
+                                            textStyle: TextStyle(
+                                                fontSize: blockHorizontal * 3.7,
+                                                fontWeight: FontWeight.w400,
+                                                letterSpacing: 0.2),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                          margin: EdgeInsets.only(
+                            top: (blockVertical) * 7,
+                            left: size.width - (size.width - 24),
+                            right: size.width - (size.width - 24),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Positioned(
+                    top: size.height / 5.62,
+                    left: 20,
+                    right: 20,
+                    bottom: size.height / 5.62,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [
+                            Color(0xff0193DB),
+                            Color(0xff2A9CD9),
+                          ],
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      //margin: EdgeInsets.symmetric(vertical: 24),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            left: blockHorizontal * 8,
+                            top: blockVertical * 1.7,
+                            bottom: blockVertical * 1.7),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            CircleAvatar(
+                              child: Text(
+                                "P",
+                                style: GoogleFonts.rubik(
+                                  textStyle: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                      fontSize: 14),
+                                ),
+                              ),
+                              maxRadius: (blockVertical) * 2.8,
+                              backgroundColor: Colors.amber,
+                            ),
+                            SizedBox(
+                              width: blockHorizontal * 5,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  'Poin Kamu',
+                                  style: GoogleFonts.rubik(
+                                    textStyle: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: blockVertical * 0.65,
+                                ),
+                                Text(
+                                  '1000 pts',
+                                  style: GoogleFonts.rubik(
+                                    textStyle: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                        fontSize: 20),
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                ],
               ),
-              SizedBox(height: 15),
-              Container(
-                height: size.height / 4,
-                width: size.width / 1,
-                color: Colors.white,
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(24, 50, 24, 10),
-                  color: Colors.red[100],
-                ),
+              SizedBox(
+                height: 15,
               ),
-              SizedBox(height: 15),
               Container(
-                height: size.height / 7,
+                height: size.height / 6.2,
                 width: size.width / 1,
                 color: Colors.white,
                 child: Container(
@@ -59,42 +339,59 @@ class ProfileScreen extends StatelessWidget {
                       SizedBox(
                         height: 8,
                       ),
-                      Container(
-                        margin: EdgeInsets.only(left: 12),
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                Icon(
-                                  LineIcons.questionCircle,
-                                  size: 32,
-                                ),
-                                SizedBox(width: 12),
-                                Text('Bantuan',
-                                    style: GoogleFonts.rubik(
-                                        textStyle: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400)))
-                              ],
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HelpScreen(),
                             ),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Icon(
-                                  LineIcons.whatSApp,
-                                  size: 32,
-                                ),
-                                SizedBox(width: 12),
-                                Text('Hubungi Kontak Whatsapp',
-                                    style: GoogleFonts.rubik(
+                          );
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(left: 12),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                child: Row(
+                                  children: <Widget>[
+                                    Icon(
+                                      LineIcons.questionCircle,
+                                      size: 32,
+                                      color: Color(0xff2A9CD4),
+                                    ),
+                                    SizedBox(width: 12),
+                                    Text(
+                                      'Bantuan',
+                                      style: GoogleFonts.rubik(
                                         textStyle: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400)))
-                              ],
-                            )
-                          ],
+                                            fontSize: blockHorizontal * 3.7,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: size.height / 85,
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Icon(
+                                    LineIcons.whatSApp,
+                                    color: Color(0xff2A9CD4),
+                                    size: 32,
+                                  ),
+                                  SizedBox(width: 12),
+                                  Text('Hubungi Kontak Whatsapp',
+                                      style: GoogleFonts.rubik(
+                                          textStyle: TextStyle(
+                                              fontSize: blockHorizontal * 3.7,
+                                              fontWeight: FontWeight.w400)))
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -116,17 +413,17 @@ class ProfileScreen extends StatelessWidget {
                         "Logout Akun",
                         style: GoogleFonts.rubik(
                           textStyle: TextStyle(
-                              fontSize: 14,
+                              fontSize: blockHorizontal * 4.5,
                               fontWeight: FontWeight.w500,
                               letterSpacing: 0.2),
                         ),
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: blockVertical * 2),
                       CustomButton(
-                        height: 45,
+                        height: (blockVertical) * 6.7,
                         fontWeight: FontWeight.w400,
                         text: 'Keluar Akun',
-                        color: kBlueColor,
+                        color: Color(0xff2BBAEC),
                       )
                     ],
                   ),

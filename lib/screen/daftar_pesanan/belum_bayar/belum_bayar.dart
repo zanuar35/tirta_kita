@@ -23,7 +23,7 @@ class BelumBayar extends StatelessWidget {
               children: <Widget>[
                 Container(
                   width: size.width / 1,
-                  height: blockVertical * 22,
+                  height: blockVertical * 23,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
                     color: Color(0xfffdfdfd),

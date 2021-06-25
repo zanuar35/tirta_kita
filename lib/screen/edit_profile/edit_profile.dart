@@ -15,7 +15,11 @@ class EditProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(LineIcons.angleLeft),
+        leading: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(LineIcons.angleLeft)),
         title: Text(
           'Edit Profile',
           style: GoogleFonts.rubik(

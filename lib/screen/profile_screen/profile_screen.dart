@@ -7,6 +7,7 @@ import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:tirta_kita/constants.dart';
 import 'package:tirta_kita/screen/daftar_pesanan/daftar_pesanan.dart';
+import 'package:tirta_kita/screen/edit_profile/edit_profile.dart';
 import 'package:tirta_kita/screen/help_screen/help_screen.dart';
 import 'package:tirta_kita/screen/login_screen/widget/custom_button.dart';
 
@@ -78,9 +79,14 @@ class ProfileScreen extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: <Widget>[
-                                          Text("Wahyudi Isman"),
+                                          Text(
+                                            "Wahyudi Isman",
+                                            style: TextStyle(
+                                                fontSize: blockHorizontal * 4.1,
+                                                fontWeight: FontWeight.w700),
+                                          ),
                                           SizedBox(
-                                            height: blockVertical * 0.9,
+                                            height: blockVertical * 0.5,
                                           ),
                                           Row(
                                             children: <Widget>[
@@ -95,16 +101,28 @@ class ProfileScreen extends StatelessWidget {
                                             ],
                                           ),
                                           SizedBox(
-                                            height: blockHorizontal * 0.8,
+                                            height: blockHorizontal * 0.5,
                                           ),
-                                          Text(
-                                            'Edit Profile',
-                                            style: GoogleFonts.rubik(
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      EditProfile(),
+                                                ),
+                                              );
+                                            },
+                                            child: Text(
+                                              'Edit Profile',
+                                              style: GoogleFonts.rubik(
                                                 textStyle: TextStyle(
-                                                    fontSize: 14,
+                                                    fontSize: 13,
                                                     color: Color(0xff265FAA),
                                                     fontWeight:
-                                                        FontWeight.w700)),
+                                                        FontWeight.w700),
+                                              ),
+                                            ),
                                           )
                                         ],
                                       ),
@@ -128,15 +146,12 @@ class ProfileScreen extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
-                                  Text(
-                                    'Daftar Pesanan',
-                                    style: GoogleFonts.rubik(
-                                      textStyle: TextStyle(
-                                          fontSize: blockHorizontal * 3.7,
-                                          fontWeight: FontWeight.w500,
-                                          letterSpacing: 0.2),
-                                    ),
-                                  ),
+                                  Text('Daftar Pesanan',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: blockHorizontal * 4,
+                                          fontWeight: FontWeight.w600,
+                                          letterSpacing: 0.2)),
                                   TextButton(
                                     onPressed: () {
                                       Navigator.push(
@@ -149,7 +164,7 @@ class ProfileScreen extends StatelessWidget {
                                       'Lihat Semua',
                                       style: GoogleFonts.rubik(
                                         textStyle: TextStyle(
-                                            fontSize: blockHorizontal * 3.7,
+                                            fontSize: blockHorizontal * 3.8,
                                             fontWeight: FontWeight.w700,
                                             letterSpacing: 0.2),
                                       ),
@@ -241,10 +256,10 @@ class ProfileScreen extends StatelessWidget {
                     ],
                   ),
                   Positioned(
-                    top: size.height / 5.62,
-                    left: 20,
-                    right: 20,
-                    bottom: size.height / 5.62,
+                    top: size.height / 5.55,
+                    left: blockHorizontal * 5.5,
+                    right: blockHorizontal * 5.5,
+                    bottom: size.height / 5.55,
                     child: Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -331,9 +346,9 @@ class ProfileScreen extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         "Tentang",
-                        style: GoogleFonts.rubik(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
+                        style: TextStyle(
+                            fontSize: blockHorizontal * 4.5,
+                            fontWeight: FontWeight.w600,
                             letterSpacing: 0.2),
                       ),
                       SizedBox(
@@ -409,15 +424,11 @@ class ProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        "Logout Akun",
-                        style: GoogleFonts.rubik(
-                          textStyle: TextStyle(
+                      Text("Logout Akun",
+                          style: TextStyle(
                               fontSize: blockHorizontal * 4.5,
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: 0.2),
-                        ),
-                      ),
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0.2)),
                       SizedBox(height: blockVertical * 2),
                       CustomButton(
                         height: (blockVertical) * 6.7,

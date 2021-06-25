@@ -3,12 +3,29 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/category_widget.dart';
 
-
-class ProductScreen extends StatelessWidget {
+class ProductScreen extends StatefulWidget {
   //const ProductScreen({ Key? key }) : super(key: key);
 
   @override
+  _ProductScreenState createState() => _ProductScreenState();
+}
+
+class _ProductScreenState extends State<ProductScreen> {
+  String valueChoose;
+
+  List<String> listItem = [
+    "Outlet - Ciputra 1(2km)",
+    "Item 2",
+    "Item 3",
+    "Item 4"
+  ];
+
+  @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double blockHorizontal = (MediaQuery.of(context).size.width) / 100;
+    double blockVertical = (MediaQuery.of(context).size.height) / 100;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -29,7 +46,7 @@ class ProductScreen extends StatelessWidget {
                     EdgeInsets.only(left: 24, right: 24, bottom: 15, top: 24),
                 child: Container(
                   height: 70,
-                  width: 200,
+                  width: MediaQuery.of(context).size.width / 1,
                   child: Column(
                     children: <Widget>[
                       Flexible(
@@ -44,26 +61,66 @@ class ProductScreen extends StatelessWidget {
                                 color: Colors.white,
                               ),
                               SizedBox(
-                                width: MediaQuery.of(context).size.height / 30,
+                                width: blockVertical * 2,
                               ),
-                              Column(
-                                children: <Widget>[
-                                  Text(
-                                    "Toko cabang",
-                                    style: GoogleFonts.rubik(
+                              Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      "Toko Cabang",
+                                      style: GoogleFonts.rubik(
                                         textStyle: TextStyle(
-                                            fontSize: 12,
+                                            fontSize: 13,
                                             color: Colors.white,
-                                            fontWeight: FontWeight.w400)),
-                                  ),
-                                ],
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: blockVertical * 4,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: DropdownButton(
+                                          icon: Icon(
+                                            LineIcons.angleDown,
+                                            size: 18,
+                                            color: Colors.white,
+                                          ),
+                                          hint: Text(
+                                            listItem[0],
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 14),
+                                          ),
+                                          onChanged: (value) {
+                                            print(value);
+                                          },
+                                          items: listItem
+                                              .map(
+                                                (e) => DropdownMenuItem(
+                                                  child: Text(
+                                                    e,
+                                                    style: TextStyle(
+                                                      color: Colors.black54,
+                                                      fontSize: 12,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                              .toList()),
+                                    )
+                                  ],
+                                ),
                               )
                             ],
                           ),
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height / 85,
+                        height: blockVertical * 0.2,
                       ),
                       Flexible(
                         flex: 1,
@@ -91,6 +148,7 @@ class ProductScreen extends StatelessWidget {
               height: MediaQuery.of(context).size.height / 2,
               width: MediaQuery.of(context).size.width / 1,
               color: Colors.red[100],
+              child: Text((blockHorizontal * 0.3).toString()),
             ),
           ],
         ),

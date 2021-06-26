@@ -1,5 +1,8 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tirta_kita/screen/konfirmasi_pembayaran/konfirmasi_pembayaran.dart';
 
 class BelumBayar extends StatelessWidget {
   //const BelumBayar({ Key? key }) : super(key: key);
@@ -112,7 +115,13 @@ class BelumBayar extends StatelessWidget {
                         ),
                         Center(
                           child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            KonfirmasiPembayaran()));
+                              },
                               child: Text(
                                 'Konfirmasi Pembayaran',
                                 style: TextStyle(

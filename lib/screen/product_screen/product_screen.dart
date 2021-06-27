@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/category_widget.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -148,8 +149,20 @@ class _ProductScreenState extends State<ProductScreen> {
               height: MediaQuery.of(context).size.height / 2,
               width: MediaQuery.of(context).size.width / 1,
               color: Colors.red[100],
-              child: Text((blockHorizontal * 0.3).toString()),
+              child: Text(
+                (blockHorizontal * 0.3).toString(),
+              ),
             ),
+            FloatingActionButton(
+                child: Icon(Icons.shopping_cart_rounded),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CartScreen(),
+                    ),
+                  );
+                })
           ],
         ),
       ),

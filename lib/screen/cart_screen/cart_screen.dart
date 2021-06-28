@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:tirta_kita/screen/cart_screen/widgets/card_cart.dart';
+import 'package:tirta_kita/screen/cart_screen/widgets/option.box.dart';
+import 'package:tirta_kita/screen/cart_screen/widgets/price_column.dart';
+import 'package:tirta_kita/shared/widget/button.dart';
 
 class CartScreen extends StatelessWidget {
   //const CartScreen({ Key? key }) : super(key: key);
@@ -8,6 +13,16 @@ class CartScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     double blockHorizontal = (MediaQuery.of(context).size.width) / 100;
     double blockVertical = (MediaQuery.of(context).size.height) / 100;
+
+    final TextStyle labelStyle = TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+    );
+
+    final TextStyle priceStyle = TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+    );
 
     return Scaffold(
         body: Stack(
@@ -41,7 +56,7 @@ class CartScreen extends StatelessWidget {
                         ),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.fromLTRB(24, 50, 24, 0),
+                        padding: EdgeInsets.fromLTRB(24, 35, 24, 0),
                         child: Column(
                           children: [
                             Row(
@@ -66,61 +81,31 @@ class CartScreen extends StatelessWidget {
                             SizedBox(
                               height: blockVertical * 3,
                             ),
-                            Container(
-                                width: size.width / 1,
-                                height: blockVertical * 15,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(13),
-                                  border: Border.all(
-                                    width: 3,
-                                    color: Color(0xffE6E6E6),
-                                  ),
-                                ),
-                                child: Container(
-                                  margin: EdgeInsets.all(blockHorizontal * 2),
-                                  width: size.width / 1,
-                                  height: size.height / 1,
-                                  color: Colors.amber,
-                                  child: Row(
-                                    children: <Widget>[
-                                      Container(
-                                        width: 80,
-                                        height: 80,
-                                        // color: Colors.blue,
-                                        child: Image(
-                                          image: NetworkImage(
-                                              'https://i.ibb.co/vdDtdJv/Rectangle-88-removebg-preview.png'),
-                                          fit: BoxFit.fill,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 20,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(
-                                            'Air Mineral Aqua 19L',
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            'Rp 18.000',
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.w600),
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ))
+                            CardCart(
+                                size: size,
+                                blockVertical: blockVertical,
+                                blockHorizontal: blockHorizontal),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            CardCart(
+                                size: size,
+                                blockVertical: blockVertical,
+                                blockHorizontal: blockHorizontal),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            PriceColumn(
+                                labelStyle: labelStyle, priceStyle: priceStyle),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            OptionBox(
+                                size: size,
+                                blockVertical: blockVertical,
+                                blockHorizontal: blockHorizontal),
+                            SizedBox(height: 15),
+                            Button(text: 'Konfirmasi Pembelian')
                           ],
                         ),
                       ),
@@ -135,25 +120,3 @@ class CartScreen extends StatelessWidget {
     ));
   }
 }
-
-/*
-
-Column(
-        children: <Widget>[
-          Container(
-            width: size.width,
-            height: blockVertical * 20,
-            color: Colors.blue,
-          ),
-          Container(
-            width: size.width,
-            height: blockVertical * 80,
-            decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20))),
-          ),
-        ],
-      ),
-*/

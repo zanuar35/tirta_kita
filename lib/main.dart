@@ -18,6 +18,6 @@ class MyApp extends StatelessWidget {
           ),
           primarySwatch: Colors.blue,
         ),
-        home: CartScreen());
+        home: HomePage());
   }
 }

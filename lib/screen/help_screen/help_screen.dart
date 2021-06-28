@@ -1,6 +1,9 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:getwidget/getwidget.dart';
 
 class HelpScreen extends StatefulWidget {
   //const HelpScreen({ Key? key }) : super(key: key);
@@ -67,46 +70,93 @@ class _HelpScreenState extends State<HelpScreen> {
         ),
       ),
       body: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: screenWidth - (screenWidth - 24),
-            vertical: screenHeight - (screenHeight - 12),
-          ),
-          child: ListView(
-            children: <Widget>[
-              // ExpansionPanel(
-              //     headerBuilder: (BuildContext context, bool isExpanded) {
-              //       return Container();
-              //     },
-              //     body: body),
-              ExpansionPanelList(
-                children: data.map((e) {
-                  return ExpansionPanel(
-                      headerBuilder: (BuildContext context, bool isExpanded) {
-                        return ListTile(
-                          title: Text(e['title']),
-                        );
-                      },
-                      body: ListTile(
-                        title: Text(e['desc']),
+        margin: EdgeInsets.symmetric(
+          horizontal: screenWidth - (screenWidth - 24),
+          vertical: screenHeight - (screenHeight - 12),
+        ),
+        child: ListView(
+          children: <Widget>[
+            SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(width: 1, color: Colors.grey)),
+              child: GFAccordion(
+                title: 'Bantuan',
+                content:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(width: 1, color: Colors.grey)),
+              child: GFAccordion(
+                title: 'Bantuan',
+                content:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(width: 1, color: Colors.grey)),
+              child: GFAccordion(
+                title: 'Bantuan',
+                content:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(width: 1, color: Colors.grey)),
+              child: GFAccordion(
+                title: 'Bantuan',
+                content:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(width: 1, color: Colors.grey)),
+              child: GFAccordion(
+                title: 'Bantuan',
+                contentChild: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('BCA'),
+                          Radio(value: 1, groupValue: 1, onChanged: (value) {})
+                        ],
                       ),
-                      isExpanded: selectedData == e['title'] ? true : false);
-                }).toList(),
-                expansionCallback: (int index, bool isExpanded) {
-                  if (isExpanded == false) {
-                    setState(() {
-                      selectedData = data[index]['title'];
-                    });
-                  } else {
-                    setState(() {
-                      selectedData = '';
-                    });
-                  }
-                },
-                animationDuration: Duration(milliseconds: 450),
-                expandedHeaderPadding: EdgeInsets.all(2),
-              )
-            ],
-          )),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Column(
+                            children: <Widget>[
+                              Text('No Rekening'),
+                              Text('000028201122')
+                            ],
+                          ),
+                          Icon(LineIcons.copy)
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

@@ -1,0 +1,101 @@
+import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:tirta_kita/screen/pakai_promo/pakai_promo.dart';
+import 'package:tirta_kita/screen/payment_method/metode_pembayaran.dart';
+
+class OptionBox extends StatelessWidget {
+  const OptionBox({
+    Key key,
+    @required this.size,
+    @required this.blockVertical,
+    @required this.blockHorizontal,
+  }) : super(key: key);
+
+  final Size size;
+  final double blockVertical;
+  final double blockHorizontal;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size.width / 1,
+      height: blockVertical * 10,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(width: 2, color: Colors.grey),
+          color: Colors.white),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.all(10),
+            width: blockHorizontal * 35,
+            height: size.height / 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text('Pakai Promo'),
+                    Text(
+                      'DISC 123',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+                    )
+                  ],
+                ),
+                InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PakaiPromo()));
+                    },
+                    child: Icon(LineIcons.angleRight))
+              ],
+            ),
+          ),
+          VerticalDivider(
+            color: Colors.grey,
+            width: 3,
+            indent: 10,
+            endIndent: 10,
+            thickness: 3,
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            width: blockHorizontal * 36.7,
+            height: size.height / 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text('Pilih Pembayaran'),
+                    Text(
+                      'Transfer BCA',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+                    )
+                  ],
+                ),
+                InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PaymentMethod()));
+                    },
+                    child: Icon(LineIcons.angleRight))
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}

@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 
-class CardProduct extends StatelessWidget {
+class CardProductHome extends StatelessWidget {
   final String url;
 
-  const CardProduct({
+  const CardProductHome({
     @required this.url,
     Key key,
-    @required this.size,
+    //@required this.size,
   }) : super(key: key);
 
-  final Size size;
+  // final Size size;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 15, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: Column(
         children: [
           Container(
@@ -93,7 +93,7 @@ class CardProduct extends StatelessWidget {
                         size: 30,
                         color: Colors.white,
                       ),
-                      SizedBox(width: size.width / 40),
+                      //SizedBox(width: size.width / 40),
                       Text(
                         'Add to cart',
                         style: GoogleFonts.rubik(

@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/components/accordion/gf_accordion.dart';
 import 'package:line_icons/line_icons.dart';
 
-class PaymentPanel extends StatefulWidget {
-  const PaymentPanel({Key key, this.radioValue}) : super(key: key);
-
+class PaymentPanelImage extends StatefulWidget {
+  final String url;
   final int radioValue;
 
+  const PaymentPanelImage({Key key, this.url, this.radioValue})
+      : super(key: key);
+
   @override
-  _PaymentPanelState createState() => _PaymentPanelState();
+  _PaymentPanelImageState createState() => _PaymentPanelImageState();
 }
 
-class _PaymentPanelState extends State<PaymentPanel> {
+class _PaymentPanelImageState extends State<PaymentPanelImage> {
   @override
   Widget build(BuildContext context) {
     double blockVertical = (MediaQuery.of(context).size.height) / 100;
@@ -19,29 +21,25 @@ class _PaymentPanelState extends State<PaymentPanel> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.black.withOpacity(0.1),
-        //     spreadRadius: 0,
-        //     blurRadius: 10,
-        //     offset: Offset(0, 8), // changes position of shadow
-        //   )
-        // ],
         border: Border.all(width: 1, color: Colors.grey),
       ),
       child: GFAccordion(
-        title: 'Transfer Atm',
+        titleChild: Container(
+            width: 200,
+            height: 30,
+            child: Image(
+              image: NetworkImage(widget.url),
+              alignment: Alignment.centerLeft,
+            )),
         contentChild: Container(
           child: Column(
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image(
-                      image: NetworkImage(
-                          'https://i.ibb.co/sjfYwWx/image-15.png')),
+                  Image(image: NetworkImage(widget.url)),
                   Radio(
-                      value: 1,
+                      value: 0,
                       groupValue: widget.radioValue,
                       onChanged: (value) {
                         setState(() {

@@ -120,40 +120,7 @@ class _HelpScreenState extends State<HelpScreen> {
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
               ),
             ),
-            SizedBox(height: 10),
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(width: 1, color: Colors.grey)),
-              child: GFAccordion(
-                title: 'Bantuan',
-                contentChild: Container(
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('BCA'),
-                          Radio(value: 1, groupValue: 1, onChanged: (value) {})
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              Text('No Rekening'),
-                              Text('000028201122')
-                            ],
-                          ),
-                          Icon(LineIcons.copy)
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            )
+            SizedBox(height: 10),  
           ],
         ),
       ),

@@ -36,7 +36,14 @@ class EditProfile extends StatelessWidget {
             children: <Widget>[
               Center(
                 child: Container(
-                  color: Colors.red,
+                  child: Image(
+                    image: NetworkImage(
+                        'https://i.ibb.co/z4zCXW6/Rectangle-116.png'),
+                    fit: BoxFit.fill,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
                   width: 200,
                   height: 200,
                 ),

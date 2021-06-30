@@ -65,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
                                                 color: Colors.white,
                                                 fontSize: 14)),
                                       ),
-                                      maxRadius: blockVertical * 3,
+                                      maxRadius: blockVertical * 3.2,
                                       backgroundColor: Colors.amber,
                                     ),
                                     SizedBox(

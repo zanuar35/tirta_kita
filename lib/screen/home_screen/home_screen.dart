@@ -92,6 +92,7 @@ class HomeScreen extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: kPrimaryColor),
+                                        child: Image(image: NetworkImage('https://i.ibb.co/z4zCXW6/Rectangle-116.png')),
                                   )
                                 ],
                               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:tirta_kita/blocs/counter.dart';
 
 class CardCart extends StatefulWidget {
   const CardCart({
@@ -18,10 +19,11 @@ class CardCart extends StatefulWidget {
 }
 
 class _CardCartState extends State<CardCart> {
+  CounterBloc blocs = CounterBloc();
+
+  get blockHorizontal => null;
   @override
   Widget build(BuildContext context) {
-    int jml_brg = 1;
-
     return Container(
       width: widget.size.width / 1,
       height: widget.blockVertical * 15,
@@ -78,20 +80,31 @@ class _CardCartState extends State<CardCart> {
               padding: EdgeInsets.only(top: widget.blockVertical * 4),
               child: Row(
                 children: <Widget>[
-                  Icon(
-                    LineIcons.minus,
-                    size: 18,
+                  InkWell(
+                    child: Icon(
+                      LineIcons.minus,
+                      size: 18,
+                    ),
+                    onTap: () {
+                      blocs.inputan.add('minus');
+                    },
                   ),
                   SizedBox(
-                    width: 4,
+                    width: 3,
                   ),
                   Container(
-                    width: 25,
-                    height: 25,
+                    width: 22,
+                    height: 22,
                     child: Center(
-                      child: Text(
-                        '$jml_brg',
-                        style: TextStyle(fontWeight: FontWeight.w600),
+                      child: StreamBuilder(
+                        initialData: 1,
+                        stream: blocs.output,
+                        builder: (context, snapshot) {
+                          return Text(
+                            '${snapshot.data}',
+                            style: TextStyle(fontWeight: FontWeight.w600),
+                          );
+                        },
                       ),
                     ),
                     decoration: BoxDecoration(
@@ -99,19 +112,14 @@ class _CardCartState extends State<CardCart> {
                         border: Border.all(width: 2, color: Colors.grey)),
                   ),
                   SizedBox(
-                    width: 4,
+                    width: 3,
                   ),
                   InkWell(
+                    child: Icon(LineIcons.plus),
                     onTap: () {
-                      setState(() {
-                        jml_brg += 1;
-                      });
+                      blocs.inputan.add('add');
                     },
-                    child: Icon(
-                      LineIcons.plus,
-                      size: 18,
-                    ),
-                  ),
+                  )
                 ],
               ),
             )

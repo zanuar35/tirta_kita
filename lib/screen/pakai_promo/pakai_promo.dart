@@ -8,6 +8,8 @@ import 'package:tirta_kita/shared/widget/button.dart';
 class PakaiPromo extends StatelessWidget {
   //const PakaiPromo({ Key? key }) : super(key: key);
 
+  int _value;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -41,8 +43,6 @@ class PakaiPromo extends StatelessWidget {
               PromoCard(
                 size: size,
                 blockVertical: blockVertical,
-                value: 0,
-                groupValue: 1,
               ),
               SizedBox(
                 height: blockVertical * 3,
@@ -50,8 +50,6 @@ class PakaiPromo extends StatelessWidget {
               PromoCard(
                 size: size,
                 blockVertical: blockVertical,
-                value: 1,
-                groupValue: 1,
               ),
             ],
           ),

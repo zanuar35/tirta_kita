@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class PromoCard extends StatefulWidget {
-  const PromoCard({
+  PromoCard({
     this.value,
     this.groupValue,
+    this.widget,
     Key key,
     @required this.size,
     @required this.blockVertical,
@@ -11,9 +12,10 @@ class PromoCard extends StatefulWidget {
 
   final Size size;
   final double blockVertical;
+  final Widget widget;
 
   final int value;
-  final int groupValue;
+  String groupValue;
 
   @override
   _PromoCardState createState() => _PromoCardState();
@@ -61,7 +63,11 @@ class _PromoCardState extends State<PromoCard> {
             Radio(
                 value: widget.value,
                 groupValue: widget.groupValue,
-                onChanged: (value) {})
+                onChanged: (value) {
+                  setState(() {
+                    widget.groupValue = value;
+                  });
+                })
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
-class CardCart extends StatelessWidget {
+class CardCart extends StatefulWidget {
   const CardCart({
     Key key,
     @required this.size,
@@ -14,10 +14,17 @@ class CardCart extends StatelessWidget {
   final double blockHorizontal;
 
   @override
+  _CardCartState createState() => _CardCartState();
+}
+
+class _CardCartState extends State<CardCart> {
+  @override
   Widget build(BuildContext context) {
+    int jml_brg = 1;
+
     return Container(
-      width: size.width / 1,
-      height: blockVertical * 15,
+      width: widget.size.width / 1,
+      height: widget.blockVertical * 15,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(13),
@@ -27,9 +34,9 @@ class CardCart extends StatelessWidget {
         ),
       ),
       child: Container(
-        margin: EdgeInsets.all(blockHorizontal * 2),
-        width: size.width / 1,
-        height: size.height / 1,
+        margin: EdgeInsets.all(widget.blockHorizontal * 2),
+        width: widget.size.width / 1,
+        height: widget.size.height / 1,
         // color: Colors.amber,
         child: Row(
           children: <Widget>[
@@ -48,7 +55,7 @@ class CardCart extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.only(top: 20, bottom: 20),
-              height: size.height / 1,
+              height: widget.size.height / 1,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,7 +75,7 @@ class CardCart extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: blockVertical * 4),
+              padding: EdgeInsets.only(top: widget.blockVertical * 4),
               child: Row(
                 children: <Widget>[
                   Icon(
@@ -83,7 +90,7 @@ class CardCart extends StatelessWidget {
                     height: 25,
                     child: Center(
                       child: Text(
-                        '1',
+                        '$jml_brg',
                         style: TextStyle(fontWeight: FontWeight.w600),
                       ),
                     ),
@@ -94,9 +101,16 @@ class CardCart extends StatelessWidget {
                   SizedBox(
                     width: 4,
                   ),
-                  Icon(
-                    LineIcons.plus,
-                    size: 18,
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        jml_brg += 1;
+                      });
+                    },
+                    child: Icon(
+                      LineIcons.plus,
+                      size: 18,
+                    ),
                   ),
                 ],
               ),

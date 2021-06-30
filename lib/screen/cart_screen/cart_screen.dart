@@ -5,9 +5,14 @@ import 'package:tirta_kita/screen/cart_screen/widgets/option.box.dart';
 import 'package:tirta_kita/screen/cart_screen/widgets/price_column.dart';
 import 'package:tirta_kita/shared/widget/button.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   //const CartScreen({ Key? key }) : super(key: key);
 
+  @override
+  _CartScreenState createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

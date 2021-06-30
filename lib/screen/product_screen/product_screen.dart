@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:tirta_kita/constants.dart';
 import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/card_product.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/category_widget.dart';
@@ -90,6 +91,8 @@ class _ProductScreenState extends State<ProductScreen> {
                                               BorderRadius.circular(5),
                                         ),
                                         child: DropdownButton(
+                                            dropdownColor: Color(0xff2661AB),
+                                            value: valueChoose,
                                             icon: Icon(
                                               LineIcons.angleDown,
                                               size: 18,
@@ -102,22 +105,24 @@ class _ProductScreenState extends State<ProductScreen> {
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 14),
                                             ),
-                                            onChanged: (value) {
-                                              print(value);
+                                            onChanged: (newValue) {
+                                              setState(() {
+                                                valueChoose = newValue;
+                                              });
                                             },
-                                            items: listItem
-                                                .map(
-                                                  (e) => DropdownMenuItem(
-                                                    child: Text(
-                                                      e,
-                                                      style: TextStyle(
-                                                        color: Colors.black54,
-                                                        fontSize: 12,
-                                                      ),
-                                                    ),
+                                            items: listItem.map((valueItem) {
+                                              return DropdownMenuItem(
+                                                value: valueItem,
+                                                child: Text(
+                                                  valueItem,
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.white,
+                                                    fontSize: 13,
                                                   ),
-                                                )
-                                                .toList()),
+                                                ),
+                                              );
+                                            }).toList()),
                                       )
                                     ],
                                   ),

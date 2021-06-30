@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:tirta_kita/constants.dart';
+import 'package:tirta_kita/screen/daftar_pesanan/belum_bayar/belum_bayar.dart';
 import 'package:tirta_kita/screen/daftar_pesanan/daftar_pesanan.dart';
 import 'package:tirta_kita/screen/edit_profile/edit_profile.dart';
 import 'package:tirta_kita/screen/help_screen/help_screen.dart';
@@ -180,65 +181,101 @@ class ProfileScreen extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    Column(
-                                      children: <Widget>[
-                                        Icon(
-                                          LineIcons.shoppingBag,
-                                          size: blockHorizontal * 8.8,
-                                        ),
-                                        SizedBox(
-                                          height: (blockVertical) * 0.8,
-                                        ),
-                                        Text(
-                                          "Belum Bayar",
-                                          style: GoogleFonts.rubik(
-                                            textStyle: TextStyle(
-                                                fontSize: blockHorizontal * 3.7,
-                                                fontWeight: FontWeight.w400,
-                                                letterSpacing: 0.2),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                DaftarPesanan(),
                                           ),
-                                        )
-                                      ],
+                                        );
+                                      },
+                                      child: Column(
+                                        children: <Widget>[
+                                          Icon(
+                                            LineIcons.shoppingBag,
+                                            size: blockHorizontal * 8.8,
+                                          ),
+                                          SizedBox(
+                                            height: (blockVertical) * 0.8,
+                                          ),
+                                          Text(
+                                            "Belum Bayar",
+                                            style: GoogleFonts.rubik(
+                                              textStyle: TextStyle(
+                                                  fontSize:
+                                                      blockHorizontal * 3.7,
+                                                  fontWeight: FontWeight.w400,
+                                                  letterSpacing: 0.2),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                    Column(
-                                      children: <Widget>[
-                                        Icon(
-                                          LineIcons.shoppingBag,
-                                          size: blockHorizontal * 8.8,
-                                        ),
-                                        SizedBox(
-                                          height: (blockVertical) * 0.8,
-                                        ),
-                                        Text(
-                                          "Sedang Dikirim",
-                                          style: GoogleFonts.rubik(
-                                            textStyle: TextStyle(
-                                                fontSize: blockHorizontal * 3.7,
-                                                fontWeight: FontWeight.w400,
-                                                letterSpacing: 0.2),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                DaftarPesanan(),
                                           ),
-                                        )
-                                      ],
+                                        );
+                                      },
+                                      child: Column(
+                                        children: <Widget>[
+                                          Icon(
+                                            LineIcons.shoppingBag,
+                                            size: blockHorizontal * 8.8,
+                                          ),
+                                          SizedBox(
+                                            height: (blockVertical) * 0.8,
+                                          ),
+                                          Text(
+                                            "Sedang Dikirim",
+                                            style: GoogleFonts.rubik(
+                                              textStyle: TextStyle(
+                                                  fontSize:
+                                                      blockHorizontal * 3.7,
+                                                  fontWeight: FontWeight.w400,
+                                                  letterSpacing: 0.2),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                    Column(
-                                      children: <Widget>[
-                                        Icon(
-                                          LineIcons.shoppingBag,
-                                          size: blockHorizontal * 8.8,
-                                        ),
-                                        SizedBox(
-                                          height: (blockVertical) * 0.8,
-                                        ),
-                                        Text(
-                                          "Selesai",
-                                          style: GoogleFonts.rubik(
-                                            textStyle: TextStyle(
-                                                fontSize: blockHorizontal * 3.7,
-                                                fontWeight: FontWeight.w400,
-                                                letterSpacing: 0.2),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                DaftarPesanan(),
                                           ),
-                                        )
-                                      ],
+                                        );
+                                      },
+                                      child: Column(
+                                        children: <Widget>[
+                                          Icon(
+                                            LineIcons.shoppingBag,
+                                            size: blockHorizontal * 8.8,
+                                          ),
+                                          SizedBox(
+                                            height: (blockVertical) * 0.8,
+                                          ),
+                                          Text(
+                                            "Selesai",
+                                            style: GoogleFonts.rubik(
+                                              textStyle: TextStyle(
+                                                  fontSize:
+                                                      blockHorizontal * 3.7,
+                                                  fontWeight: FontWeight.w400,
+                                                  letterSpacing: 0.2),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),

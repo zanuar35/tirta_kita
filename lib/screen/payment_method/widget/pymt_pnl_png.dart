@@ -3,10 +3,14 @@ import 'package:getwidget/components/accordion/gf_accordion.dart';
 import 'package:line_icons/line_icons.dart';
 
 class PaymentPanelImage extends StatefulWidget {
-  final String url;
-  final int radioValue;
+  final int nilai;
+  int valueGroup;
+  final GestureTapCallback onTap;
 
-  const PaymentPanelImage({Key key, this.url, this.radioValue})
+  final String url;
+
+  PaymentPanelImage(
+      {Key key, this.url, this.nilai, this.onTap, this.valueGroup})
       : super(key: key);
 
   @override
@@ -39,12 +43,13 @@ class _PaymentPanelImageState extends State<PaymentPanelImage> {
                 children: [
                   Image(image: NetworkImage(widget.url)),
                   Radio(
-                      value: 0,
-                      groupValue: widget.radioValue,
+                      value: widget.nilai,
+                      groupValue: widget.valueGroup,
                       onChanged: (value) {
                         setState(() {
-                          value = value;
+                          widget.valueGroup = widget.nilai;
                         });
+                        widget.onTap();
                       })
                 ],
               ),

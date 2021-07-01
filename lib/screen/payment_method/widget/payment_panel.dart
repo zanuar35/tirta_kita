@@ -3,9 +3,11 @@ import 'package:getwidget/components/accordion/gf_accordion.dart';
 import 'package:line_icons/line_icons.dart';
 
 class PaymentPanel extends StatefulWidget {
-  const PaymentPanel({Key key, this.radioValue}) : super(key: key);
+  PaymentPanel({this.nilai, this.onTap, this.valueGroup});
 
-  final int radioValue;
+  final int nilai;
+  int valueGroup;
+  final GestureTapCallback onTap;
 
   @override
   _PaymentPanelState createState() => _PaymentPanelState();
@@ -19,14 +21,6 @@ class _PaymentPanelState extends State<PaymentPanel> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.black.withOpacity(0.1),
-        //     spreadRadius: 0,
-        //     blurRadius: 10,
-        //     offset: Offset(0, 8), // changes position of shadow
-        //   )
-        // ],
         border: Border.all(width: 1, color: Colors.grey),
       ),
       child: GFAccordion(
@@ -41,12 +35,13 @@ class _PaymentPanelState extends State<PaymentPanel> {
                       image: NetworkImage(
                           'https://i.ibb.co/sjfYwWx/image-15.png')),
                   Radio(
-                      value: 1,
-                      groupValue: widget.radioValue,
-                      onChanged: (value) {
+                      value: widget.nilai,
+                      groupValue: widget.valueGroup,
+                      onChanged: (nilai) {
                         setState(() {
-                          value = value;
+                          widget.valueGroup = widget.nilai;
                         });
+                        widget.onTap();
                       })
                 ],
               ),

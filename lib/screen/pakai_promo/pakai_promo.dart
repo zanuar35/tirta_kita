@@ -5,10 +5,15 @@ import 'package:tirta_kita/screen/pakai_promo/widget/promo_card.dart';
 import 'package:tirta_kita/screen/pakai_promo/widget/search_box.dart';
 import 'package:tirta_kita/shared/widget/button.dart';
 
-class PakaiPromo extends StatelessWidget {
+class PakaiPromo extends StatefulWidget {
   //const PakaiPromo({ Key? key }) : super(key: key);
 
-  int _value;
+  @override
+  _PakaiPromoState createState() => _PakaiPromoState();
+}
+
+class _PakaiPromoState extends State<PakaiPromo> {
+  int _value = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +48,13 @@ class PakaiPromo extends StatelessWidget {
               PromoCard(
                 size: size,
                 blockVertical: blockVertical,
+                nilai: 2,
+                valueGroup: _value,
+                onTap: () {
+                  setState(() {
+                    _value = 2;
+                  });
+                },
               ),
               SizedBox(
                 height: blockVertical * 3,
@@ -50,6 +62,13 @@ class PakaiPromo extends StatelessWidget {
               PromoCard(
                 size: size,
                 blockVertical: blockVertical,
+                nilai: 3,
+                valueGroup: _value,
+                onTap: () {
+                  setState(() {
+                    _value = 3;
+                  });
+                },
               ),
             ],
           ),

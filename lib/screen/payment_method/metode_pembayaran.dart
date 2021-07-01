@@ -3,10 +3,15 @@ import 'package:tirta_kita/screen/payment_method/widget/payment_panel.dart';
 import 'package:tirta_kita/screen/payment_method/widget/pymt_pnl_png.dart';
 import 'package:tirta_kita/shared/widget/button.dart';
 
-class PaymentMethod extends StatelessWidget {
+class PaymentMethod extends StatefulWidget {
   //const PaymentMethod({ Key? key }) : super(key: key);
 
-  int value = 1;
+  @override
+  _PaymentMethodState createState() => _PaymentMethodState();
+}
+
+class _PaymentMethodState extends State<PaymentMethod> {
+  int _value = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -35,20 +40,38 @@ class PaymentMethod extends StatelessWidget {
               child: Column(
                 children: [
                   PaymentPanel(
-                    radioValue: 2,
+                    nilai: 2,
+                    valueGroup: _value,
+                    onTap: () {
+                      setState(() {
+                        _value = 2;
+                      });
+                    },
                   ),
                   SizedBox(
                     height: blockVertical * 2.4,
                   ),
                   PaymentPanelImage(
-                    radioValue: 3,
+                    nilai: 3,
+                    valueGroup: _value,
+                    onTap: () {
+                      setState(() {
+                        _value = 3;
+                      });
+                    },
                     url: 'https://i.ibb.co/FV2Q1bn/image-17.png',
                   ),
                   SizedBox(
                     height: blockVertical * 2.4,
                   ),
                   PaymentPanelImage(
-                    radioValue: 4,
+                    nilai: 4,
+                    valueGroup: _value,
+                    onTap: () {
+                      setState(() {
+                        _value = 4;
+                      });
+                    },
                     url: 'https://i.ibb.co/bQJvRJG/image-16.png',
                   ),
                   SizedBox(
@@ -84,9 +107,13 @@ class PaymentMethod extends StatelessWidget {
                             ],
                           ),
                           child: Radio(
-                              value: value,
-                              groupValue: 1,
-                              onChanged: (value) {}),
+                              value: 5,
+                              groupValue: _value,
+                              onChanged: (value) {
+                                setState(() {
+                                  _value = value;
+                                });
+                              }),
                         )
                       ],
                     ),

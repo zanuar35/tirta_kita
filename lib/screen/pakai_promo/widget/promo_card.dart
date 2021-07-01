@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class PromoCard extends StatefulWidget {
   PromoCard({
-    this.value,
-    this.groupValue,
+    this.onTap,
+    this.nilai,
+    this.valueGroup,
     this.widget,
     Key key,
     @required this.size,
@@ -14,8 +15,9 @@ class PromoCard extends StatefulWidget {
   final double blockVertical;
   final Widget widget;
 
-  final int value;
-  String groupValue;
+  final int nilai;
+  int valueGroup;
+  final GestureTapCallback onTap;
 
   @override
   _PromoCardState createState() => _PromoCardState();
@@ -61,12 +63,13 @@ class _PromoCardState extends State<PromoCard> {
               ],
             ),
             Radio(
-                value: widget.value,
-                groupValue: widget.groupValue,
-                onChanged: (value) {
+                value: widget.nilai,
+                groupValue: widget.valueGroup,
+                onChanged: (nilai) {
                   setState(() {
-                    widget.groupValue = value;
+                    widget.valueGroup = widget.nilai;
                   });
+                  widget.onTap();
                 })
           ],
         ),

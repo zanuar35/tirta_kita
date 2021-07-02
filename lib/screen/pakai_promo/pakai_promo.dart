@@ -23,7 +23,7 @@ class _PakaiPromoState extends State<PakaiPromo> {
 
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: blockVertical * 9,
+        toolbarHeight: blockVertical * 10,
         centerTitle: true,
         title: Text('Pakai Promo'),
         flexibleSpace: Container(
@@ -48,11 +48,11 @@ class _PakaiPromoState extends State<PakaiPromo> {
               PromoCard(
                 size: size,
                 blockVertical: blockVertical,
-                nilai: 2,
+                nilai: 1,
                 valueGroup: _value,
                 onTap: () {
                   setState(() {
-                    _value = 2;
+                    _value = 1;
                   });
                 },
               ),
@@ -62,11 +62,11 @@ class _PakaiPromoState extends State<PakaiPromo> {
               PromoCard(
                 size: size,
                 blockVertical: blockVertical,
-                nilai: 3,
+                nilai: 2,
                 valueGroup: _value,
                 onTap: () {
                   setState(() {
-                    _value = 3;
+                    _value = 2;
                   });
                 },
               ),

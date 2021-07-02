@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class CardProduct extends StatelessWidget {
   const CardProduct({
     Key key,
@@ -34,6 +33,8 @@ class CardProduct extends StatelessWidget {
         margin: EdgeInsets.symmetric(
             horizontal: blockHorizontal * 5, vertical: blockVertical * 1.7),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,45 +59,44 @@ class CardProduct extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       "Beras Rojo Lele 5 kg",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                      style: TextStyle(
+                          fontSize: blockHorizontal * 3.73,
+                          fontWeight: FontWeight.w400),
                     ),
-                    SizedBox(height: blockVertical * 1),
+                    SizedBox(height: blockVertical * 1.5),
                     Text(
                       "Jumlah : 2 Pcs",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                      style: TextStyle(
+                          fontSize: blockHorizontal * 3.73,
+                          fontWeight: FontWeight.w400),
                     )
                   ],
                 ),
                 Text(
                   "Rp 50.000",
                   style: TextStyle(
-                    fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.2
-                  )
-                )
+                      fontSize: blockHorizontal * 3.4,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.2),
+                ),
               ],
-            ),
-            SizedBox(
-              height: blockVertical * 3,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
                   "Total Bayar :",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                  style: TextStyle(
+                      fontSize: blockHorizontal * 3.73,
+                      fontWeight: FontWeight.w400),
                 ),
                 Text(
                   "Rp. 100.000",
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: blockHorizontal * 4.8),
                 ),
               ],
-            ),
-            SizedBox(
-              height: blockVertical * 1.2,
             ),
             Center(
               child: TextButton(
@@ -104,7 +104,7 @@ class CardProduct extends StatelessWidget {
                   child: Text(
                     'Lacak Pesanan',
                     style: TextStyle(
-                        fontSize: 13,
+                        fontSize: blockHorizontal * 3.7,
                         letterSpacing: 0.7,
                         fontWeight: FontWeight.w700,
                         color: Color(0xff265FAA)),

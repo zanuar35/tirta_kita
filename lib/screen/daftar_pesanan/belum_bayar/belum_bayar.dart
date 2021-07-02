@@ -15,7 +15,7 @@ class BelumBayar extends StatelessWidget {
         backgroundColor: Color(0xffE5E5E5),
         body: SingleChildScrollView(
           child: Container(
-            margin: EdgeInsets.all(24),
+            margin: EdgeInsets.all(blockHorizontal * 6),
             width: size.width / 1,
             height: blockVertical * 100,
             child: Column(
@@ -42,6 +42,8 @@ class BelumBayar extends StatelessWidget {
                         horizontal: blockHorizontal * 5,
                         vertical: blockVertical * 2),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,14 +69,14 @@ class BelumBayar extends StatelessWidget {
                                 Text(
                                   "Beras Rojo Lele 5 kg",
                                   style: TextStyle(
-                                      fontSize: 14,
+                                      fontSize: blockHorizontal * 3.73,
                                       fontWeight: FontWeight.w400),
                                 ),
-                                SizedBox(height: blockVertical * 1),
+                                SizedBox(height: blockVertical * 1.5),
                                 Text(
                                   "Jumlah : 2 Pcs",
                                   style: TextStyle(
-                                      fontSize: 14,
+                                      fontSize: blockHorizontal * 3.73,
                                       fontWeight: FontWeight.w400),
                                 )
                               ],
@@ -83,15 +85,12 @@ class BelumBayar extends StatelessWidget {
                               "Rp 50.000",
                               style: GoogleFonts.rubik(
                                 textStyle: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: blockHorizontal * 3.4,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 0.2),
                               ),
                             )
                           ],
-                        ),
-                        SizedBox(
-                          height: blockVertical * 3,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -99,17 +98,16 @@ class BelumBayar extends StatelessWidget {
                             Text(
                               "Total Bayar :",
                               style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w400),
+                                  fontSize: blockHorizontal * 3.73,
+                                  fontWeight: FontWeight.w400),
                             ),
                             Text(
                               "Rp. 100.000",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w700, fontSize: 18),
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: blockHorizontal * 4.8),
                             ),
                           ],
-                        ),
-                        SizedBox(
-                          height: blockVertical * 1.2,
                         ),
                         Center(
                           child: TextButton(
@@ -123,7 +121,7 @@ class BelumBayar extends StatelessWidget {
                               child: Text(
                                 'Konfirmasi Pembayaran',
                                 style: TextStyle(
-                                    fontSize: 13,
+                                    fontSize: blockHorizontal * 3.7,
                                     letterSpacing: 0.7,
                                     fontWeight: FontWeight.w700,
                                     color: Color(0xff265FAA)),

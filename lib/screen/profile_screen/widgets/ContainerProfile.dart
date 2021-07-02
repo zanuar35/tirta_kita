@@ -29,7 +29,7 @@ class ContainerProfile extends StatelessWidget {
           height: size.height / 5,
           width: size.width / 1,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
@@ -41,7 +41,7 @@ class ContainerProfile extends StatelessWidget {
                       letterSpacing: 0.2),
                 ),
               ),
-              SizedBox(height: blockVertical * 1.1),
+              SizedBox(height: blockVertical * 1),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
@@ -63,7 +63,7 @@ class ContainerProfile extends StatelessWidget {
                   Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Text(
                           "Wahyudi Isman",
@@ -71,9 +71,9 @@ class ContainerProfile extends StatelessWidget {
                               fontSize: blockHorizontal * 3.7,
                               fontWeight: FontWeight.w700),
                         ),
-                        SizedBox(
-                          height: blockVertical * 0.8,
-                        ),
+                        // SizedBox(
+                        //   height: blockVertical * 0.8,
+                        // ),
                         Row(
                           children: <Widget>[
                             Icon(
@@ -86,9 +86,9 @@ class ContainerProfile extends StatelessWidget {
                             Text('Silver Member')
                           ],
                         ),
-                        SizedBox(
-                          height: blockHorizontal * 0.5,
-                        ),
+                        // SizedBox(
+                        //   height: blockHorizontal * 0.5,
+                        // ),
                         InkWell(
                           onTap: () {
                             Navigator.push(

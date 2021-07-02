@@ -33,7 +33,7 @@ class CardProduct extends StatelessWidget {
         margin: EdgeInsets.symmetric(
             horizontal: blockHorizontal * 5, vertical: blockVertical * 2),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
@@ -54,57 +54,58 @@ class CardProduct extends StatelessWidget {
                       color: Colors.red),
                 ),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       "Beras Rojo Lele 5 kg",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                      style: TextStyle(
+                          fontSize: blockHorizontal * 3.73,
+                          fontWeight: FontWeight.w400),
                     ),
-                    SizedBox(height: blockVertical * 1),
+                    SizedBox(height: blockVertical * 1.5),
                     Text(
                       "Jumlah : 2 Pcs",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                      style: TextStyle(
+                          fontSize: blockHorizontal * 3.73,
+                          fontWeight: FontWeight.w400),
                     )
                   ],
                 ),
                 Text("Rp 50.000",
                     style: TextStyle(
-                        fontSize: 12,
+                        fontSize: blockHorizontal * 3.2,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 0.2))
               ],
             ),
-            SizedBox(
-              height: blockVertical * 3,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
                   "Total Bayar :",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                  style: TextStyle(
+                      fontSize: blockHorizontal * 3.73,
+                      fontWeight: FontWeight.w400),
                 ),
                 Text(
                   "Rp. 100.000",
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: blockHorizontal * 4.8),
                 ),
               ],
             ),
-            SizedBox(
-              height: blockVertical * 1.2,
-            ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
                   "Barang telah diterima",
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      fontSize: 13,
+                      fontSize: blockHorizontal * 3.4,
                       color: Color(0xff3FC23D)),
                 ),
                 SizedBox(
@@ -112,7 +113,9 @@ class CardProduct extends StatelessWidget {
                 ),
                 Text(
                   "Anda mendapat 20 poin",
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: blockHorizontal * 3.75),
                 )
               ],
             ),

@@ -33,95 +33,97 @@ class _PaymentMethodState extends State<PaymentMethod> {
         ),
       ),
       body: Stack(children: <Widget>[
-        Column(
-          children: [
-            Container(
-              margin: EdgeInsets.all(24),
-              child: Column(
-                children: [
-                  PaymentPanel(
-                    nilai: 2,
-                    valueGroup: _value,
-                    onTap: () {
-                      setState(() {
-                        _value = 2;
-                      });
-                    },
-                  ),
-                  SizedBox(
-                    height: blockVertical * 2.4,
-                  ),
-                  PaymentPanelImage(
-                    nilai: 3,
-                    valueGroup: _value,
-                    onTap: () {
-                      setState(() {
-                        _value = 3;
-                      });
-                    },
-                    url: 'https://i.ibb.co/FV2Q1bn/image-17.png',
-                  ),
-                  SizedBox(
-                    height: blockVertical * 2.4,
-                  ),
-                  PaymentPanelImage(
-                    nilai: 4,
-                    valueGroup: _value,
-                    onTap: () {
-                      setState(() {
-                        _value = 4;
-                      });
-                    },
-                    url: 'https://i.ibb.co/bQJvRJG/image-16.png',
-                  ),
-                  SizedBox(
-                    height: blockVertical * 2.4,
-                  ),
-                  Container(
-                    width: blockHorizontal * 100,
-                    height: blockVertical * 8.62,
-                    padding: EdgeInsets.all(24),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(width: 1, color: Colors.grey),
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.all(24),
+                child: Column(
+                  children: [
+                    PaymentPanel(
+                      nilai: 2,
+                      valueGroup: _value,
+                      onTap: () {
+                        setState(() {
+                          _value = 2;
+                        });
+                      },
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          'Cash On Delivery',
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w500),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.15),
-                                spreadRadius: 0,
-                                blurRadius: 16,
-                                offset:
-                                    Offset(0, 8), // changes position of shadow
-                              )
-                            ],
+                    SizedBox(
+                      height: blockVertical * 2.4,
+                    ),
+                    PaymentPanelImage(
+                      nilai: 3,
+                      valueGroup: _value,
+                      onTap: () {
+                        setState(() {
+                          _value = 3;
+                        });
+                      },
+                      url: 'https://i.ibb.co/FV2Q1bn/image-17.png',
+                    ),
+                    SizedBox(
+                      height: blockVertical * 2.4,
+                    ),
+                    PaymentPanelImage(
+                      nilai: 4,
+                      valueGroup: _value,
+                      onTap: () {
+                        setState(() {
+                          _value = 4;
+                        });
+                      },
+                      url: 'https://i.ibb.co/bQJvRJG/image-16.png',
+                    ),
+                    SizedBox(
+                      height: blockVertical * 2.4,
+                    ),
+                    Container(
+                      width: blockHorizontal * 100,
+                      height: blockVertical * 8.62,
+                      padding: EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(width: 1, color: Colors.grey),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'Cash On Delivery',
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w500),
                           ),
-                          child: Radio(
-                              value: 5,
-                              groupValue: _value,
-                              onChanged: (value) {
-                                setState(() {
-                                  _value = value;
-                                });
-                              }),
-                        )
-                      ],
+                          Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.15),
+                                  spreadRadius: 0,
+                                  blurRadius: 16,
+                                  offset: Offset(
+                                      0, 8), // changes position of shadow
+                                )
+                              ],
+                            ),
+                            child: Radio(
+                                value: 1,
+                                groupValue: _value,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _value = value;
+                                  });
+                                }),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24),

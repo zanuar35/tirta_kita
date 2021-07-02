@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class SearchBox extends StatelessWidget {
   const SearchBox({
     Key key,
@@ -14,7 +13,7 @@ class SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(blockVertical * 1.25),
       width: size.width / 1,
       height: blockVertical * 6,
       child: Center(

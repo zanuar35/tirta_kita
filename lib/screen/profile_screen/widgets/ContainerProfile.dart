@@ -23,7 +23,7 @@ class ContainerProfile extends StatelessWidget {
       height: size.height / 4.6,
       child: Padding(
         padding: EdgeInsets.fromLTRB(blockHorizontal * 6.4,
-            blockVertical * 2.46, blockHorizontal * 6.4, blockVertical * 4.31),
+            blockVertical * 2.40, blockHorizontal * 6.4, blockVertical * 4.31),
         child: Container(
           color: Colors.white,
           height: size.height / 5,
@@ -68,11 +68,11 @@ class ContainerProfile extends StatelessWidget {
                         Text(
                           "Wahyudi Isman",
                           style: TextStyle(
-                              fontSize: blockHorizontal * 4.1,
+                              fontSize: blockHorizontal * 3.7,
                               fontWeight: FontWeight.w700),
                         ),
                         SizedBox(
-                          height: blockVertical * 0.5,
+                          height: blockVertical * 0.8,
                         ),
                         Row(
                           children: <Widget>[
@@ -81,7 +81,7 @@ class ContainerProfile extends StatelessWidget {
                               size: blockHorizontal * 8,
                             ),
                             SizedBox(
-                              width: blockHorizontal * 1.8,
+                              width: blockHorizontal * 1.5,
                             ),
                             Text('Silver Member')
                           ],
@@ -89,8 +89,8 @@ class ContainerProfile extends StatelessWidget {
                         SizedBox(
                           height: blockHorizontal * 0.5,
                         ),
-                        TextButton(
-                          onPressed: () {
+                        InkWell(
+                          onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -102,7 +102,7 @@ class ContainerProfile extends StatelessWidget {
                             'Edit Profile',
                             style: GoogleFonts.rubik(
                               textStyle: TextStyle(
-                                  fontSize: blockHorizontal * 3.4,
+                                  fontSize: blockHorizontal * 3.7,
                                   color: Color(0xff265FAA),
                                   fontWeight: FontWeight.w700),
                             ),

@@ -41,6 +41,7 @@ class _CardCartState extends State<CardCart> {
         height: widget.size.height / 1,
         // color: Colors.amber,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Container(
               width: 80,
@@ -56,22 +57,25 @@ class _CardCartState extends State<CardCart> {
               width: 7,
             ),
             Container(
-              margin: EdgeInsets.only(top: 20, bottom: 20),
+              margin: EdgeInsets.only(
+                  top: widget.blockHorizontal * 5.3,
+                  bottom: widget.blockHorizontal * 5.3),
               height: widget.size.height / 1,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Text(
                     'Air Mineral Aqua 19L',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    height: 10,
+                    style: TextStyle(
+                        fontSize: widget.blockVertical * 1.8,
+                        fontWeight: FontWeight.w600),
                   ),
                   Text(
                     'Rp 18.000',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        fontSize: widget.blockVertical * 2,
+                        fontWeight: FontWeight.w600),
                   )
                 ],
               ),
@@ -83,7 +87,7 @@ class _CardCartState extends State<CardCart> {
                   InkWell(
                     child: Icon(
                       LineIcons.minus,
-                      size: 18,
+                      size: widget.blockHorizontal * 5,
                     ),
                     onTap: () {
                       blocs.inputan.add('minus');
@@ -93,8 +97,8 @@ class _CardCartState extends State<CardCart> {
                     width: 3,
                   ),
                   Container(
-                    width: 22,
-                    height: 22,
+                    width: widget.blockHorizontal * 5.8,
+                    height: widget.blockHorizontal * 5.8,
                     child: Center(
                       child: StreamBuilder(
                         initialData: 1,
@@ -115,7 +119,10 @@ class _CardCartState extends State<CardCart> {
                     width: 3,
                   ),
                   InkWell(
-                    child: Icon(LineIcons.plus),
+                    child: Icon(
+                      LineIcons.plus,
+                      size: widget.blockHorizontal * 5,
+                    ),
                     onTap: () {
                       blocs.inputan.add('add');
                     },

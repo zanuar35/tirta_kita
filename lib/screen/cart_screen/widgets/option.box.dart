@@ -25,10 +25,10 @@ class OptionBox extends StatelessWidget {
           border: Border.all(width: 2, color: Colors.grey),
           color: Colors.white),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.all(blockVertical * 1.2),
             width: blockHorizontal * 35,
             height: size.height / 1,
             child: Row(
@@ -36,13 +36,19 @@ class OptionBox extends StatelessWidget {
               children: <Widget>[
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Text('Pakai Promo'),
+                    Text(
+                      'Pakai Promo',
+                      style: TextStyle(
+                          fontSize: blockHorizontal * 3.7,
+                          fontWeight: FontWeight.w500),
+                    ),
                     Text(
                       'DISC 123',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+                      style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: blockHorizontal * 3.7),
                     )
                   ],
                 ),
@@ -65,7 +71,7 @@ class OptionBox extends StatelessWidget {
             thickness: 3,
           ),
           Container(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.all(blockVertical * 1.2),
             width: blockHorizontal * 36.7,
             height: size.height / 1,
             child: Row(
@@ -73,13 +79,17 @@ class OptionBox extends StatelessWidget {
               children: <Widget>[
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Text('Pilih Pembayaran'),
+                    Text(
+                      'Pilih Pembayaran',
+                      style: TextStyle(fontSize: blockHorizontal * 3.7),
+                    ),
                     Text(
                       'Transfer BCA',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+                      style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: blockHorizontal * 3.7),
                     )
                   ],
                 ),

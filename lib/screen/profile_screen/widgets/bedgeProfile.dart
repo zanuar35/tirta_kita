@@ -16,10 +16,10 @@ class BadgeProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: size.height / 5.55,
+      top: size.height / 5.6,
       left: blockHorizontal * 5.5,
       right: blockHorizontal * 5.5,
-      bottom: size.height / 5.55,
+      bottom: size.height / 5.6,
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -36,8 +36,8 @@ class BadgeProfile extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.only(
               left: blockHorizontal * 8,
-              top: blockVertical * 1.7,
-              bottom: blockVertical * 1.7),
+              top: blockVertical * 1.5,
+              bottom: blockVertical * 1.5),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -71,15 +71,15 @@ class BadgeProfile extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: blockVertical * 0.65,
+                    height: blockVertical * 0.50,
                   ),
                   Text(
                     '1000 pts',
                     style: GoogleFonts.rubik(
                       textStyle: TextStyle(
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w600,
                           color: Colors.white,
-                          fontSize: blockHorizontal * 5.3),
+                          fontSize: blockHorizontal * 5),
                     ),
                   )
                 ],

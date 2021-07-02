@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:tirta_kita/screen/edit_profile/edit_profile.dart';
 import 'package:tirta_kita/screen/home_screen/home_screen.dart';
 import 'package:tirta_kita/screen/product_screen/product_screen.dart';
 import 'package:tirta_kita/screen/profile_screen/profile_screen.dart';

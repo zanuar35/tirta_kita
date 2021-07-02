@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tirta_kita/constants.dart';
 
 class CustomButton extends StatelessWidget {
   final GestureTapCallback onpressed;

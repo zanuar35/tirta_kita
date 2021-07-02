@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tirta_kita/screen/home_page/home.dart';
-import 'package:tirta_kita/screen/home_screen/home_screen.dart';
 import 'package:tirta_kita/screen/login_screen/widget/custom_button.dart';
 import 'package:tirta_kita/shared/widget/input_password.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';

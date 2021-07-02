@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:tirta_kita/screen/cart_screen/widgets/card_cart.dart';
 import 'package:tirta_kita/screen/cart_screen/widgets/option.box.dart';
 import 'package:tirta_kita/screen/cart_screen/widgets/price_column.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tirta_kita/constants.dart';
 
 class Button extends StatelessWidget {
   final String text;
@@ -22,7 +21,7 @@ class Button extends StatelessWidget {
         onPressed: () {},
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-           color,
+            color,
           ),
         ),
         child: Text(

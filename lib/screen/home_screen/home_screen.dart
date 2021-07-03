@@ -14,6 +14,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    double blockHorizontal = (MediaQuery.of(context).size.width) / 100;
+    double blockVertical = (MediaQuery.of(context).size.height) / 100;
+
     return Scaffold(
       // backgroundColor: Colors.blue[200],
       body: Stack(children: <Widget>[
@@ -47,14 +50,14 @@ class HomeScreen extends StatelessWidget {
                         right: 0,
                         child: Container(
                           child: Padding(
-                            padding: EdgeInsets.all(5),
+                            padding: EdgeInsets.all(blockHorizontal * 1.3),
                             child: Container(
                               height: size.height - 5,
                               width: size.width - 5,
                               // color: Colors.red,
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -63,40 +66,45 @@ class HomeScreen extends StatelessWidget {
                                     children: <Widget>[
                                       Text(
                                         "Wahyudi Isman",
-                                        style: GoogleFonts.rubik(
-                                            textStyle: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700)),
+                                        style: TextStyle(
+                                            fontSize: blockHorizontal * 3.7,
+                                            fontWeight: FontWeight.w700),
                                       ),
                                       Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Icon(
                                             LineIcons.certificate,
-                                            size: 30,
+                                            size: blockHorizontal * 8,
                                           ),
-                                          SizedBox(width: 10),
+                                          SizedBox(
+                                              width: blockHorizontal * 2.6),
                                           Text('Silver Member')
                                         ],
                                       )
                                     ],
                                   ),
                                   SizedBox(
-                                    width: 60,
+                                    width: blockHorizontal * 16,
                                   ),
                                   Container(
-                                    height: size.height / 8,
-                                    width: size.width / 8,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: kPrimaryColor),
-                                        child: Image(image: NetworkImage('https://i.ibb.co/z4zCXW6/Rectangle-116.png')),
-                                  )
+                                      height: size.height / 8,
+                                      width: size.width / 8,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: kPrimaryColor),
+                                      child: CircleAvatar(
+                                        backgroundImage: NetworkImage(
+                                            'https://i.ibb.co/z4zCXW6/Rectangle-116.png'),
+                                      ))
                                 ],
                               ),
                             ),
                           ),
-                          height: 70,
-                          margin: EdgeInsets.symmetric(horizontal: 32),
+                          height: blockVertical * 8.6,
+                          margin: EdgeInsets.symmetric(
+                              horizontal: blockHorizontal * 3.5),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(8),
@@ -111,7 +119,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: blockVertical * 2.4,
               ),
               CategoryWidget(
                 url: 'https://i.ibb.co/bHrLDGc/image-2-removebg-preview.png',
@@ -124,11 +132,13 @@ class HomeScreen extends StatelessWidget {
                 url: 'https://i.ibb.co/kMJND02/image-3-1.png',
               ),
               SizedBox(
-                height: 10,
+                height: blockVertical * 1.23,
               ),
               Padding(
-                  padding:
-                      const EdgeInsets.only(left: 24, right: 24, bottom: 24),
+                  padding: EdgeInsets.only(
+                      left: blockHorizontal * 6.4,
+                      right: blockHorizontal * 6.4,
+                      bottom: blockVertical * 2.95),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -136,10 +146,11 @@ class HomeScreen extends StatelessWidget {
                         "Paling Laris",
                         style: GoogleFonts.rubik(
                             textStyle: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 13)),
+                                fontWeight: FontWeight.w700,
+                                fontSize: blockHorizontal * 3.7)),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: blockVertical * 1.23,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -152,7 +163,7 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        height: 15,
+                        height: blockVertical * 1.84,
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,

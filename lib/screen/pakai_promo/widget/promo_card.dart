@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class PromoCard extends StatefulWidget {
@@ -38,28 +39,38 @@ class _PromoCardState extends State<PromoCard> {
         ),
       ),
       child: Container(
-        margin: EdgeInsets.all(15),
+        margin: EdgeInsets.fromLTRB(
+            widget.blockVertical * 1.5,
+            widget.blockVertical * 1,
+            widget.blockVertical * 1.5,
+            widget.blockVertical * 1),
         width: widget.size.width / 1,
         height: widget.size.height / 1,
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
+                AutoSizeText(
                   'Diskon 123',
+                  minFontSize: 4,
                   style: TextStyle(
+                      letterSpacing: 0.3,
+                      height: 1.5,
                       fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0.3),
+                      fontWeight: FontWeight.w700),
                 ),
-                Text(
+                AutoSizeText(
                   'Potongan Total Transaksi Sebesar \n Rp 20.000',
+                  minFontSize: 3,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       height: 1.5, fontSize: 13, fontWeight: FontWeight.w500),
-                ),
+                )
               ],
             ),
             Radio(

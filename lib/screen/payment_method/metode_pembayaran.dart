@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:tirta_kita/screen/payment_method/widget/payment_panel.dart';
 import 'package:tirta_kita/screen/payment_method/widget/pymt_pnl_png.dart';
@@ -90,8 +91,9 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text(
+                          AutoSizeText(
                             'Cash On Delivery',
+                            minFontSize: 5,
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w500),
                           ),

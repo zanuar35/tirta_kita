@@ -82,7 +82,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     Container(
                       width: blockHorizontal * 100,
                       height: blockVertical * 8.62,
-                      padding: EdgeInsets.all(24),
+                      padding: EdgeInsets.all(blockVertical * 2.9),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
@@ -93,7 +93,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         children: <Widget>[
                           AutoSizeText(
                             'Cash On Delivery',
-                            minFontSize: 5,
+                            minFontSize: 8,
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w500),
                           ),

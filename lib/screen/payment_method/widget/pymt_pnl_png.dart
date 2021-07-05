@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/components/accordion/gf_accordion.dart';
 import 'package:line_icons/line_icons.dart';
@@ -29,19 +30,22 @@ class _PaymentPanelImageState extends State<PaymentPanelImage> {
       ),
       child: GFAccordion(
         titleChild: Container(
-            width: 200,
-            height: 30,
-            child: Image(
-              image: NetworkImage(widget.url),
-              alignment: Alignment.centerLeft,
-            )),
+          width: 200,
+          height: 30,
+          child: Image(
+            image: NetworkImage(widget.url),
+            alignment: Alignment.centerLeft,
+          ),
+        ),
         contentChild: Container(
           child: Column(
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image(image: NetworkImage(widget.url)),
+                  Image(
+                    image: NetworkImage(widget.url),
+                  ),
                   Radio(
                       value: widget.nilai,
                       groupValue: widget.valueGroup,
@@ -63,13 +67,15 @@ class _PaymentPanelImageState extends State<PaymentPanelImage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
+                      AutoSizeText(
                         'No Rekening',
+                        minFontSize: 6,
                         style: TextStyle(
                             fontSize: 12, fontWeight: FontWeight.w500),
                       ),
-                      Text(
+                      AutoSizeText(
                         '000028201122',
+                        minFontSize: 8,
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w700),
                       )

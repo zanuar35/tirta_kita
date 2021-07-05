@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
@@ -47,10 +48,13 @@ class _ProductScreenState extends State<ProductScreen> {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter)),
                 child: Container(
-                  margin:
-                      EdgeInsets.only(left: 24, right: 24, bottom: 15, top: 24),
+                  margin: EdgeInsets.only(
+                      left: 24,
+                      right: 24,
+                      bottom: blockVertical * 1.8,
+                      top: blockVertical * 2.4),
                   child: Container(
-                    height: 70,
+                    height: blockVertical * 8.6,
                     width: MediaQuery.of(context).size.width / 1,
                     child: Column(
                       children: <Widget>[
@@ -58,7 +62,8 @@ class _ProductScreenState extends State<ProductScreen> {
                           flex: 1,
                           child: Container(
                             margin: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 5),
+                                horizontal: blockHorizontal * 2.6,
+                                vertical: blockVertical * 0.6),
                             child: Row(
                               children: <Widget>[
                                 Icon(
@@ -70,18 +75,18 @@ class _ProductScreenState extends State<ProductScreen> {
                                 ),
                                 Container(
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Text(
+                                      AutoSizeText(
                                         "Toko Cabang",
-                                        style: GoogleFonts.rubik(
-                                          textStyle: TextStyle(
-                                              fontSize: 13,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w500),
-                                        ),
+                                        minFontSize: 6,
+                                        style: TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500),
                                       ),
                                       Container(
                                         height: blockVertical * 4,
@@ -97,8 +102,9 @@ class _ProductScreenState extends State<ProductScreen> {
                                               size: 18,
                                               color: Colors.white,
                                             ),
-                                            hint: Text(
+                                            hint: AutoSizeText(
                                               listItem[0],
+                                              minFontSize: 6,
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.w600,

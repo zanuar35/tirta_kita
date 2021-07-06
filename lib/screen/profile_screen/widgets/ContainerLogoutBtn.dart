@@ -3,10 +3,10 @@ import 'package:tirta_kita/screen/login_screen/widget/custom_button.dart';
 
 class ContainerLogoutBtn extends StatelessWidget {
   const ContainerLogoutBtn({
-    Key key,
-    @required this.size,
-    @required this.blockHorizontal,
-    @required this.blockVertical,
+    Key? key,
+    required this.size,
+    required this.blockHorizontal,
+    required this.blockVertical,
   }) : super(key: key);
 
   final Size size;
@@ -33,6 +33,7 @@ class ContainerLogoutBtn extends StatelessWidget {
                     letterSpacing: 0.2)),
             SizedBox(height: blockVertical * 2),
             CustomButton(
+              onClicked: (){},
               height: (blockVertical) * 6.7,
               fontWeight: FontWeight.w400,
               text: 'Keluar Akun',

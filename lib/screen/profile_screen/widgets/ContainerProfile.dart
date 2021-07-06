@@ -5,10 +5,10 @@ import 'package:tirta_kita/screen/edit_profile/edit_profile.dart';
 
 class ContainerProfile extends StatelessWidget {
   const ContainerProfile({
-    Key key,
-    @required this.size,
-    @required this.blockVertical,
-    @required this.blockHorizontal,
+    Key? key,
+    required this.size,
+    required this.blockVertical,
+    required this.blockHorizontal,
   }) : super(key: key);
 
   final Size size;

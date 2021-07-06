@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class CardProduct extends StatelessWidget {
   const CardProduct({
-    Key key,
-    @required this.size,
-    @required this.blockVertical,
-    @required this.blockHorizontal,
+    Key? key,
+    required this.size,
+    required this.blockVertical,
+    required this.blockHorizontal,
   }) : super(key: key);
 
   final Size size;

@@ -77,7 +77,10 @@ class _PakaiPromoState extends State<PakaiPromo> {
           padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
           child: Align(
             alignment: Alignment.bottomCenter,
-            child: Button(text: 'Pilih Promo'),
+            child: Button(
+              text: 'Pilih Promo',
+              color: Color(0xff2BBAEC),
+            ),
           ),
         )
       ]),

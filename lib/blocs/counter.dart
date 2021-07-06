@@ -17,8 +17,8 @@ class CounterBloc {
         _counter++;
       } else if (event == 'minus') {
         _counter--;
-        if (_counter < 0) {
-          _counter = 0;
+        if (_counter < 1) {
+          _counter = 1;
         }
       }
       _sinkOut.add(_counter);

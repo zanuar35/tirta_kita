@@ -10,6 +10,9 @@ import 'package:tirta_kita/shared/widget/label_text.dart';
 class EditProfile extends StatelessWidget {
   //const EditProfile({ Key? key }) : super(key: key);
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,10 @@ class EditProfile extends StatelessWidget {
               ),
               // Input nama
               LabelText(text: 'Nama'),
-              InputText(hintText: 'Masukkan nama'),
+              InputText(
+                hintText: 'Masukkan nama',
+                controller: _nameController,
+              ),
               // Input no hp
               LabelText(
                 text: 'No Handphone',
@@ -64,10 +70,16 @@ class EditProfile extends StatelessWidget {
               ),
               // input alamat
               LabelText(text: 'Alamat'),
-              InputText(hintText: 'Alamat Rumah'),
+              InputText(
+                hintText: 'Alamat Rumah',
+                controller: _addressController,
+              ),
               // input email
               LabelText(text: 'Email'),
-              InputText(hintText: "ubah email"),
+              InputText(
+                hintText: "ubah email",
+                controller: _emailController,
+              ),
               // input password
               LabelText(text: 'Password'),
               InputPassword(

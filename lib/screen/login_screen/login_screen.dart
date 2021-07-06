@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tirta_kita/constants.dart';
@@ -15,14 +16,20 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
 
   @override
   void dispose() {
     _passwordController.dispose();
+    emailController.dispose();
     super.dispose();
   }
 
   Widget build(BuildContext context) {
+    double blockHorizontal = (MediaQuery.of(context).size.width) / 100;
+    double blockVertical = (MediaQuery.of(context).size.height) / 100;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -42,15 +49,17 @@ class _LoginScreenState extends State<LoginScreen> {
               Expanded(
                 flex: 2,
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 36, horizontal: 24),
+                  padding: EdgeInsets.symmetric(
+                      vertical: blockVertical * 4.4,
+                      horizontal: blockHorizontal * 6.4),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Center(
-                        child: Text(
+                        child: AutoSizeText(
                           "Tirta Kita",
+                          minFontSize: 16,
                           style: GoogleFonts.montserrat(
                             textStyle: TextStyle(
                                 color: Colors.white,
@@ -74,17 +83,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         topLeft: Radius.circular(12)),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(24.0),
+                    padding: EdgeInsets.all(blockVertical * 2.955),
                     child: Column(
                       //mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
+                        AutoSizeText(
                           'Login',
-                          style: GoogleFonts.rubik(
-                            textStyle: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 16),
-                          ),
+                          minFontSize: 8,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 16),
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.05,
@@ -93,10 +101,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           text: "Email",
                         ),
                         InputText(
+                          controller: emailController,
                           hintText: 'type tour email',
                         ),
                         SizedBox(
-                          height: 20,
+                          height: blockVertical * 2.4,
                         ),
                         LabelText(
                           text: 'Password',
@@ -123,24 +132,34 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                             height: MediaQuery.of(context).size.height / 20),
                         CustomButton(
+                          fontWeight: FontWeight.w500,
                           height: MediaQuery.of(context).size.height / 16,
                           text: 'Login',
-                          onpressed: () {},
+                          onClicked: () {
+                            final form = formKey.currentState!;
+                            if (form.validate()) {
+                              final email = emailController.text;
+
+                              ScaffoldMessenger.of(context)
+                                ..removeCurrentSnackBar()
+                                ..showSnackBar(SnackBar(
+                                    content: Text('Your Email is $email')));
+                            }
+                          },
                           color: kBlueColor,
                         ),
                         SizedBox(
-                          height: 5,
+                          height: blockVertical * 0.61,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           // crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(
+                            AutoSizeText(
                               "Belum punya akun ?",
-                              style: GoogleFonts.rubik(
-                                textStyle: TextStyle(
-                                    fontWeight: FontWeight.w400, fontSize: 13),
-                              ),
+                              minFontSize: 7,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400, fontSize: 13),
                             ),
                             TextButton(
                               onPressed: () {

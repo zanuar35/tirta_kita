@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/card_product.dart';
@@ -14,7 +13,7 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  String valueChoose;
+  String? valueChoose;
 
   List<String> listItem = [
     "Outlet - Ciputra 1(2km)",
@@ -33,6 +32,7 @@ class _ProductScreenState extends State<ProductScreen> {
         SingleChildScrollView(
           child: Column(
             children: [
+              //TOP BAR
               Container(
                 height: MediaQuery.of(context).size.height / 5,
                 width: MediaQuery.of(context).size.width / 1,
@@ -112,7 +112,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                             ),
                                             onChanged: (newValue) {
                                               setState(() {
-                                                valueChoose = newValue;
+                                                valueChoose = newValue as String?;
                                               });
                                             },
                                             items: listItem.map((valueItem) {
@@ -162,12 +162,13 @@ class _ProductScreenState extends State<ProductScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              // End TopBar
+              SizedBox(height: blockVertical * 2.4),
               CategoryWidget(
                 url: 'https://i.ibb.co/bHrLDGc/image-2-removebg-preview.png',
               ),
               Container(
-                height: blockVertical * 60,
+                height: blockVertical * 65,
                 width: MediaQuery.of(context).size.width / 1,
                 decoration: BoxDecoration(
                   color: Color(0xff2A9FD8),
@@ -177,13 +178,13 @@ class _ProductScreenState extends State<ProductScreen> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(24.0),
+                  padding: EdgeInsets.all(blockVertical * 2.95),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(
-                        height: 10,
+                        height: blockVertical * 1,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -196,7 +197,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         ],
                       ),
                       SizedBox(
-                        height: 15,
+                        height: blockVertical * 1,
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -207,6 +208,9 @@ class _ProductScreenState extends State<ProductScreen> {
                           CardProductHome(
                               url: 'https://i.ibb.co/7jWgk8y/image-1.png')
                         ],
+                      ),
+                      SizedBox(
+                        height: blockVertical * 1,
                       ),
                     ],
                   ),

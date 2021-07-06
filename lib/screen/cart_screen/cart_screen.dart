@@ -109,7 +109,10 @@ class _CartScreenState extends State<CartScreen> {
                                 blockVertical: blockVertical,
                                 blockHorizontal: blockHorizontal),
                             SizedBox(height: 15),
-                            Button(text: 'Konfirmasi Pembelian')
+                            Button(
+                              text: 'Konfirmasi Pembelian',
+                              color: Color(0xff2BBAEC),
+                            )
                           ],
                         ),
                       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tirta_kita/screen/home_page/home.dart';
+import 'package:tirta_kita/screen/login_screen/login_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,6 +18,6 @@ class MyApp extends StatelessWidget {
           ),
           primarySwatch: Colors.blue,
         ),
-        home: HomePage());
+        home: LoginScreen());
   }
 }

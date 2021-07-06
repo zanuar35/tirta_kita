@@ -114,7 +114,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                                 groupValue: _value,
                                 onChanged: (value) {
                                   setState(() {
-                                    _value = value;
+                                    _value = 1;
                                   });
                                 }),
                           )
@@ -131,7 +131,10 @@ class _PaymentMethodState extends State<PaymentMethod> {
           padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24),
           child: Align(
               alignment: Alignment.bottomCenter,
-              child: Button(text: 'Pilih method')),
+              child: Button(
+                text: 'Pilih method',
+                color: Color(0xff2BBAEC),
+              )),
         )
       ]),
     );

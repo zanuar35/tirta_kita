@@ -11,7 +11,11 @@ class PaymentPanelImage extends StatefulWidget {
   final String url;
 
   PaymentPanelImage(
-      {Key key, this.url, this.nilai, this.onTap, this.valueGroup})
+      {Key? key,
+      required this.url,
+      required this.nilai,
+      required this.onTap,
+      required this.valueGroup})
       : super(key: key);
 
   @override

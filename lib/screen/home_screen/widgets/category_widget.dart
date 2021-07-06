@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({
-    this.url,
-    Key key,
+    required this.url,
+    Key? key,
   }) : super(key: key);
 
   final String url;

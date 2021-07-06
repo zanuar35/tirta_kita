@@ -1,20 +1,20 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CustomButton extends StatelessWidget {
-  final GestureTapCallback onpressed;
+  final VoidCallback onClicked;
   final double height;
   final String text;
   final FontWeight fontWeight;
   final Color color;
 
   const CustomButton({
-    this.fontWeight,
-    this.color,
-    @required this.text,
-    this.height,
-    this.onpressed,
-    Key key,
+    required this.fontWeight,
+    required this.color,
+    required this.text,
+    required this.height,
+    required this.onClicked,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -30,18 +30,17 @@ class CustomButton extends StatelessWidget {
             offset: Offset(2, 3))
       ]),
       child: ElevatedButton(
-        onPressed: onpressed,
+        onPressed: onClicked,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
             color,
           ),
         ),
-        child: Text(
+        child: AutoSizeText(
           text,
-          style: GoogleFonts.rubik(
-            textStyle: TextStyle(
-                fontSize: 18, fontWeight: fontWeight, color: Colors.white),
-          ),
+          minFontSize: 12,
+          style: TextStyle(
+              fontSize: 18, fontWeight: fontWeight, color: Colors.white),
         ),
       ),
     );

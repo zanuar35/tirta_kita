@@ -3,18 +3,16 @@ import 'package:flutter/material.dart';
 
 class PromoCard extends StatefulWidget {
   PromoCard({
-    this.onTap,
-    this.nilai,
-    this.valueGroup,
-    this.widget,
-    Key key,
-    @required this.size,
-    @required this.blockVertical,
+    required this.onTap,
+    required this.nilai,
+    required this.valueGroup,
+    Key? key,
+    required this.size,
+    required this.blockVertical,
   }) : super(key: key);
 
   final Size size;
   final double blockVertical;
-  final Widget widget;
 
   final int nilai;
   int valueGroup;

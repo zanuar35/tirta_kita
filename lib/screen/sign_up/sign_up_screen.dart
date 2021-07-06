@@ -18,6 +18,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _passwordController1 = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
   void dispose() {
     _passwordController.dispose();
@@ -83,7 +84,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         LabelText(text: 'Name'),
-                        InputText(hintText: 'type your email'),
+                        InputText(
+                            controller: _emailController,
+                            hintText: 'type your email'),
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 62,
                         ),
@@ -112,10 +115,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           height: 30,
                         ),
                         CustomButton(
+                          fontWeight: FontWeight.w500,
                           text: 'Daftar',
                           color: kBlueColor,
                           height: MediaQuery.of(context).size.height / 16,
-                          onpressed: () {
+                          onClicked: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

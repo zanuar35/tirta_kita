@@ -6,8 +6,8 @@ import '../../../constants.dart';
 
 class PromoWidget extends StatelessWidget {
   const PromoWidget({
-    @required this.url,
-    Key key,
+    required this.url,
+    Key? key,
   }) : super(key: key);
 
   final String url;

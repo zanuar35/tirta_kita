@@ -5,10 +5,10 @@ import 'package:tirta_kita/screen/help_screen/help_screen.dart';
 
 class ContainerTentang extends StatelessWidget {
   const ContainerTentang({
-    @required this.blockVertical,
-    Key key,
-    @required this.size,
-    @required this.blockHorizontal,
+    required this.blockVertical,
+    Key? key,
+    required this.size,
+    required this.blockHorizontal,
   }) : super(key: key);
 
   final Size size;

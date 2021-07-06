@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class PriceColumn extends StatelessWidget {
   const PriceColumn({
-    Key key,
-    @required this.labelStyle,
-    @required this.priceStyle,
+    Key? key,
+    required this.labelStyle,
+    required this.priceStyle,
   }) : super(key: key);
 
   final TextStyle labelStyle;

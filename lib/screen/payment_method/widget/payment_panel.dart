@@ -3,11 +3,11 @@ import 'package:getwidget/components/accordion/gf_accordion.dart';
 import 'package:line_icons/line_icons.dart';
 
 class PaymentPanel extends StatefulWidget {
-  PaymentPanel({this.nilai, this.onTap, this.valueGroup});
+  PaymentPanel({this.nilai = 0, required this.onTap, this.valueGroup = 0});
 
   final int nilai;
   int valueGroup;
-  final GestureTapCallback onTap;
+  final VoidCallback onTap;
 
   @override
   _PaymentPanelState createState() => _PaymentPanelState();

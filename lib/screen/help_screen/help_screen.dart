@@ -1,4 +1,3 @@
-
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,8 +34,6 @@ class _HelpScreenState extends State<HelpScreen> {
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     }
   ];
-
-  String selectedData;
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +117,7 @@ class _HelpScreenState extends State<HelpScreen> {
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
               ),
             ),
-            SizedBox(height: 10),  
+            SizedBox(height: 10),
           ],
         ),
       ),

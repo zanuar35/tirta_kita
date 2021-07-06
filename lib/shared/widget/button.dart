@@ -6,9 +6,9 @@ class Button extends StatelessWidget {
   final Color color;
 
   const Button({
-    this.color,
-    @required this.text,
-    Key key,
+    required this.color,
+    required this.text,
+    Key? key,
   }) : super(key: key);
 
   @override

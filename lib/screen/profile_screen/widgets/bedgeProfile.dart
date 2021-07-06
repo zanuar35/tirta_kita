@@ -3,10 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 class BadgeProfile extends StatelessWidget {
   const BadgeProfile({
-    Key key,
-    @required this.size,
-    @required this.blockHorizontal,
-    @required this.blockVertical,
+    Key? key,
+    required this.size,
+    required this.blockHorizontal,
+    required this.blockVertical,
   }) : super(key: key);
 
   final Size size;

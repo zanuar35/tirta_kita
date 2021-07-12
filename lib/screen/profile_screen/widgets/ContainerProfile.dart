@@ -23,7 +23,7 @@ class ContainerProfile extends StatelessWidget {
       height: size.height / 4.6,
       child: Padding(
         padding: EdgeInsets.fromLTRB(blockHorizontal * 6.4,
-            blockVertical * 2.40, blockHorizontal * 6.4, blockVertical * 4.31),
+            blockVertical * 2.10, blockHorizontal * 6.4, blockVertical * 4),
         child: Container(
           color: Colors.white,
           height: size.height / 5,
@@ -71,9 +71,6 @@ class ContainerProfile extends StatelessWidget {
                               fontSize: blockHorizontal * 3.7,
                               fontWeight: FontWeight.w700),
                         ),
-                        // SizedBox(
-                        //   height: blockVertical * 0.8,
-                        // ),
                         Row(
                           children: <Widget>[
                             Icon(
@@ -86,9 +83,6 @@ class ContainerProfile extends StatelessWidget {
                             Text('Silver Member')
                           ],
                         ),
-                        // SizedBox(
-                        //   height: blockHorizontal * 0.5,
-                        // ),
                         InkWell(
                           onTap: () {
                             Navigator.push(

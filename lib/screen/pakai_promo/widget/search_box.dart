@@ -13,9 +13,9 @@ class SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(blockVertical * 1.25),
+      padding: EdgeInsets.only(left: 20),
       width: size.width / 1,
-      height: blockVertical * 6,
+      height: blockVertical * 8,
       child: Center(
         child: TextField(
           decoration: InputDecoration(
@@ -23,8 +23,7 @@ class SearchBox extends StatelessWidget {
         ),
       ),
       decoration: BoxDecoration(
-        border: Border.all(width: 1, 
-        color: (Colors.grey[300])!),
+        border: Border.all(width: 1, color: (Colors.grey[300])!),
         borderRadius: BorderRadius.circular(5),
         color: Colors.white,
         boxShadow: [

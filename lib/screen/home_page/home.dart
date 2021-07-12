@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
             _currentIndex, // this will be set when a new tab is tapped
         items: [
           BottomNavigationBarItem(
-            icon: new Icon(LineIcons.archive),
+            icon: new Icon(LineIcons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(

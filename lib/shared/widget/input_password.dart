@@ -22,19 +22,35 @@ class _InputPasswordState extends State<InputPassword> {
   bool _showPassword = false;
 
   @override
+  void initState() {
+    super.initState();
+    widget.controller.addListener(onListen);
+  }
+
+  @override
+  void dispose() {
+    widget.controller.removeListener(onListen);
+    super.dispose();
+  }
+
+  void onListen() => setState(() {});
+
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: !_showPassword,
       controller: widget.controller,
       decoration: InputDecoration(
-        suffixIcon: GestureDetector(
-          onTap: () {
-            setState(() {
-              _showPassword = !_showPassword;
-            });
-          },
-          child: Icon(_showPassword ? LineIcons.eye : LineIcons.eyeSlash),
-        ),
+        suffixIcon: widget.controller.text.isEmpty
+            ? Container(width: 0)
+            : GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _showPassword = !_showPassword;
+                  });
+                },
+                child: Icon(_showPassword ? LineIcons.eye : LineIcons.eyeSlash),
+              ),
         fillColor: Color(0xfff8f8f8),
         hintText: widget.hintText,
         hintStyle: GoogleFonts.rubik(

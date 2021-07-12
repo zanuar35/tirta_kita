@@ -110,29 +110,27 @@ class BelumBayar extends StatelessWidget {
                           ],
                         ),
                         Center(
-                          child: TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            KonfirmasiPembayaran()));
-                              },
-                              child: Text(
-                                'Konfirmasi Pembayaran',
-                                style: TextStyle(
-                                    fontSize: blockHorizontal * 3.7,
-                                    letterSpacing: 0.7,
-                                    fontWeight: FontWeight.w700,
-                                    color: Color(0xff265FAA)),
-                              )),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          KonfirmasiPembayaran()));
+                            },
+                            child: Text(
+                              'Konfirmasi Pembayaran',
+                              style: TextStyle(
+                                  fontSize: blockHorizontal * 3.7,
+                                  letterSpacing: 0.7,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color(0xff265FAA)),
+                            ),
+                          ),
                         )
                       ],
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: blockVertical * 2,
                 ),
               ],
             ),

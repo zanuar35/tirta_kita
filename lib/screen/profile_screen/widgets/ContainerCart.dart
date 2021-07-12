@@ -23,6 +23,7 @@ class ContainerCart extends StatelessWidget {
       color: Colors.white,
       child: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -54,9 +55,9 @@ class ContainerCart extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.only(
-                  left: blockHorizontal * 3.2,
-                  right: blockHorizontal * 3.2,
-                  top: (blockVertical) * 1.4),
+                left: blockHorizontal * 3.2,
+                right: blockHorizontal * 3.2,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -70,13 +71,14 @@ class ContainerCart extends StatelessWidget {
                       );
                     },
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Icon(
                           LineIcons.shoppingBag,
-                          size: blockHorizontal * 8.8,
+                          size: blockHorizontal * 8,
                         ),
                         SizedBox(
-                          height: (blockVertical) * 0.8,
+                          height: 5,
                         ),
                         Text(
                           "Belum Bayar",
@@ -100,13 +102,14 @@ class ContainerCart extends StatelessWidget {
                       );
                     },
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Icon(
                           LineIcons.shoppingBag,
-                          size: blockHorizontal * 8.8,
+                          size: blockHorizontal * 8,
                         ),
                         SizedBox(
-                          height: (blockVertical) * 0.8,
+                          height: 5,
                         ),
                         Text(
                           "Sedang Dikirim",
@@ -130,13 +133,14 @@ class ContainerCart extends StatelessWidget {
                       );
                     },
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Icon(
                           LineIcons.shoppingBag,
-                          size: blockHorizontal * 8.8,
+                          size: blockHorizontal * 8,
                         ),
                         SizedBox(
-                          height: (blockVertical) * 0.8,
+                          height: 5,
                         ),
                         Text(
                           "Selesai",
@@ -156,7 +160,7 @@ class ContainerCart extends StatelessWidget {
           ],
         ),
         margin: EdgeInsets.only(
-          top: (blockVertical) * 7,
+          top: (blockVertical) * 6,
           left: size.width - (size.width - 24),
           right: size.width - (size.width - 24),
         ),

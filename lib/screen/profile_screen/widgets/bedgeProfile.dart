@@ -16,10 +16,10 @@ class BadgeProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: size.height / 5.6,
+      top: size.height / 5.4,
       left: blockHorizontal * 5.5,
       right: blockHorizontal * 5.5,
-      bottom: size.height / 5.6,
+      bottom: size.height / 6,
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(

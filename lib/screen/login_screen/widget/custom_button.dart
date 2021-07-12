@@ -24,10 +24,10 @@ class CustomButton extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            spreadRadius: 4,
-            blurRadius: 2,
-            offset: Offset(2, 3))
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 0,
+            blurRadius: 15,
+            offset: Offset(0, 5))
       ]),
       child: ElevatedButton(
         onPressed: onClicked,

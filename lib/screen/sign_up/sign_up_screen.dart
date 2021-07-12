@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tirta_kita/screen/home_page/home.dart';
+import 'package:tirta_kita/screen/home_screen/home_screen.dart';
+import 'package:tirta_kita/screen/login_screen/widget/button_widget.dart';
 import 'package:tirta_kita/screen/login_screen/widget/custom_button.dart';
+import 'package:tirta_kita/screen/login_screen/widget/email_field_widget.dart';
+import 'package:tirta_kita/screen/sign_up/widgets/name_fieldText.dart';
+import 'package:tirta_kita/shared/widget/button.dart';
 import 'package:tirta_kita/shared/widget/input_password.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';
 import 'package:tirta_kita/shared/widget/label_text.dart';
-
-import '../../constants.dart';
+import 'package:flutter/services.dart';
 
 class SignUpScreen extends StatefulWidget {
   // const SignUpScreen({ Key? key }) : super(key: key);
@@ -18,7 +22,10 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _passwordController1 = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+
+  final formKey = GlobalKey<FormState>();
 
   void dispose() {
     _passwordController.dispose();
@@ -67,7 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               Expanded(
-                flex: 9,
+                flex: 10,
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -84,11 +91,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         LabelText(text: 'Name'),
-                        InputText(
-                            controller: _emailController,
-                            hintText: 'type your email'),
+                        NameTextField(controller: _nameController),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 62,
+                          height: MediaQuery.of(context).size.height / 85,
                         ),
                         LabelText(text: 'Phone Number'),
                         InputNo(
@@ -96,15 +101,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           prefixText: '+62',
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 62,
+                          height: MediaQuery.of(context).size.height / 85,
                         ),
+                        LabelText(text: 'Email'),
+                        EmailFieldWidget(controller: emailController),
                         LabelText(text: 'Password'),
                         InputPassword(
                           hintText: 'type your password',
                           controller: _passwordController,
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 62,
+                          height: MediaQuery.of(context).size.height / 85,
                         ),
                         LabelText(text: 'Confirm Password'),
                         InputPassword(
@@ -112,20 +119,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           hintText: 'type your password once again',
                         ),
                         SizedBox(
-                          height: 30,
+                          height: 20,
                         ),
-                        CustomButton(
-                          fontWeight: FontWeight.w500,
-                          text: 'Daftar',
-                          color: kBlueColor,
-                          height: MediaQuery.of(context).size.height / 16,
-                          onClicked: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomePage()));
-                          },
-                        )
+                        buildButton()
                       ],
                     ),
                   ),
@@ -137,4 +133,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
+
+  Widget buildButton() => ButtonWidget(
+        text: 'Daftar',
+        onClicked: () {
+          final form = formKey.currentState!;
+
+          if (form.validate()) {
+            final email = emailController.text;
+
+            ScaffoldMessenger.of(context)
+              ..removeCurrentSnackBar()
+              ..showSnackBar(SnackBar(
+                content: Text('Your email is $email'),
+              ));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(),
+              ),
+            );
+          }
+        },
+      );
 }

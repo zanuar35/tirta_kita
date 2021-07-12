@@ -33,6 +33,7 @@ class _PaymentPanelImageState extends State<PaymentPanelImage> {
         border: Border.all(width: 1, color: Colors.grey),
       ),
       child: GFAccordion(
+        contentPadding: EdgeInsets.all(0),
         titleChild: Container(
           width: 200,
           height: 30,

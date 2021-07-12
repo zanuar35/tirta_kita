@@ -61,6 +61,7 @@ class _InputTextState extends State<InputText> {
             borderSide: BorderSide(color: Colors.blue, width: 2),
           ),
         ),
+        autofillHints: [AutofillHints.email],
         validator: (email) => email != null && !EmailValidator.validate(email)
             ? 'Enter a valid email'
             : null);

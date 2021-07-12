@@ -99,16 +99,17 @@ class CardProduct extends StatelessWidget {
               ],
             ),
             Center(
-              child: TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Lacak Pesanan',
-                    style: TextStyle(
-                        fontSize: blockHorizontal * 3.7,
-                        letterSpacing: 0.7,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xff265FAA)),
-                  )),
+              child: InkWell(
+                onTap: () {},
+                child: Text(
+                  'Lacak Pesanan',
+                  style: TextStyle(
+                      fontSize: blockHorizontal * 3.7,
+                      letterSpacing: 0.7,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xff265FAA)),
+                ),
+              ),
             )
           ],
         ),

@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:tirta_kita/screen/pakai_promo/widget/promo_card.dart';
 import 'package:tirta_kita/screen/pakai_promo/widget/search_box.dart';

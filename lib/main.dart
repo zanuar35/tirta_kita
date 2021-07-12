@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tirta_kita/screen/login_screen/login_screen.dart';
 import 'package:tirta_kita/screen/splash_screen/splash_screen.dart';
 
 void main() {

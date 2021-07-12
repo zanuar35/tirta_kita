@@ -13,6 +13,7 @@ class EditProfile extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _noTelpController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +66,7 @@ class EditProfile extends StatelessWidget {
                 text: 'No Handphone',
               ),
               InputNo(
+                controller: _noTelpController,
                 hintText: '8123456789',
                 prefixText: '+62',
               ),

@@ -16,8 +16,6 @@ class CardProductHome extends StatelessWidget {
   Widget build(BuildContext context) {
     double blockHorizontal = (MediaQuery.of(context).size.width) / 100;
     double blockVertical = (MediaQuery.of(context).size.height) / 100;
-    double ratio = (MediaQuery.of(context).size.height) /
-        (MediaQuery.of(context).size.width);
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),

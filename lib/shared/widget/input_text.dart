@@ -71,9 +71,11 @@ class _InputTextState extends State<InputText> {
 class InputNo extends StatelessWidget {
   final String prefixText;
   final String hintText;
+  final TextEditingController controller;
 
   const InputNo({
     Key? key,
+    required this.controller,
     required this.prefixText,
     required this.hintText,
   }) : super(key: key);
@@ -81,6 +83,7 @@ class InputNo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
         prefixText: prefixText,

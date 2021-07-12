@@ -16,7 +16,7 @@ class _PakaiPromoState extends State<PakaiPromo> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    double blockHorizontal = (MediaQuery.of(context).size.width) / 100;
+    // double blockHorizontal = (MediaQuery.of(context).size.width) / 100;
     double blockVertical = (MediaQuery.of(context).size.height) / 100;
 
     return Scaffold(

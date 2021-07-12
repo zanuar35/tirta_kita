@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tirta_kita/screen/login_screen/widget/custom_button.dart';
 
 class ContainerLogoutBtn extends StatelessWidget {
   const ContainerLogoutBtn({
     Key? key,
+    required this.onPressed,
     required this.size,
     required this.blockHorizontal,
     required this.blockVertical,
@@ -12,6 +16,7 @@ class ContainerLogoutBtn extends StatelessWidget {
   final Size size;
   final double blockHorizontal;
   final double blockVertical;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +38,7 @@ class ContainerLogoutBtn extends StatelessWidget {
                     letterSpacing: 0.2)),
             SizedBox(height: blockVertical * 2),
             CustomButton(
-              onClicked: (){},
+              onClicked: onPressed,
               height: (blockVertical) * 6.7,
               fontWeight: FontWeight.w400,
               text: 'Keluar Akun',

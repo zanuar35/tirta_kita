@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class BadgeProfile extends StatelessWidget {
+class BadgeProfile extends StatefulWidget {
   const BadgeProfile({
     Key? key,
     required this.size,
@@ -14,12 +15,22 @@ class BadgeProfile extends StatelessWidget {
   final double blockVertical;
 
   @override
+  _BadgeProfileState createState() => _BadgeProfileState();
+}
+
+
+
+class _BadgeProfileState extends State<BadgeProfile> {
+  
+
+
+  @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: size.height / 5.4,
-      left: blockHorizontal * 5.5,
-      right: blockHorizontal * 5.5,
-      bottom: size.height / 6,
+      top: widget.size.height / 5.4,
+      left: widget.blockHorizontal * 5.5,
+      right: widget.blockHorizontal * 5.5,
+      bottom: widget.size.height / 6,
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -35,9 +46,9 @@ class BadgeProfile extends StatelessWidget {
         //margin: EdgeInsets.symmetric(vertical: 24),
         child: Padding(
           padding: EdgeInsets.only(
-              left: blockHorizontal * 8,
-              top: blockVertical * 1.5,
-              bottom: blockVertical * 1.5),
+              left: widget.blockHorizontal * 8,
+              top: widget.blockVertical * 1.5,
+              bottom: widget.blockVertical * 1.5),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -48,14 +59,14 @@ class BadgeProfile extends StatelessWidget {
                     textStyle: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
-                        fontSize: blockHorizontal * 3.75),
+                        fontSize: widget.blockHorizontal * 3.75),
                   ),
                 ),
-                maxRadius: (blockVertical) * 2.8,
+                maxRadius: (widget.blockVertical) * 2.8,
                 backgroundColor: Colors.amber,
               ),
               SizedBox(
-                width: blockHorizontal * 5,
+                width: widget.blockHorizontal * 5,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -67,11 +78,11 @@ class BadgeProfile extends StatelessWidget {
                       textStyle: TextStyle(
                           fontWeight: FontWeight.w400,
                           color: Colors.white,
-                          fontSize: blockHorizontal * 4),
+                          fontSize: widget.blockHorizontal * 4),
                     ),
                   ),
                   SizedBox(
-                    height: blockVertical * 0.50,
+                    height: widget.blockVertical * 0.50,
                   ),
                   Text(
                     '1000 pts',
@@ -79,7 +90,7 @@ class BadgeProfile extends StatelessWidget {
                       textStyle: TextStyle(
                           fontWeight: FontWeight.w600,
                           color: Colors.white,
-                          fontSize: blockHorizontal * 5),
+                          fontSize: widget.blockHorizontal * 5),
                     ),
                   )
                 ],

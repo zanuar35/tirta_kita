@@ -10,28 +10,33 @@ import 'package:tirta_kita/screen/splash_screen/splash_screen.dart';
 
 import 'widgets/ContainerLogoutBtn.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   //const ({ Key? key }) : super(key: key);
 
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     double blockHorizontal = (MediaQuery.of(context).size.width) / 100;
     double blockVertical = (MediaQuery.of(context).size.height) / 100;
 
-    logOut() async {
-      final SharedPreferences pref = await SharedPreferences.getInstance();
-      pref.setBool('slogin', false);
+    // logOut() async {
+    //   final SharedPreferences pref = await SharedPreferences.getInstance();
+    //   pref.setBool('slogin', false);
 
-      Timer(Duration(seconds: 3), () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => LauncherPage(),
-          ),
-        );
-      });
-    }
+    //   Timer(Duration(seconds: 3), () {
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(
+    //         builder: (context) => LauncherPage(),
+    //       ),
+    //     );
+    //   });
+    // }
 
     return Scaffold(
       backgroundColor: Color(0xffE7E7E7),
@@ -70,7 +75,6 @@ class ProfileScreen extends StatelessWidget {
               ),
               SizedBox(height: blockVertical * 4),
               ContainerLogoutBtn(
-                  onPressed: logOut,
                   size: size,
                   blockHorizontal: blockHorizontal,
                   blockVertical: blockVertical),

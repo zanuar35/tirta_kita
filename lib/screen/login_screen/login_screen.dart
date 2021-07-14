@@ -186,9 +186,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> login() async {
     final prefs = await SharedPreferences.getInstance();
     if (passController.text.isNotEmpty && emailController.text.isNotEmpty) {
-      // setState(() {
-      //   visible = true;
-      // });
       EasyLoading.show(
         status: 'loading...',
         maskType: EasyLoadingMaskType.black,
@@ -202,37 +199,31 @@ class _LoginScreenState extends State<LoginScreen> {
 
       if (response.statusCode == 200) {
         prefs.setBool('slogin', true);
-        // setState(() {
-        //   visible = false;
-        // });
         print(response.body);
         final data = jsonDecode(response.body);
         print(data["message"]);
         print(prefs.getBool('slogin'));
-        // ScaffoldMessenger.of(context).showSnackBar(
-        //   SnackBar(
-        //     content: Text(data["message"] + " | Hallo " + data["data"]["nama"]),
-        //   ),
-        // );
         EasyLoading.showSuccess(
             data["message"] + " | Hallo " + data["data"]["nama"]);
+
+        prefs.setString('userName', data["data"]["nama"]);
+        prefs.setString('userEmail', data["data"]["email"]);
+        prefs.setString('userUrlPhoto', data["data"]["foto"]);
+        prefs.setString('token', data["token"]);
+
+        print(prefs.getString('userName'));
+        print(prefs.getString('userEmail'));
+        print(prefs.getString('userUrlPhoto'));
+        print(prefs.getString('token'));
 
         Timer(Duration(seconds: 2), () {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => HomePage()));
         });
       } else if (response.statusCode == 401) {
-        // setState(() {
-        //   visible = false;
-        // });
         print(response.body);
         final data = jsonDecode(response.body);
         print(data["message"]);
-        // ScaffoldMessenger.of(context).showSnackBar(
-        //   SnackBar(
-        //     content: Text(data["message"]),
-        //   ),
-        // );
         EasyLoading.showError(data["message"]);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -243,11 +234,6 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     } else {
       EasyLoading.showError("Black field not allowed");
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   SnackBar(
-      //     content: Text("Black field not allowed"),
-      //   ),
-      // );
     }
   }
 }

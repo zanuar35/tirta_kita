@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tirta_kita/constants.dart';
 import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/card_product.dart';
@@ -8,8 +9,32 @@ import 'package:tirta_kita/screen/home_screen/widgets/card_product.dart';
 import 'widgets/category_widget.dart';
 import 'widgets/promo_widget.dart';
 
-class HomeScreen extends StatelessWidget {
-  // const HomeScreen({ Key? key }) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  HomeScreen({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String nama = '';
+  String urlPhoto = '';
+
+  getPref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      nama = prefs.getString('userName').toString();
+      urlPhoto = prefs.getString('userUrlPhoto').toString();
+    });
+  }
+
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getPref();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                                           MainAxisAlignment.spaceAround,
                                       children: <Widget>[
                                         Text(
-                                          "Wahyudi Isman",
+                                          nama,
                                           style: TextStyle(
                                               fontSize: blockHorizontal * 3.7,
                                               fontWeight: FontWeight.w700),
@@ -97,8 +122,8 @@ class HomeScreen extends StatelessWidget {
                                             shape: BoxShape.circle,
                                             color: kPrimaryColor),
                                         child: CircleAvatar(
-                                          backgroundImage: NetworkImage(
-                                              'https://i.ibb.co/z4zCXW6/Rectangle-116.png'),
+                                          backgroundImage:
+                                              NetworkImage(urlPhoto),
                                         ))
                                   ],
                                 ),

@@ -1,10 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:tirta_kita/screen/login_screen/widget/custom_button.dart';
+import 'dart:async';
+import 'dart:convert';
 
-class ContainerLogoutBtn extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tirta_kita/screen/login_screen/widget/custom_button.dart';
+import 'package:http/http.dart' as http;
+import 'package:tirta_kita/screen/splash_screen/splash_screen.dart';
+
+class ContainerLogoutBtn extends StatefulWidget {
   const ContainerLogoutBtn({
     Key? key,
-    required this.onPressed,
     required this.size,
     required this.blockHorizontal,
     required this.blockVertical,
@@ -13,30 +19,52 @@ class ContainerLogoutBtn extends StatelessWidget {
   final Size size;
   final double blockHorizontal;
   final double blockVertical;
-  final VoidCallback onPressed;
+
+  @override
+  _ContainerLogoutBtnState createState() => _ContainerLogoutBtnState();
+}
+
+class _ContainerLogoutBtnState extends State<ContainerLogoutBtn> {
+  String token = '';
+
+  Object? get body => null;
+
+  getPref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      token = prefs.getString('token').toString();
+    });
+  }
+
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getPref();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: size.height / 6,
-      width: size.width / 1,
+      height: widget.size.height / 6,
+      width: widget.size.width / 1,
       color: Colors.white,
       child: Container(
         margin: EdgeInsets.symmetric(
-            horizontal: blockHorizontal * 6.4, vertical: blockVertical * 1.84),
+            horizontal: widget.blockHorizontal * 6.4,
+            vertical: widget.blockVertical * 1.84),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text("Logout Akun",
                 style: TextStyle(
-                    fontSize: blockHorizontal * 4.5,
+                    fontSize: widget.blockHorizontal * 4.5,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.2)),
-            SizedBox(height: blockVertical * 2),
+            SizedBox(height: widget.blockVertical * 2),
             CustomButton(
-              onClicked: onPressed,
-              height: (blockVertical) * 6.7,
+              onClicked: logOut,
+              height: (widget.blockVertical) * 6.7,
               fontWeight: FontWeight.w400,
               text: 'Keluar Akun',
               color: Color(0xff2BBAEC),
@@ -45,5 +73,29 @@ class ContainerLogoutBtn extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> logOut() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    EasyLoading.show(
+      status: 'loading...',
+      maskType: EasyLoadingMaskType.black,
+    );
+    print(token);
+    var response = await http.post(
+      Uri.parse("https://api.tirtakitaindonesia.com/auth/logout"),
+      headers: {'Accept': 'application/json', "Authorization": 'Bearer $token'},
+    );
+    print(response);
+    if (response.statusCode == 200) {
+      EasyLoading.showSuccess('Logout sukses');
+      prefs.setBool('slogin', false);
+      Timer(Duration(seconds: 2), () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LauncherPage()));
+      });
+    } else {
+      EasyLoading.showError('Logout Error');
+    }
   }
 }

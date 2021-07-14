@@ -5,7 +5,7 @@ import 'package:tirta_kita/screen/product_screen/product_screen.dart';
 import 'package:tirta_kita/screen/profile_screen/profile_screen.dart';
 
 class HomePage extends StatefulWidget {
-  // const HomePage({ Key? key }) : super(key: key);
+  HomePage({Key? key,}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }

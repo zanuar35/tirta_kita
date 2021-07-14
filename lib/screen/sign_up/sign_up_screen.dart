@@ -144,30 +144,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget buildButton() => ButtonWidget(
         text: 'Daftar',
         onClicked: () {
-          final form = formKey.currentState!;
+          regist();
+          // final form = formKey.currentState!;
 
-          if (form.validate()) {
-            final email = _emailController.text;
+          // if (form.validate()) {
+          //   final email = _emailController.text;
 
-            ScaffoldMessenger.of(context)
-              ..removeCurrentSnackBar()
-              ..showSnackBar(SnackBar(
-                content: Text('Your email is $email'),
-              ));
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomePage(),
-              ),
-            );
-          }
+          //   ScaffoldMessenger.of(context)
+          //     ..removeCurrentSnackBar()
+          //     ..showSnackBar(SnackBar(
+          //       content: Text('Your email is $email'),
+          //     ));
+          //   Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => HomePage(),
+          //     ),
+          //   );
+          // }
         },
       );
 
   Future<void> regist() async {
     if (_passwordController.text.isNotEmpty &&
+        _verifyPassController.text.isNotEmpty &&
         _emailController.text.isNotEmpty &&
         _nameController.text.isNotEmpty &&
+        (_passwordController.text == _verifyPassController.text) &&
         _noTelpController.text.isNotEmpty) {
       // setState(() {
       //   visible = true;
@@ -185,26 +188,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
             'password': _passwordController.text
           }));
       if (response.statusCode == 201) {
-        // setState(() {
-        //   visible = false;
-        // });
         print(response.body);
         final data = jsonDecode(response.body);
         print(data["message"]);
         EasyLoading.showSuccess(data["message"]);
         Timer(Duration(seconds: 2), () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => LoginScreen()));
+            context,
+            MaterialPageRoute(
+              builder: (context) => LoginScreen(),
+            ),
+          );
         });
-        // ScaffoldMessenger.of(context).showSnackBar(
-        //   SnackBar(
-        //     content: Text(data["message"]),
-        //   ),
-        // );
       } else if (response.statusCode == 400) {
-        // setState(() {
-        //   visible = false;
-        // });
         Map<String, dynamic> map =
             new Map<String, dynamic>.from(json.decode(response.body));
         print(response.body);
@@ -213,12 +209,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         print(map["message"]);
 
         EasyLoading.showError((data["message"]["email"][0]).toString());
-
-        // ScaffoldMessenger.of(context).showSnackBar(
-        //   SnackBar(
-        //     content: Text((data["message"]["email"][0]).toString()),
-        //   ),
-        // );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -234,5 +224,4 @@ class _SignUpScreenState extends State<SignUpScreen> {
       );
     }
   }
-
 }

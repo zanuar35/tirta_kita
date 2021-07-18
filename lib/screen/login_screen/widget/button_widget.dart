@@ -12,7 +12,7 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        height: MediaQuery.of(context).size.height / 16,
+        height: MediaQuery.of(context).size.height / 13,
         width: double.infinity,
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(

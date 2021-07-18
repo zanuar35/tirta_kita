@@ -145,83 +145,68 @@ class _SignUpScreenState extends State<SignUpScreen> {
         text: 'Daftar',
         onClicked: () {
           regist();
-          // final form = formKey.currentState!;
-
-          // if (form.validate()) {
-          //   final email = _emailController.text;
-
-          //   ScaffoldMessenger.of(context)
-          //     ..removeCurrentSnackBar()
-          //     ..showSnackBar(SnackBar(
-          //       content: Text('Your email is $email'),
-          //     ));
-          //   Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //       builder: (context) => HomePage(),
-          //     ),
-          //   );
-          // }
         },
       );
 
   Future<void> regist() async {
-    if (_passwordController.text.isNotEmpty &&
+    EasyLoading.show(
+      status: 'loading...',
+      maskType: EasyLoadingMaskType.black,
+    );
+    if (_passwordController.text != _verifyPassController.text) {
+      EasyLoading.showError('Password tidak sesuai');
+    } else if (_passwordController.text.isNotEmpty &&
         _verifyPassController.text.isNotEmpty &&
         _emailController.text.isNotEmpty &&
         _nameController.text.isNotEmpty &&
         (_passwordController.text == _verifyPassController.text) &&
         _noTelpController.text.isNotEmpty) {
-      // setState(() {
-      //   visible = true;
-      // });
-      EasyLoading.show(
-        status: 'loading...',
-        maskType: EasyLoadingMaskType.black,
-      );
-      var response = await http.post(
-          Uri.parse("https://api.tirtakitaindonesia.com/auth/register"),
-          body: ({
-            'nama': _nameController.text,
-            'telepon': _noTelpController.text,
-            'email': _emailController.text,
-            'password': _passwordController.text
-          }));
-      if (response.statusCode == 201) {
-        print(response.body);
-        final data = jsonDecode(response.body);
-        print(data["message"]);
-        EasyLoading.showSuccess(data["message"]);
-        Timer(Duration(seconds: 2), () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => LoginScreen(),
-            ),
-          );
-        });
-      } else if (response.statusCode == 400) {
-        Map<String, dynamic> map =
-            new Map<String, dynamic>.from(json.decode(response.body));
-        print(response.body);
-        final data = jsonDecode(response.body);
-        print(data["message"]["email"][0]);
-        print(map["message"]);
-
-        EasyLoading.showError((data["message"]["email"][0]).toString());
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("Invalid Credentials"),
-          ),
-        );
-      }
+      EasyLoading.showSuccess('Registrasi success');
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Black field not allowed"),
-        ),
-      );
+      EasyLoading.showError('Tidak boleh kosong');
     }
   }
+  //   var response = await http.post(
+  //       Uri.parse("https://api.tirtakitaindonesia.com/auth/register"),
+  //       body: ({
+  //         'nama': _nameController.text,
+  //         'telepon': _noTelpController.text,
+  //         'email': _emailController.text,
+  //         'password': _passwordController.text
+  //       }));
+  //   if (response.statusCode == 201) {
+  //     print(response.body);
+  //     final data = jsonDecode(response.body);
+  //     print(data["message"]);
+  //     EasyLoading.showSuccess(data["message"]);
+  //     Timer(Duration(seconds: 2), () {
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (context) => LoginScreen(),
+  //         ),
+  //       );
+  //     });
+  //   } else if (response.statusCode == 400) {
+  //     Map<String, dynamic> map =
+  //         new Map<String, dynamic>.from(json.decode(response.body));
+  //     print(response.body);
+  //     final data = jsonDecode(response.body);
+  //     print(data["message"]["email"][0]);
+  //     print(map["message"]);
+
+  //     EasyLoading.showError((data["message"]["email"][0]).toString());
+  //   } else {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(
+  //         content: Text("Invalid Credentials"),
+  //       ),
+  //     );
+  //   }
+  // } else {
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     SnackBar(
+  //       content: Text("Black field not allowed"),
+  //     ),
+  //   );
 }

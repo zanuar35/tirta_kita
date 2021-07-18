@@ -86,7 +86,7 @@ class _ContainerLogoutBtnState extends State<ContainerLogoutBtn> {
       Uri.parse("https://api.tirtakitaindonesia.com/auth/logout"),
       headers: {'Accept': 'application/json', "Authorization": 'Bearer $token'},
     );
-    print(response);
+    print(response.body);
     if (response.statusCode == 200) {
       EasyLoading.showSuccess('Logout sukses');
       prefs.setBool('slogin', false);

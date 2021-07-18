@@ -208,7 +208,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
         prefs.setString('userName', data["data"]["nama"]);
         prefs.setString('userEmail', data["data"]["email"]);
-        prefs.setString('userUrlPhoto', data["data"]["foto"]);
+        prefs.setString(
+            'userUrlPhoto',
+            (data["data"]["foto"] == null)
+                ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ75yfh1ISKmb8seljQCOS4bLnTAOV79iGZgUJ7g289IhQY6dAiWNgN0OOPIrnStoki30g&usqp=CAU'
+                : data["data"]["foto"]);
         prefs.setString('token', data["token"]);
 
         print(prefs.getString('userName'));

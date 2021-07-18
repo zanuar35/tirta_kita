@@ -72,8 +72,9 @@ class _ContainerProfileState extends State<ContainerProfile> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   CircleAvatar(
-                      maxRadius: widget.blockVertical * 3.2,
-                      backgroundImage: NetworkImage('$urlPhoto')),
+                    maxRadius: widget.blockVertical * 3.2,
+                    backgroundImage: NetworkImage(urlPhoto),
+                  ),
                   SizedBox(
                     width: widget.blockHorizontal * 3,
                   ),

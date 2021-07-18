@@ -122,8 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             shape: BoxShape.circle,
                                             color: kPrimaryColor),
                                         child: CircleAvatar(
-                                          backgroundImage:
-                                              NetworkImage(urlPhoto),
+                                          backgroundImage: NetworkImage(urlPhoto),
                                         ))
                                   ],
                                 ),

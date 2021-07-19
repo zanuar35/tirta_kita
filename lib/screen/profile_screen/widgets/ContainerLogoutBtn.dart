@@ -90,6 +90,11 @@ class _ContainerLogoutBtnState extends State<ContainerLogoutBtn> {
     if (response.statusCode == 200) {
       EasyLoading.showSuccess('Logout sukses');
       prefs.setBool('slogin', false);
+      prefs.clear();
+      print(prefs.getString('userName'));
+      print(prefs.getString('userEmail'));
+      print(prefs.getString('userUrlPhoto'));
+      print(prefs.getString('token'));
       Timer(Duration(seconds: 2), () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => LauncherPage()));

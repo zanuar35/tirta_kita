@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tirta_kita/screen/edit_profile/edit_profile.dart';
+import 'package:get/get.dart';
 
 class ContainerProfile extends StatefulWidget {
   const ContainerProfile({
@@ -33,7 +34,6 @@ class _ContainerProfileState extends State<ContainerProfile> {
   }
 
   void initState() {
-    // TODO: implement initState
     super.initState();
     getPref();
   }
@@ -84,7 +84,7 @@ class _ContainerProfileState extends State<ContainerProfile> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Text(
-                          nama,
+                          nama.capitalizeFirst.toString(),
                           style: TextStyle(
                               fontSize: widget.blockHorizontal * 3.7,
                               fontWeight: FontWeight.w700),

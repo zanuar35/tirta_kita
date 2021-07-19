@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tirta_kita/constants.dart';
 import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/card_product.dart';
+import 'package:get/get.dart';
 
 import 'widgets/category_widget.dart';
 import 'widgets/promo_widget.dart';
@@ -92,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           MainAxisAlignment.spaceAround,
                                       children: <Widget>[
                                         Text(
-                                          nama,
+                                          nama.capitalizeFirst.toString(),
                                           style: TextStyle(
                                               fontSize: blockHorizontal * 3.7,
                                               fontWeight: FontWeight.w700),
@@ -122,7 +123,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             shape: BoxShape.circle,
                                             color: kPrimaryColor),
                                         child: CircleAvatar(
-                                          backgroundImage: NetworkImage(urlPhoto),
+                                          backgroundImage:
+                                              NetworkImage(urlPhoto),
                                         ))
                                   ],
                                 ),

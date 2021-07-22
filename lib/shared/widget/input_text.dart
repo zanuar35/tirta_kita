@@ -8,8 +8,7 @@ class InputText extends StatefulWidget {
   final String hintText;
   final TextEditingController controller;
 
-  const InputText({Key? key, required this.hintText, required this.controller})
-      : super(key: key);
+  const InputText({Key key, this.hintText, this.controller}) : super(key: key);
 
   @override
   _InputTextState createState() => _InputTextState();
@@ -74,10 +73,10 @@ class InputNo extends StatelessWidget {
   final TextEditingController controller;
 
   const InputNo({
-    Key? key,
-    required this.controller,
-    required this.prefixText,
-    required this.hintText,
+    Key key,
+    this.controller,
+    this.prefixText,
+    this.hintText,
   }) : super(key: key);
 
   @override

@@ -7,10 +7,10 @@ import 'package:get/get.dart';
 
 class ContainerProfile extends StatefulWidget {
   const ContainerProfile({
-    Key? key,
-    required this.size,
-    required this.blockVertical,
-    required this.blockHorizontal,
+    Key key,
+    this.size,
+    this.blockVertical,
+    this.blockHorizontal,
   }) : super(key: key);
 
   final Size size;

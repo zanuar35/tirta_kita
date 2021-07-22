@@ -5,10 +5,10 @@ import 'package:tirta_kita/screen/payment_method/metode_pembayaran.dart';
 
 class OptionBox extends StatelessWidget {
   const OptionBox({
-    Key? key,
-    required this.size,
-    required this.blockVertical,
-    required this.blockHorizontal,
+    Key key,
+     this.size,
+     this.blockVertical,
+     this.blockHorizontal,
   }) : super(key: key);
 
   final Size size;

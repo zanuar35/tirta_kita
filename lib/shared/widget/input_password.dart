@@ -9,9 +9,9 @@ class InputPassword extends StatefulWidget {
   final String hintText;
 
   const InputPassword({
-    required this.controller,
-    required this.hintText,
-    Key? key,
+    this.controller,
+    this.hintText,
+    Key key,
   }) : super(key: key);
 
   @override

@@ -13,7 +13,7 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  String? valueChoose;
+  String valueChoose;
 
   List<String> listItem = [
     "Outlet - Ciputra 1(2km)",
@@ -114,7 +114,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                               onChanged: (newValue) {
                                                 setState(() {
                                                   valueChoose =
-                                                      newValue as String?;
+                                                      newValue as String;
                                                 });
                                               },
                                               items: listItem.map((valueItem) {

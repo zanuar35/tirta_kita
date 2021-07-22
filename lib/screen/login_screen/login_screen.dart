@@ -5,6 +5,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tirta_kita/model/user_model.dart';
 import 'package:tirta_kita/screen/home_page/home.dart';
 import 'package:tirta_kita/screen/login_screen/widget/button_widget.dart';
 import 'package:tirta_kita/screen/login_screen/widget/email_field_widget.dart';
@@ -24,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passController = TextEditingController();
+
 
   @override
   void dispose() {
@@ -200,20 +202,24 @@ class _LoginScreenState extends State<LoginScreen> {
       if (response.statusCode == 200) {
         prefs.setBool('slogin', true);
         print(response.body);
-        final data = jsonDecode(response.body);
-        print(data["message"]);
+        final data1 = jsonDecode(response.body);
+        UserModel userModel = UserModel.fromJson(jsonDecode(response.body));
+        Data data = userModel.data;
+
+        print('usermodel nama ${data.nama}');
+        print(userModel.message);
         print(prefs.getBool('slogin'));
         EasyLoading.showSuccess(
-            data["message"] + " | Hallo " + data["data"]["nama"]);
+            data1["message"] + " | Hallo " + data1["data"]["nama"]);
 
-        prefs.setString('userName', data["data"]["nama"]);
-        prefs.setString('userEmail', data["data"]["email"]);
+        prefs.setString('userName', data1["data"]["nama"]);
+        prefs.setString('userEmail', data1["data"]["email"]);
         prefs.setString(
             'userUrlPhoto',
-            (data["data"]["foto"] == null)
+            (data1["data"]["foto"] == null)
                 ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ75yfh1ISKmb8seljQCOS4bLnTAOV79iGZgUJ7g289IhQY6dAiWNgN0OOPIrnStoki30g&usqp=CAU'
-                : data["data"]["foto"]);
-        prefs.setString('token', data["token"]);
+                : data1["data"]["foto"]);
+        prefs.setString('token', data1["token"]);
 
         print(prefs.getString('userName'));
         print(prefs.getString('userEmail'));

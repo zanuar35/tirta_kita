@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -10,10 +9,10 @@ import 'package:tirta_kita/screen/splash_screen/splash_screen.dart';
 
 class ContainerLogoutBtn extends StatefulWidget {
   const ContainerLogoutBtn({
-    Key? key,
-    required this.size,
-    required this.blockHorizontal,
-    required this.blockVertical,
+    Key key,
+    this.size,
+    this.blockHorizontal,
+    this.blockVertical,
   }) : super(key: key);
 
   final Size size;
@@ -27,7 +26,7 @@ class ContainerLogoutBtn extends StatefulWidget {
 class _ContainerLogoutBtnState extends State<ContainerLogoutBtn> {
   String token = '';
 
-  Object? get body => null;
+  Object get body => null;
 
   getPref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -4,8 +4,8 @@ class NameTextField extends StatefulWidget {
   final TextEditingController controller;
 
   const NameTextField({
-    Key? key,
-    required this.controller,
+    Key key,
+    this.controller,
   }) : super(key: key);
 
   @override

@@ -3,7 +3,7 @@ import 'package:getwidget/components/accordion/gf_accordion.dart';
 import 'package:line_icons/line_icons.dart';
 
 class PaymentPanel extends StatefulWidget {
-  PaymentPanel({this.nilai = 0, required this.onTap, this.valueGroup = 0});
+  PaymentPanel({this.nilai = 0, this.onTap, this.valueGroup = 0});
 
   final int nilai;
   int valueGroup;

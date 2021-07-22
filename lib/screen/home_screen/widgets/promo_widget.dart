@@ -3,11 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../constants.dart';
 
-
 class PromoWidget extends StatelessWidget {
   const PromoWidget({
-    required this.url,
-    Key? key,
+    this.url,
+    Key key,
   }) : super(key: key);
 
   final String url;

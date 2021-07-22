@@ -7,8 +7,8 @@ class CardProductHome extends StatelessWidget {
   final String url;
 
   const CardProductHome({
-    required this.url,
-    Key? key,
+    this.url,
+    Key key,
     //@required this.size,
   }) : super(key: key);
 

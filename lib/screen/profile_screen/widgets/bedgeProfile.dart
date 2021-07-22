@@ -4,10 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class BadgeProfile extends StatefulWidget {
   const BadgeProfile({
-    Key? key,
-    required this.size,
-    required this.blockHorizontal,
-    required this.blockVertical,
+    Key key,
+     this.size,
+     this.blockHorizontal,
+     this.blockVertical,
   }) : super(key: key);
 
   final Size size;

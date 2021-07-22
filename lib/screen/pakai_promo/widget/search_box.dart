@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class SearchBox extends StatelessWidget {
   const SearchBox({
-    Key? key,
-    required this.size,
-    required this.blockVertical,
+    Key key,
+    this.size,
+    this.blockVertical,
   }) : super(key: key);
 
   final Size size;
@@ -23,7 +23,7 @@ class SearchBox extends StatelessWidget {
         ),
       ),
       decoration: BoxDecoration(
-        border: Border.all(width: 1, color: (Colors.grey[300])!),
+        border: Border.all(width: 1, color: (Colors.grey[300])),
         borderRadius: BorderRadius.circular(5),
         color: Colors.white,
         boxShadow: [

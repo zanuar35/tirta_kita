@@ -1,18 +1,24 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tirta_kita/constants.dart';
+import 'package:tirta_kita/model/kategori_model.dart';
+import 'package:tirta_kita/model/laris_model.dart';
+import 'package:tirta_kita/model/user_model.dart';
 import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/card_product.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 import 'widgets/category_widget.dart';
 import 'widgets/promo_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({
-    Key? key,
+    Key key,
   }) : super(key: key);
 
   @override
@@ -22,20 +28,29 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String nama = '';
   String urlPhoto = '';
+  String token = '';
 
   getPref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       nama = prefs.getString('userName').toString();
+      token = prefs.getString('token').toString();
       urlPhoto = prefs.getString('userUrlPhoto').toString();
     });
   }
 
   void initState() {
-    // TODO: implement initState
     super.initState();
     getPref();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(Duration(seconds: 1), () {
+        apiKategori();
+        apiLaris();
+      });
+    });
   }
+
+  UserModel a;
 
   @override
   Widget build(BuildContext context) {
@@ -226,5 +241,44 @@ class _HomeScreenState extends State<HomeScreen> {
         ]),
       ),
     );
+  }
+
+  Future<DataKategori> apiKategori() async {
+    var response = await http.get(
+      Uri.parse("https://api.tirtakitaindonesia.com/kategori"),
+      headers: {'Accept': 'application/json', "Authorization": 'Bearer $token'},
+    );
+    final Map parsed = json.decode(response.body);
+    DataKategori dataKategori = DataKategori.fromJson(parsed);
+
+    for (var i = 0; i < dataKategori.data.length; i++) {
+      print("\n");
+      print('Id Kategori : ${dataKategori.data[i].id}');
+      print('nama kategori :  ${dataKategori.data[i].nama}');
+      print('link gambar ${dataKategori.data[i].gambar}');
+      print("\n");
+    }
+    return dataKategori;
+  }
+
+  Future<DataLaris> apiLaris() async {
+    var response = await http.get(
+      Uri.parse("https://api.tirtakitaindonesia.com/laris"),
+      headers: {'Accept': 'application/json', "Authorization": 'Bearer $token'},
+    );
+    final Map parsed = json.decode(response.body);
+    DataLaris dataLaris = DataLaris.fromJson(parsed);
+
+    for (var i = 0; i < dataLaris.data.length; i++) {
+      print("\n");
+      print('Id laris : ${dataLaris.data[i].id}');
+      print('nama produk :  ${dataLaris.data[i].nama}');
+      print('kategoriId :  ${dataLaris.data[i].kategoriId}');
+      print('kategoriNama : ${dataLaris.data[i].kategoriNama}');
+      print('foto :  ${dataLaris.data[i].foto}');
+      print("\n");
+    }
+
+    return dataLaris;
   }
 }

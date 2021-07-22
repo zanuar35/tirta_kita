@@ -4,10 +4,10 @@ import 'package:tirta_kita/blocs/counter.dart';
 
 class CardCart extends StatefulWidget {
   const CardCart({
-    Key? key,
-    required this.size,
-    required this.blockVertical,
-    required this.blockHorizontal,
+    Key key,
+     this.size,
+     this.blockVertical,
+     this.blockHorizontal,
   }) : super(key: key);
 
   final Size size;

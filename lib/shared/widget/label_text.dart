@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class LabelText extends StatelessWidget {
   final String text;
   const LabelText({
-    required this.text,
-    Key? key,
+    this.text,
+    Key key,
   }) : super(key: key);
 
   @override

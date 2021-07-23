@@ -5,8 +5,10 @@ import 'package:line_icons/line_icons.dart';
 
 class CardProductHome extends StatelessWidget {
   final String url;
+  final String namaProduk;
 
   const CardProductHome({
+    this.namaProduk,
     this.url,
     Key key,
     //@required this.size,
@@ -54,13 +56,12 @@ class CardProductHome extends StatelessWidget {
                           width: blockHorizontal * 16.2,
                           height: blockVertical * 12.1,
                           child: Image(
-                            image: NetworkImage(
-                                'https://i.ibb.co/7jWgk8y/image-1.png'),
+                            image: NetworkImage(url),
                             fit: BoxFit.cover,
                           ),
                         ),
                         AutoSizeText(
-                          'Product 1',
+                          namaProduk,
                           minFontSize: 11,
                           style: TextStyle(
                               fontSize: 13, fontWeight: FontWeight.w700),

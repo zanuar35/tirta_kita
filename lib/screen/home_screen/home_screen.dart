@@ -12,8 +12,6 @@ import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/card_product.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-
-import 'widgets/category_widget.dart';
 import 'widgets/promo_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -50,7 +48,12 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  List kategori = [];
+  List laris = [];
+
   UserModel a;
+  DataLaris l;
+  DataKategori k;
 
   @override
   Widget build(BuildContext context) {
@@ -164,62 +167,144 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: blockVertical * 2.4,
                 ),
-                CategoryWidget(
-                  url: 'https://i.ibb.co/bHrLDGc/image-2-removebg-preview.png',
+                (kategori.length == 0)
+                    ? Center(child: CircularProgressIndicator())
+                    : Container(
+                        height: 120,
+                        child: ListView.builder(
+                            itemCount: kategori.length,
+                            padding: EdgeInsets.only(left: 0, right: 15),
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 22, right: 0),
+                                child: Column(
+                                  children: [
+                                    Card(
+                                      elevation: 4,
+                                      shape: CircleBorder(),
+                                      child: Container(
+                                        margin: EdgeInsets.all(5),
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                13,
+                                        width:
+                                            MediaQuery.of(context).size.height /
+                                                13,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  '${kategori[index].gambar}'),
+                                              fit: BoxFit.cover),
+                                          shape: BoxShape.circle,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 2,
+                                    ),
+                                    Text(kategori[index].nama)
+                                  ],
+                                ),
+                              );
+                            })),
+                SizedBox(
+                  height: blockVertical * 2.4,
                 ),
-
-                /*
-                  Promo banner
-                */
                 PromoWidget(
                   url: 'https://i.ibb.co/kMJND02/image-3-1.png',
                 ),
                 SizedBox(
                   height: blockVertical * 1.23,
                 ),
-                Padding(
-                    padding: EdgeInsets.only(
-                        left: blockHorizontal * 6.4,
-                        right: blockHorizontal * 6.4,
-                        bottom: blockVertical * 2.95),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          "Paling Laris",
-                          style: GoogleFonts.rubik(
-                              textStyle: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: blockHorizontal * 3.7)),
-                        ),
-                        SizedBox(
-                          height: blockVertical * 1.23,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                (laris.length == 0)
+                    ? Center(child: CircularProgressIndicator())
+                    : Padding(
+                        padding: EdgeInsets.only(
+                            left: blockHorizontal * 6.4,
+                            right: blockHorizontal * 6.4,
+                            bottom: blockVertical * 2.95),
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            CardProductHome(
-                                url: 'https://i.ibb.co/7jWgk8y/image-1.png'),
-                            CardProductHome(
-                                url: 'https://i.ibb.co/7jWgk8y/image-1.png')
+                            Text(
+                              "Paling Laris",
+                              style: GoogleFonts.rubik(
+                                  textStyle: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: blockHorizontal * 3.7)),
+                            ),
+                            SizedBox(
+                              height: blockVertical * 1.23,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                CardProductHome(
+                                  url: '${laris[0].foto}',
+                                  namaProduk: laris[0].nama,
+                                ),
+                                CardProductHome(
+                                  url: '${laris[1].foto}',
+                                  namaProduk: laris[1].nama,
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: blockVertical * 1.84,
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                CardProductHome(
+                                  url: '${laris[2].foto}',
+                                  namaProduk: laris[2].nama,
+                                ),
+                                CardProductHome(
+                                  url: '${laris[3].foto}',
+                                  namaProduk: laris[3].nama,
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: blockVertical * 1.84,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                CardProductHome(
+                                  url: '${laris[4].foto}',
+                                  namaProduk: laris[4].nama,
+                                ),
+                                CardProductHome(
+                                  url: '${laris[5].foto}',
+                                  namaProduk: laris[5].nama,
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: blockVertical * 1.84,
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                CardProductHome(
+                                  url: '${laris[6].foto}',
+                                  namaProduk: laris[6].nama,
+                                ),
+                                CardProductHome(
+                                  url: '${laris[7].foto}',
+                                  namaProduk: laris[7].nama,
+                                )
+                              ],
+                            ),
                           ],
-                        ),
-                        SizedBox(
-                          height: blockVertical * 1.84,
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            CardProductHome(
-                                url: 'https://i.ibb.co/7jWgk8y/image-1.png'),
-                            CardProductHome(
-                                url: 'https://i.ibb.co/7jWgk8y/image-1.png')
-                          ],
-                        ),
-                      ],
-                    )),
+                        )),
               ],
             ),
           ),
@@ -250,15 +335,25 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     final Map parsed = json.decode(response.body);
     DataKategori dataKategori = DataKategori.fromJson(parsed);
+    if (response.statusCode == 200) {
+      if (response.statusCode == 200) {
+        kategori = dataKategori.data;
+        k = dataKategori;
+        setState(() {});
+      }
+      print(kategori[0].id);
+      print(kategori[0].nama);
+      print(kategori[0].gambar);
 
-    for (var i = 0; i < dataKategori.data.length; i++) {
-      print("\n");
-      print('Id Kategori : ${dataKategori.data[i].id}');
-      print('nama kategori :  ${dataKategori.data[i].nama}');
-      print('link gambar ${dataKategori.data[i].gambar}');
-      print("\n");
+      for (var i = 0; i < dataKategori.data.length; i++) {
+        print("\n");
+        print('Id Kategori : ${dataKategori.data[i].id}');
+        print('nama kategori :  ${dataKategori.data[i].nama}');
+        print('link gambar ${dataKategori.data[i].gambar}');
+        print("\n");
+      }
+      return dataKategori;
     }
-    return dataKategori;
   }
 
   Future<DataLaris> apiLaris() async {
@@ -268,6 +363,18 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     final Map parsed = json.decode(response.body);
     DataLaris dataLaris = DataLaris.fromJson(parsed);
+    if (response.statusCode == 200) {
+      if (response.statusCode == 200) {
+        laris = dataLaris.data;
+        l = dataLaris;
+        setState(() {});
+      }
+      print(laris[0].id);
+      print(laris[0].nama);
+      print(laris[0].kategoriId);
+      print(laris[0].kategoriNama);
+      print(laris[0].foto);
+    }
 
     for (var i = 0; i < dataLaris.data.length; i++) {
       print("\n");

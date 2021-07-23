@@ -167,9 +167,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
                 // End TopBar
                 SizedBox(height: blockVertical * 2.4),
-                CategoryWidget(
-                  url: 'https://i.ibb.co/bHrLDGc/image-2-removebg-preview.png',
-                ),
+                CategoryWidget(),
                 Container(
                   height: blockVertical * 70,
                   width: MediaQuery.of(context).size.width / 1,

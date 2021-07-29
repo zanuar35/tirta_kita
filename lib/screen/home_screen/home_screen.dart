@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  height: size.height * 0.25,
+                  height: size.height * 0.35 - 27,
                   child: Stack(
                     children: <Widget>[
                       Container(
@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               'https://i.ibb.co/WPpq4mk/image-4.png'),
                           fit: BoxFit.fill,
                         ),
-                        height: size.height * 0.25 - 27,
+                        height: size.height * 0.35,
                         width: size.width / 1,
                         decoration: BoxDecoration(
                           color: kPrimaryColor,
@@ -95,11 +95,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           right: 0,
                           child: Container(
                             child: Padding(
-                              padding: EdgeInsets.all(blockHorizontal * 1.3),
+                              padding: EdgeInsets.fromLTRB(
+                                  blockHorizontal * 1.3,
+                                  blockHorizontal * 1.3,
+                                  blockHorizontal * 1.3,
+                                  0),
                               child: Container(
                                 height: size.height - 5,
                                 width: size.width - 5,
-                                // color: Colors.red,
+                                //color: Colors.red,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
@@ -148,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                             ),
-                            height: blockVertical * 8.6,
+                            height: blockVertical * 10, //8.6,
                             margin: EdgeInsets.symmetric(
                                 horizontal: blockHorizontal * 3.5),
                             decoration: BoxDecoration(
@@ -243,11 +247,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 CardProductHome(
-                                  url: '${laris[0].foto}',
+                                  url: laris[0].foto,
                                   namaProduk: laris[0].nama,
                                 ),
                                 CardProductHome(
-                                  url: '${laris[1].foto}',
+                                  url: laris[0].foto,
                                   namaProduk: laris[1].nama,
                                 )
                               ],
@@ -260,11 +264,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 CardProductHome(
-                                  url: '${laris[2].foto}',
+                                  url: laris[0].foto,
                                   namaProduk: laris[2].nama,
                                 ),
                                 CardProductHome(
-                                  url: '${laris[3].foto}',
+                                  url: laris[0].foto,
                                   namaProduk: laris[3].nama,
                                 )
                               ],
@@ -277,11 +281,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 CardProductHome(
-                                  url: '${laris[4].foto}',
+                                  url: laris[0].foto,
                                   namaProduk: laris[4].nama,
                                 ),
                                 CardProductHome(
-                                  url: '${laris[5].foto}',
+                                  url: laris[0].foto,
                                   namaProduk: laris[5].nama,
                                 )
                               ],
@@ -294,11 +298,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 CardProductHome(
-                                  url: '${laris[6].foto}',
+                                  url: laris[0].foto,
                                   namaProduk: laris[6].nama,
                                 ),
                                 CardProductHome(
-                                  url: '${laris[7].foto}',
+                                  url: laris[0].foto,
                                   namaProduk: laris[7].nama,
                                 )
                               ],

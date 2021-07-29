@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:tirta_kita/model/laris_model.dart';
 import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/card_product.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/category_widget.dart';
@@ -21,6 +22,8 @@ class _ProductScreenState extends State<ProductScreen> {
     "Outlet - Ciputra 3(4km)",
     "Outlet - Ciputra 4(5km)",
   ];
+
+  DataListLaris l;
 
   @override
   Widget build(BuildContext context) {
@@ -192,6 +195,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             CardProductHome(
+                                namaProduk: l.nama,
                                 url: 'https://i.ibb.co/7jWgk8y/image-1.png'),
                             CardProductHome(
                                 url: 'https://i.ibb.co/7jWgk8y/image-1.png')

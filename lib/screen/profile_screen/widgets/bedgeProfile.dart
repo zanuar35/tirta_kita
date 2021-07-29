@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class BadgeProfile extends StatefulWidget {
   const BadgeProfile({
     Key key,
-     this.size,
-     this.blockHorizontal,
-     this.blockVertical,
+    this.size,
+    this.blockHorizontal,
+    this.blockVertical,
   }) : super(key: key);
 
   final Size size;
@@ -18,12 +17,7 @@ class BadgeProfile extends StatefulWidget {
   _BadgeProfileState createState() => _BadgeProfileState();
 }
 
-
-
 class _BadgeProfileState extends State<BadgeProfile> {
-  
-
-
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -33,16 +27,22 @@ class _BadgeProfileState extends State<BadgeProfile> {
       bottom: widget.size.height / 6,
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            colors: [
-              Color(0xff0193DB),
-              Color(0xff2A9CD9),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(10),
-        ),
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Color(0xff0193DB),
+                Color(0xff2A9CD9),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withOpacity(0.25),
+                  spreadRadius: 0,
+                  blurRadius: 16,
+                  offset: Offset(0, 8))
+            ]),
         //margin: EdgeInsets.symmetric(vertical: 24),
         child: Padding(
           padding: EdgeInsets.only(

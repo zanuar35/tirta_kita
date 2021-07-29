@@ -9,11 +9,11 @@ class CustomButton extends StatelessWidget {
   final Color color;
 
   const CustomButton({
-     this.fontWeight,
-     this.color,
-     this.text,
-     this.height,
-     this.onClicked,
+    this.fontWeight,
+    this.color,
+    this.text,
+    this.height,
+    this.onClicked,
     Key key,
   }) : super(key: key);
 
@@ -24,10 +24,10 @@ class CustomButton extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.black.withOpacity(0.25),
             spreadRadius: 0,
-            blurRadius: 15,
-            offset: Offset(0, 5))
+            blurRadius: 16,
+            offset: Offset(0, 8))
       ]),
       child: ElevatedButton(
         onPressed: onClicked,
@@ -40,7 +40,7 @@ class CustomButton extends StatelessWidget {
           text,
           minFontSize: 12,
           style: TextStyle(
-              fontSize: 18, fontWeight: fontWeight, color: Colors.white),
+              fontSize: 20, fontWeight: fontWeight, color: Colors.white),
         ),
       ),
     );

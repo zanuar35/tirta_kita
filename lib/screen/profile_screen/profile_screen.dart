@@ -1,12 +1,9 @@
-import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tirta_kita/screen/profile_screen/widgets/ContainerCart.dart';
 import 'package:tirta_kita/screen/profile_screen/widgets/ContainerProfile.dart';
 import 'package:tirta_kita/screen/profile_screen/widgets/ContainerTentang.dart';
 import 'package:tirta_kita/screen/profile_screen/widgets/bedgeProfile.dart';
-import 'package:tirta_kita/screen/splash_screen/splash_screen.dart';
 
 import 'widgets/ContainerLogoutBtn.dart';
 

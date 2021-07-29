@@ -21,12 +21,6 @@ class DataLaris {
   }
 }
 
-//  "id": 1,
-//  "kategori_id": 1,
-//  "kategori_nama": "Air Mineral",
-//  "nama": "Aqua 350ml",
-//  "foto":
-
 class DataListLaris {
   int id;
   int kategoriId;

@@ -14,7 +14,7 @@ class DaftarPesanan extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 122,
+          toolbarHeight: MediaQuery.of(context).size.height / 13,
           title: Text(
             'Daftar Pesanan',
             style: GoogleFonts.rubik(

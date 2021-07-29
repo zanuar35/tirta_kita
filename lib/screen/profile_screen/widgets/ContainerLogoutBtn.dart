@@ -63,7 +63,7 @@ class _ContainerLogoutBtnState extends State<ContainerLogoutBtn> {
             SizedBox(height: widget.blockVertical * 2),
             CustomButton(
               onClicked: logOut,
-              height: (widget.blockVertical) * 6.7,
+              height: (widget.blockVertical) * 7, //6,7,
               fontWeight: FontWeight.w400,
               text: 'Keluar Akun',
               color: Color(0xff2BBAEC),
@@ -96,7 +96,11 @@ class _ContainerLogoutBtnState extends State<ContainerLogoutBtn> {
       print(prefs.getString('token'));
       Timer(Duration(seconds: 2), () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LauncherPage()));
+          context,
+          MaterialPageRoute(
+            builder: (context) => LauncherPage(),
+          ),
+        );
       });
     } else {
       EasyLoading.showError('Logout Error');

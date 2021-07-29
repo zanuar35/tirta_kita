@@ -7,12 +7,14 @@ class CardProductHome extends StatelessWidget {
   final String url;
   final String namaProduk;
 
-  const CardProductHome({
+  CardProductHome({
     this.namaProduk,
     this.url,
     Key key,
     //@required this.size,
   }) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +40,10 @@ class CardProductHome extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  height: blockHorizontal * 40,
+                  height: blockHorizontal * 37,
                   width: blockHorizontal * 40,
                   decoration: BoxDecoration(
+                    //color: Colors.green[100],
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(6),
                       topRight: Radius.circular(6),
@@ -79,7 +82,7 @@ class CardProductHome extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  height: blockVertical * 4.3,
+                  height: blockVertical * 6, //4.3,
                   width: blockHorizontal * 40,
                   decoration: BoxDecoration(
                     color: Color(0xFF2BBAEC),
@@ -104,7 +107,7 @@ class CardProductHome extends StatelessWidget {
                         'Add to cart',
                         minFontSize: 11,
                         style: TextStyle(
-                            fontSize: 13,
+                            fontSize: 15,
                             fontWeight: FontWeight.w600,
                             color: Colors.white),
                       )

@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:tirta_kita/model/kategori_model.dart';
 import 'package:tirta_kita/model/laris_model.dart';
 import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
@@ -204,7 +205,50 @@ class _ProductScreenState extends State<ProductScreen> {
                     ? Container(
                         height: 120,
                         width: MediaQuery.of(context).size.width,
-                        child: Center(child: CircularProgressIndicator()))
+                        child: Shimmer.fromColors(
+                          baseColor: Color(0xff2661AB),
+                          highlightColor: Colors.blueGrey[200],
+                          child: ListView.builder(
+                              itemCount: 4,
+                              padding: EdgeInsets.only(left: 0, right: 15),
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 22, right: 0),
+                                  child: Column(
+                                    children: [
+                                      Card(
+                                        elevation: 4,
+                                        shape: CircleBorder(),
+                                        child: Container(
+                                          margin: EdgeInsets.all(5),
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              13,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              13,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: NetworkImage(''),
+                                                fit: BoxFit.cover),
+                                            shape: BoxShape.circle,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 2,
+                                      ),
+                                      Text('loading..')
+                                    ],
+                                  ),
+                                );
+                              }),
+                        ),
+                      )
                     : Container(
                         height: 120,
                         child: ListView.builder(

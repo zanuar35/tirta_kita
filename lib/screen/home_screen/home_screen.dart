@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:tirta_kita/constants.dart';
 import 'package:tirta_kita/model/kategori_model.dart';
 import 'package:tirta_kita/model/laris_model.dart';
@@ -12,6 +13,8 @@ import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/card_product.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:tirta_kita/screen/home_screen/widgets/shimer_Produk.dart';
+import 'package:tirta_kita/screen/home_screen/widgets/shimmer_Category.dart';
 import 'widgets/promo_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -49,7 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
     getPref();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.delayed(Duration(seconds: 1), () {
-        (kategori.length == 0) ? apiKategori() : kategori = kategori;
+        if (kategori.length == 0) {
+          apiKategori();
+        }
         apiLaris();
       });
     });
@@ -173,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: blockVertical * 2.4,
                 ),
                 (kategori.length == 0)
-                    ? Center(child: CircularProgressIndicator())
+                    ? ShimmerCategory()
                     : Container(
                         height: 120,
                         child: ListView.builder(
@@ -224,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: blockVertical * 1.23,
                 ),
                 (laris.length == 0)
-                    ? Center(child: CircularProgressIndicator())
+                    ? ShimmerCardProduk()
                     : Padding(
                         padding: EdgeInsets.only(
                             left: blockHorizontal * 6.4,
@@ -252,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   namaProduk: laris[0].nama,
                                 ),
                                 CardProductHome(
-                                  url: laris[0].foto,
+                                  url: laris[1].foto,
                                   namaProduk: laris[1].nama,
                                 )
                               ],
@@ -265,11 +270,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 CardProductHome(
-                                  url: laris[0].foto,
+                                  url: laris[2].foto,
                                   namaProduk: laris[2].nama,
                                 ),
                                 CardProductHome(
-                                  url: laris[0].foto,
+                                  url: laris[3].foto,
                                   namaProduk: laris[3].nama,
                                 )
                               ],
@@ -282,11 +287,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 CardProductHome(
-                                  url: laris[0].foto,
+                                  url: laris[4].foto,
                                   namaProduk: laris[4].nama,
                                 ),
                                 CardProductHome(
-                                  url: laris[0].foto,
+                                  url: laris[5].foto,
                                   namaProduk: laris[5].nama,
                                 )
                               ],
@@ -299,11 +304,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 CardProductHome(
-                                  url: laris[0].foto,
+                                  url: laris[6].foto,
                                   namaProduk: laris[6].nama,
                                 ),
                                 CardProductHome(
-                                  url: laris[0].foto,
+                                  url: laris[7].foto,
                                   namaProduk: laris[7].nama,
                                 )
                               ],
@@ -316,11 +321,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 CardProductHome(
-                                  url: laris[0].foto,
+                                  url: laris[8].foto,
                                   namaProduk: laris[8].nama,
                                 ),
                                 CardProductHome(
-                                  url: laris[0].foto,
+                                  url: laris[9].foto,
                                   namaProduk: laris[9].nama,
                                 )
                               ],
@@ -411,3 +416,4 @@ class _HomeScreenState extends State<HomeScreen> {
     return dataLaris;
   }
 }
+

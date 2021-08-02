@@ -49,8 +49,8 @@ class PromoWidget extends StatelessWidget {
                         child: Container(
                           child:
                               Image(image: NetworkImage(url), fit: BoxFit.fill),
-                          height: 85,
-                          width: 180,
+                          height: 100,
+                          width: 207,
                           decoration: BoxDecoration(boxShadow: [
                             BoxShadow(
                                 offset: Offset(10, 10),

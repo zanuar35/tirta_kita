@@ -14,8 +14,6 @@ class CardProductHome extends StatelessWidget {
     //@required this.size,
   }) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
     double blockHorizontal = (MediaQuery.of(context).size.width) / 100;
@@ -33,9 +31,10 @@ class CardProductHome extends StatelessWidget {
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                      offset: Offset(1, 1),
-                      blurRadius: 10,
-                      color: Colors.black.withOpacity(0.3))
+                    offset: Offset(1, 1),
+                    blurRadius: 16,
+                    color: Color(0xff000000).withOpacity(0.15),
+                  )
                 ]),
             child: Column(
               children: [

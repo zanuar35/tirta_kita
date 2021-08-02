@@ -16,7 +16,13 @@ class Button extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height / 13,
-      decoration: BoxDecoration(),
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            spreadRadius: 0,
+            blurRadius: 16,
+            offset: Offset(0, 8))
+      ]),
       child: ElevatedButton(
         onPressed: () {},
         style: ButtonStyle(

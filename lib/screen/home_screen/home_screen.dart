@@ -37,17 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void initState() {
-    super.initState();
-    getPref();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(Duration(seconds: 1), () {
-        apiKategori();
-        apiLaris();
-      });
-    });
-  }
-
   List kategori = [];
   List laris = [];
 
@@ -55,11 +44,23 @@ class _HomeScreenState extends State<HomeScreen> {
   DataLaris l;
   DataKategori k;
 
+  void initState() {
+    super.initState();
+    getPref();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(Duration(seconds: 1), () {
+        (kategori.length == 0) ? apiKategori() : kategori = kategori;
+        apiLaris();
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     double blockHorizontal = (MediaQuery.of(context).size.width) / 100;
     double blockVertical = (MediaQuery.of(context).size.height) / 100;
+    print(token);
 
     return Scaffold(
       // backgroundColor: Colors.blue[200],
@@ -304,6 +305,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                 CardProductHome(
                                   url: laris[0].foto,
                                   namaProduk: laris[7].nama,
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: blockVertical * 1.84,
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                CardProductHome(
+                                  url: laris[0].foto,
+                                  namaProduk: laris[8].nama,
+                                ),
+                                CardProductHome(
+                                  url: laris[0].foto,
+                                  namaProduk: laris[9].nama,
                                 )
                               ],
                             ),

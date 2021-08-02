@@ -108,6 +108,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         LabelText(text: 'Email'),
                         EmailFieldWidget(controller: _emailController),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 85,
+                        ),
                         LabelText(text: 'Password'),
                         InputPassword(
                           hintText: 'type your password',

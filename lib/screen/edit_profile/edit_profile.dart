@@ -76,6 +76,21 @@ class EditProfile extends StatelessWidget {
                 hintText: 'Alamat Rumah',
                 controller: _addressController,
               ),
+              LabelText(text: 'Lokasi Pengiriman'),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      child: Image(
+                        image: NetworkImage(
+                            'https://i.ibb.co/6gWWJn3/map-location-icon-17-1.png'),
+                        fit: BoxFit.contain,
+                      ),
+                      radius: 28,
+                    ),
+                    CoordinatTextField()
+                  ]),
               // input email
               LabelText(text: 'Email'),
               InputText(
@@ -88,6 +103,10 @@ class EditProfile extends StatelessWidget {
                 controller: _passwordController,
                 hintText: 'masukkan password',
               ),
+              SizedBox(height: 3),
+              Text('Hanya bila ingin merubah password',
+                  style: TextStyle(
+                      color: Colors.red, fontStyle: FontStyle.italic)),
               SizedBox(height: 30),
               // Tombol simpan
               Button(
@@ -95,6 +114,41 @@ class EditProfile extends StatelessWidget {
                 color: kSecondaryColor,
               )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CoordinatTextField extends StatelessWidget {
+  const CoordinatTextField({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width - 130,
+      height: 50,
+      child: TextFormField(
+        decoration: InputDecoration(
+          hintText: '-7.2636382, 122.971271972',
+          hintStyle: GoogleFonts.rubik(
+            textStyle: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              color: Color(0xff2A2A2A).withOpacity(0.40),
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(4),
+            borderSide:
+                BorderSide(color: kBorderColor.withOpacity(0.3), width: 2),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(4),
+            borderSide: BorderSide(color: Colors.blue, width: 2),
           ),
         ),
       ),

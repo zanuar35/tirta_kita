@@ -1,7 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:line_icons/line_icons.dart';
 
 class CardProductHome extends StatelessWidget {
   final String url;
@@ -22,28 +20,27 @@ class CardProductHome extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
-            height: blockVertical * 27,
+            height: blockVertical * 30,
+            width: blockHorizontal * 38,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(6),
-                    bottomLeft: Radius.circular(6)),
+                borderRadius: BorderRadius.circular(5),
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    offset: Offset(1, 1),
+                    offset: Offset(0, 8),
                     blurRadius: 16,
-                    color: Color(0xff000000).withOpacity(0.15),
+                    color: Color(0xff000000).withOpacity(0.2),
                   )
                 ]),
             child: Column(
               children: [
                 Container(
-                  height: blockHorizontal * 37,
+                  height: blockVertical * 25,
                   width: blockHorizontal * 40,
                   decoration: BoxDecoration(
-                    //color: Colors.green[100],
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(8),
                       topRight: Radius.circular(8),

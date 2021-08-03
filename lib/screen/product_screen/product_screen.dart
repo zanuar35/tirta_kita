@@ -4,13 +4,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:tirta_kita/model/kategori_model.dart';
 import 'package:tirta_kita/model/laris_model.dart';
 import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
-import 'package:tirta_kita/screen/home_screen/widgets/category_widget.dart';
 import 'package:http/http.dart' as http;
-import 'package:tirta_kita/screen/product_screen/productCard.dart';
+import 'package:tirta_kita/screen/product_screen/widget/productCard.dart';
 import 'package:tirta_kita/screen/product_screen/widget/shimmerCategory.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -262,7 +260,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       //childAspectRatio: 0.6,
                     ),
                     primary: false,
-                    itemCount: 10,
+                    itemCount: 7,
                     itemBuilder: (context, index) {
                       return Padding(
                           padding:

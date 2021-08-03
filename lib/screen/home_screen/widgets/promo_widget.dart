@@ -24,7 +24,7 @@ class PromoWidget extends StatelessWidget {
             "Daftar Promo",
             style: GoogleFonts.rubik(
                 textStyle:
-                    TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
+                    TextStyle(fontWeight: FontWeight.w700, fontSize: 15)),
           ),
         ),
         SizedBox(

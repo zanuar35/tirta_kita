@@ -36,7 +36,6 @@ class _ContainerLogoutBtnState extends State<ContainerLogoutBtn> {
   }
 
   void initState() {
-    // TODO: implement initState
     super.initState();
     getPref();
   }

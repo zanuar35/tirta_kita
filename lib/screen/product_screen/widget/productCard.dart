@@ -6,8 +6,10 @@ import 'package:line_icons/line_icons.dart';
 class CardProductHome extends StatelessWidget {
   final String url;
   final String namaProduk;
+  final String harga;
 
   CardProductHome({
+    this.harga,
     this.namaProduk,
     this.url,
     Key key,
@@ -69,7 +71,7 @@ class CardProductHome extends StatelessWidget {
                               fontSize: 13, fontWeight: FontWeight.w700),
                         ),
                         AutoSizeText(
-                          'Harga',
+                          'Rp. $harga',
                           minFontSize: 12,
                           style: GoogleFonts.rubik(
                             textStyle: TextStyle(

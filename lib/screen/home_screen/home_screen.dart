@@ -65,6 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
     double blockHorizontal = (MediaQuery.of(context).size.width) / 100;
     double blockVertical = (MediaQuery.of(context).size.height) / 100;
     print(token);
+    int panjang = laris.length;
 
     return Scaffold(
       // backgroundColor: Colors.blue[200],
@@ -232,7 +233,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: EdgeInsets.only(
                     left: blockHorizontal * 6.4,
                     right: blockHorizontal * 6.4,
-                    bottom: blockVertical * 2,
                   ),
                   child: Text(
                     "Paling Laris",
@@ -259,7 +259,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               padding: EdgeInsets.only(top: 10),
                               // color: Colors.cyan,
                               width: MediaQuery.of(context).size.width / 1,
-                              height: MediaQuery.of(context).size.width * 2.9,
+                              height: MediaQuery.of(context).size.height * 1.8,
                               child: GridView.builder(
                                   physics: NeverScrollableScrollPhysics(),
                                   gridDelegate:
@@ -315,17 +315,6 @@ class _HomeScreenState extends State<HomeScreen> {
         k = dataKategori;
         setState(() {});
       }
-      print(kategori[0].id);
-      print(kategori[0].nama);
-      print(kategori[0].gambar);
-
-      for (var i = 0; i < dataKategori.data.length; i++) {
-        print("\n");
-        print('Id Kategori : ${dataKategori.data[i].id}');
-        print('nama kategori :  ${dataKategori.data[i].nama}');
-        print('link gambar ${dataKategori.data[i].gambar}');
-        print("\n");
-      }
     }
     return dataKategori;
   }
@@ -343,23 +332,7 @@ class _HomeScreenState extends State<HomeScreen> {
         l = dataLaris;
         setState(() {});
       }
-      print(laris[0].id);
-      print(laris[0].nama);
-      print(laris[0].kategoriId);
-      print(laris[0].kategoriNama);
-      print(laris[0].foto);
     }
-
-    for (var i = 0; i < dataLaris.data.length; i++) {
-      print("\n");
-      print('Id laris : ${dataLaris.data[i].id}');
-      print('nama produk :  ${dataLaris.data[i].nama}');
-      print('kategoriId :  ${dataLaris.data[i].kategoriId}');
-      print('kategoriNama : ${dataLaris.data[i].kategoriNama}');
-      print('foto :  ${dataLaris.data[i].foto}');
-      print("\n");
-    }
-
     return dataLaris;
   }
 }

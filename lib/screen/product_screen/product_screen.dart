@@ -4,8 +4,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:tirta_kita/model/kategori_model.dart';
 import 'package:tirta_kita/model/laris_model.dart';
+import 'package:tirta_kita/model/product.dart';
 import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:tirta_kita/screen/product_screen/widget/productCard.dart';
@@ -30,6 +32,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
   String urlPhoto = '';
   String token = '';
+  String kategoriId = '';
 
   getPref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -45,15 +48,18 @@ class _ProductScreenState extends State<ProductScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.delayed(Duration(seconds: 1), () {
         apiKategori();
+        apiProduct();
       });
     });
   }
 
   List kategori = [];
   List laris = [];
+  List product = [];
 
   DataLaris l;
   DataKategori k;
+  DataProduct p;
 
   @override
   Widget build(BuildContext context) {
@@ -207,36 +213,44 @@ class _ProductScreenState extends State<ProductScreen> {
                           padding: EdgeInsets.only(left: 0, right: 15),
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 22, right: 0),
-                              child: Column(
-                                children: [
-                                  Card(
-                                    elevation: 4,
-                                    shape: CircleBorder(),
-                                    child: Container(
-                                      margin: EdgeInsets.all(5),
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              13,
-                                      width:
-                                          MediaQuery.of(context).size.height /
-                                              13,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: NetworkImage(
-                                                '${kategori[index].gambar}'),
-                                            fit: BoxFit.cover),
-                                        shape: BoxShape.circle,
+                            return InkWell(
+                              onTap: () {
+                                setState(() {
+                                  kategoriId = (index + 1).toString();
+                                });
+                                apiProduct();
+                              },
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 22, right: 0),
+                                child: Column(
+                                  children: [
+                                    Card(
+                                      elevation: 4,
+                                      shape: CircleBorder(),
+                                      child: Container(
+                                        margin: EdgeInsets.all(5),
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                13,
+                                        width:
+                                            MediaQuery.of(context).size.height /
+                                                13,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  '${kategori[index].gambar}'),
+                                              fit: BoxFit.cover),
+                                          shape: BoxShape.circle,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 2,
-                                  ),
-                                  Text(kategori[index].nama)
-                                ],
+                                    SizedBox(
+                                      height: 2,
+                                    ),
+                                    Text(kategori[index].nama)
+                                  ],
+                                ),
                               ),
                             );
                           })),
@@ -252,25 +266,53 @@ class _ProductScreenState extends State<ProductScreen> {
                     topRight: Radius.circular(8),
                   ),
                 ),
-                child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 1,
-                      mainAxisSpacing: 1,
-                      //childAspectRatio: 0.6,
-                    ),
-                    primary: false,
-                    itemCount: 7,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                          padding:
-                              const EdgeInsets.only(top: 2, right: 5, left: 5),
-                          child: CardProductHome(
-                            namaProduk: 'hallo',
-                            url:
-                                'https://adm.tirtakitaindonesia.com/images/foto/kategori/default.jpg',
-                          ));
-                    }),
+                child: (product.length == 0)
+                    ? Container(
+                        height: blockVertical * 7,
+                        child: Shimmer.fromColors(
+                          baseColor: Color(0xffffffff),
+                          highlightColor: Color(0xffE6E3FF),
+                          child: GridView.builder(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 1,
+                                mainAxisSpacing: 1,
+                                //childAspectRatio: 0.6,
+                              ),
+                              primary: false,
+                              itemCount: 4,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 2, right: 5, left: 5),
+                                    child: CardProductHome(
+                                      namaProduk: '',
+                                      harga: '',
+                                      url: '',
+                                    ));
+                              }),
+                        ),
+                      )
+                    : GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 1,
+                          mainAxisSpacing: 1,
+                          //childAspectRatio: 0.6,
+                        ),
+                        primary: false,
+                        itemCount: product.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 2, right: 5, left: 5),
+                              child: CardProductHome(
+                                namaProduk: product[index].nama,
+                                harga: product[index].harga,
+                                url: product[index].urlFoto,
+                              ));
+                        }),
               ),
             ],
           ),
@@ -308,16 +350,26 @@ class _ProductScreenState extends State<ProductScreen> {
         k = dataKategori;
         setState(() {});
       }
-      print(kategori[0].id);
-      print(kategori[0].nama);
-      print(kategori[0].gambar);
+    }
+    return dataKategori;
+  }
 
-      for (var i = 0; i < dataKategori.data.length; i++) {
-        print("\n");
-        print('Id Kategori : ${dataKategori.data[i].id}');
-        print('nama kategori :  ${dataKategori.data[i].nama}');
-        print('link gambar ${dataKategori.data[i].gambar}');
-        print("\n");
+  Future<DataKategori> apiProduct() async {
+    var response = await http.post(
+        Uri.parse("https://api.tirtakitaindonesia.com/produk"),
+        headers: {
+          'Accept': 'application/json',
+          "Authorization": 'Bearer $token'
+        },
+        body: ({'cabang': '2', 'kategori': kategoriId, 'search': ''}));
+    final Map parsed = json.decode(response.body);
+    DataKategori dataKategori = DataKategori.fromJson(parsed);
+    DataProduct dataProduct = DataProduct.fromJson(parsed);
+    if (response.statusCode == 200) {
+      if (response.statusCode == 200) {
+        product = dataProduct.data;
+        p = dataProduct;
+        setState(() {});
       }
     }
     return dataKategori;

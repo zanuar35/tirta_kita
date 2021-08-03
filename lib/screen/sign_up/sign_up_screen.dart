@@ -1,14 +1,17 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tirta_kita/screen/login_screen/login_screen.dart';
 import 'package:tirta_kita/screen/login_screen/widget/button_widget.dart';
 import 'package:tirta_kita/screen/login_screen/widget/email_field_widget.dart';
 import 'package:tirta_kita/screen/sign_up/widgets/name_fieldText.dart';
 import 'package:tirta_kita/shared/widget/input_password.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';
 import 'package:tirta_kita/shared/widget/label_text.dart';
+import 'package:http/http.dart' as http;
 
 class SignUpScreen extends StatefulWidget {
   // const SignUpScreen({ Key? key }) : super(key: key);
@@ -160,52 +163,48 @@ class _SignUpScreenState extends State<SignUpScreen> {
         _nameController.text.isNotEmpty &&
         (_passwordController.text == _verifyPassController.text) &&
         _noTelpController.text.isNotEmpty) {
-      EasyLoading.showSuccess('Registrasi success');
+      var response = await http.post(
+          Uri.parse("https://api.tirtakitaindonesia.com/auth/register"),
+          body: ({
+            'nama': _nameController.text,
+            'telepon': _noTelpController.text,
+            'email': _emailController.text,
+            'password': _passwordController.text
+          }));
+      print(response.statusCode);
+      if (response.statusCode == 201) {
+        print(response.body);
+        final data = jsonDecode(response.body);
+        print(data["message"]);
+        EasyLoading.showSuccess(data["message"]);
+        Timer(Duration(seconds: 2), () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => LoginScreen(),
+            ),
+          );
+        });
+      }
+      //EasyLoading.showSuccess('Registrasi success');
+      else if (response.statusCode == 400) {
+        Map<String, dynamic> map =
+            new Map<String, dynamic>.from(json.decode(response.body));
+        print(response.body);
+        final data = jsonDecode(response.body);
+        print(data["message"]["email"][0]);
+        print(map["message"]);
+
+        EasyLoading.showError((data["message"]["email"][0]).toString());
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Invalid Credentials"),
+          ),
+        );
+      }
     } else {
       EasyLoading.showError('Tidak boleh kosong');
     }
   }
-  //   var response = await http.post(
-  //       Uri.parse("https://api.tirtakitaindonesia.com/auth/register"),
-  //       body: ({
-  //         'nama': _nameController.text,
-  //         'telepon': _noTelpController.text,
-  //         'email': _emailController.text,
-  //         'password': _passwordController.text
-  //       }));
-  //   if (response.statusCode == 201) {
-  //     print(response.body);
-  //     final data = jsonDecode(response.body);
-  //     print(data["message"]);
-  //     EasyLoading.showSuccess(data["message"]);
-  //     Timer(Duration(seconds: 2), () {
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(
-  //           builder: (context) => LoginScreen(),
-  //         ),
-  //       );
-  //     });
-  //   } else if (response.statusCode == 400) {
-  //     Map<String, dynamic> map =
-  //         new Map<String, dynamic>.from(json.decode(response.body));
-  //     print(response.body);
-  //     final data = jsonDecode(response.body);
-  //     print(data["message"]["email"][0]);
-  //     print(map["message"]);
-
-  //     EasyLoading.showError((data["message"]["email"][0]).toString());
-  //   } else {
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(
-  //         content: Text("Invalid Credentials"),
-  //       ),
-  //     );
-  //   }
-  // } else {
-  //   ScaffoldMessenger.of(context).showSnackBar(
-  //     SnackBar(
-  //       content: Text("Black field not allowed"),
-  //     ),
-  //   );
 }

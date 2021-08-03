@@ -123,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Text(
                                           nama.capitalizeFirst.toString(),
                                           style: TextStyle(
-                                              fontSize: blockHorizontal * 3.7,
+                                              fontSize: blockHorizontal * 4.5,
                                               fontWeight: FontWeight.w700),
                                         ),
                                         Row(
@@ -132,11 +132,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                           children: <Widget>[
                                             Icon(
                                               LineIcons.certificate,
-                                              size: blockVertical * 4.4,
+                                              size: blockVertical * 4.7,
                                             ),
                                             SizedBox(
                                                 width: blockHorizontal * 2.6),
-                                            Text('Silver Member')
+                                            Text('Silver Member',
+                                                style: TextStyle(fontSize: 14))
                                           ],
                                         )
                                       ],
@@ -416,4 +417,3 @@ class _HomeScreenState extends State<HomeScreen> {
     return dataLaris;
   }
 }
-

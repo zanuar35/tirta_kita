@@ -1,22 +1,56 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:tirta_kita/constants.dart';
+import 'package:tirta_kita/model/user_profile.dart';
 import 'package:tirta_kita/shared/widget/button.dart';
 import 'package:tirta_kita/shared/widget/input_password.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';
 import 'package:tirta_kita/shared/widget/label_text.dart';
+import 'package:http/http.dart' as http;
 
-class EditProfile extends StatelessWidget {
+class EditProfile extends StatefulWidget {
   //const EditProfile({ Key? key }) : super(key: key);
+  @override
+  State<EditProfile> createState() => _EditProfileState();
+}
+
+class _EditProfileState extends State<EditProfile> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _noTelpController = TextEditingController();
 
+  String token = '';
+
+  getPref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      token = prefs.getString('token').toString();
+    });
+  }
+
+  UserProfile uP;
+
+  void initState() {
+    super.initState();
+    getPref();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(Duration(microseconds: 2), () {
+        apiProfile();
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    print(token);
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
@@ -42,7 +76,9 @@ class EditProfile extends StatelessWidget {
                 child: Container(
                   child: Image(
                     image: NetworkImage(
-                        'https://i.ibb.co/z4zCXW6/Rectangle-116.png'),
+                        'https://adm.tirtakitaindonesia.com/images/foto/kustomer/default.jpg'
+                        // 'https://i.ibb.co/z4zCXW6/Rectangle-116.png'
+                        ),
                     fit: BoxFit.fill,
                   ),
                   decoration: BoxDecoration(
@@ -58,7 +94,7 @@ class EditProfile extends StatelessWidget {
               // Input nama
               LabelText(text: 'Nama'),
               InputText(
-                hintText: 'Masukkan nama',
+                hintText: 'nama',
                 controller: _nameController,
               ),
               // Input no hp
@@ -118,6 +154,24 @@ class EditProfile extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<UserProfile> apiProfile() async {
+    print(token);
+    var response = await http.get(
+      Uri.parse("https://api.tirtakitaindonesia.com/profil"),
+      headers: {'Accept': 'application/json', "Authorization": 'Bearer $token'},
+    );
+    //final Map parsed = json.decode(response.body);
+    // DataKategori dataKategori = DataKategori.fromJson(parsed);
+    UserProfile userProfile = UserProfile.fromJson(jsonDecode(response.body));
+    Data data = userProfile.data;
+    if (response.statusCode == 200) {
+      uP = userProfile;
+      setState(() {});
+    }
+    print(data.foto);
+    print(data.email);
   }
 }
 

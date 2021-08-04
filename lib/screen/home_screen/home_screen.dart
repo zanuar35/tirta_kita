@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tirta_kita/constants.dart';
+import 'package:tirta_kita/model/banner_model.dart';
 import 'package:tirta_kita/model/kategori_model.dart';
 import 'package:tirta_kita/model/laris_model.dart';
 import 'package:tirta_kita/model/user_model.dart';
@@ -41,10 +42,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List kategori = [];
   List laris = [];
+  List listBanner = [];
 
   UserModel a;
   DataLaris l;
   DataKategori k;
+  Databanner b;
 
   void initState() {
     super.initState();
@@ -55,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
           apiKategori();
         }
         apiLaris();
+        apiBanner();
       });
     });
   }
@@ -65,7 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
     double blockHorizontal = (MediaQuery.of(context).size.width) / 100;
     double blockVertical = (MediaQuery.of(context).size.height) / 100;
     print(token);
-    int panjang = laris.length;
 
     return Scaffold(
       // backgroundColor: Colors.blue[200],
@@ -145,6 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     SizedBox(
                                       width: blockHorizontal * 16,
                                     ),
+                                    // Profile Pict
                                     Container(
                                         height: size.height / 8,
                                         width: size.width / 8,
@@ -152,8 +156,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             shape: BoxShape.circle,
                                             color: kPrimaryColor),
                                         child: CircleAvatar(
-                                          backgroundImage:
-                                              NetworkImage(urlPhoto),
+                                          backgroundImage: NetworkImage(
+                                              'https://smkppnparingin.sch.id/media_library/images/headmaster_photo.png'),
                                         ))
                                   ],
                                 ),
@@ -196,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       elevation: 4,
                                       shape: CircleBorder(),
                                       child: Container(
-                                        margin: EdgeInsets.all(5),
+                                        margin: EdgeInsets.all(2),
                                         height:
                                             MediaQuery.of(context).size.height /
                                                 13,
@@ -223,9 +227,66 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: blockVertical * 1.4,
                 ),
-                PromoWidget(
-                  url: 'https://i.ibb.co/kMJND02/image-3-1.png',
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 24, right: 24),
+                      child: Text(
+                        "Daftar Promo",
+                        style: GoogleFonts.rubik(
+                            textStyle: TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 15)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: 110,
+                      child: ListView.builder(
+                          itemCount: listBanner.length,
+                          padding: EdgeInsets.only(right: 15),
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Column(
+                                children: [
+                                  Card(
+                                    elevation: 4,
+                                    color: kPrimaryColor,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: Container(
+                                      child: Image(
+                                          image: NetworkImage(
+                                              listBanner[index].banner),
+                                          fit: BoxFit.contain),
+                                      height: 100,
+                                      width: 207,
+                                      decoration: BoxDecoration(boxShadow: [
+                                        BoxShadow(
+                                            offset: Offset(10, 10),
+                                            blurRadius: 20,
+                                            color:
+                                                kPrimaryColor.withOpacity(0.15))
+                                      ]),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                    ),
+                  ],
                 ),
+                // PromoWidget(
+                //   url: 'https://i.ibb.co/kMJND02/image-3-1.png',
+                // ),
                 SizedBox(
                   height: blockVertical * 2.4,
                 ),
@@ -317,6 +378,26 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     }
     return dataKategori;
+  }
+
+  Future<Databanner> apiBanner() async {
+    var response = await http.get(
+      Uri.parse("https://api.tirtakitaindonesia.com/banner"),
+      headers: {'Accept': 'application/json', "Authorization": 'Bearer $token'},
+    );
+    final Map parsed = json.decode(response.body);
+    Databanner databanner = Databanner.fromJson(parsed);
+    if (response.statusCode == 200) {
+      if (response.statusCode == 200) {
+        listBanner = databanner.data;
+        b = databanner;
+        setState(() {});
+        print(listBanner[1].id);
+        print(listBanner[1].nama);
+        print(listBanner[1].banner);
+      }
+    }
+    return databanner;
   }
 
   Future<DataLaris> apiLaris() async {

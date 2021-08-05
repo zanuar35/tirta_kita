@@ -4,8 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 class Button extends StatelessWidget {
   final String text;
   final Color color;
+  final GestureTapCallback onPress;
 
   const Button({
+    this.onPress,
     this.color,
     this.text,
     Key key,
@@ -24,7 +26,7 @@ class Button extends StatelessWidget {
             offset: Offset(0, 8))
       ]),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPress,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
             color,

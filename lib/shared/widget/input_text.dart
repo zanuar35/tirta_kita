@@ -82,9 +82,11 @@ class InputNo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      maxLength: 10,
       controller: controller,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
+        counterText: '',
         prefixText: prefixText,
         hintText: hintText,
         hintStyle: GoogleFonts.rubik(

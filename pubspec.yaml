@@ -39,6 +39,7 @@ dependencies:
   get: ^4.1.4
   url_launcher: ^6.0.9
   shimmer: ^2.0.0
+  
 
 dev_dependencies:
   flutter_test:

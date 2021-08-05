@@ -7,12 +7,15 @@ import 'package:line_icons/line_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:tirta_kita/constants.dart';
+import 'package:tirta_kita/model/failedUbahProfile.dart';
+import 'package:tirta_kita/model/ubahProfile_model.dart';
 import 'package:tirta_kita/model/user_profile.dart';
 import 'package:tirta_kita/shared/widget/button.dart';
 import 'package:tirta_kita/shared/widget/input_password.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';
 import 'package:tirta_kita/shared/widget/label_text.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class EditProfile extends StatefulWidget {
   //const EditProfile({ Key? key }) : super(key: key);
@@ -37,6 +40,7 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   UserProfile uP;
+  UbahProfile ubahProfile;
 
   void initState() {
     super.initState();
@@ -116,14 +120,19 @@ class _EditProfileState extends State<EditProfile> {
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      child: Image(
-                        image: NetworkImage(
-                            'https://i.ibb.co/6gWWJn3/map-location-icon-17-1.png'),
-                        fit: BoxFit.contain,
+                    InkWell(
+                      onTap: () {
+                        openMap();
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        child: Image(
+                          image: NetworkImage(
+                              'https://i.ibb.co/6gWWJn3/map-location-icon-17-1.png'),
+                          fit: BoxFit.contain,
+                        ),
+                        radius: 28,
                       ),
-                      radius: 28,
                     ),
                     CoordinatTextField()
                   ]),
@@ -146,6 +155,7 @@ class _EditProfileState extends State<EditProfile> {
               SizedBox(height: 30),
               // Tombol simpan
               Button(
+                onPress: apiUbahProfile,
                 text: 'Simpan',
                 color: kSecondaryColor,
               )
@@ -156,22 +166,70 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
+  Future<void> openMap() async {
+    String googleUrl =
+        'https://www.google.com/maps/search/?api=1&query=-7.3111865,112.7474688';
+    if (await canLaunch(googleUrl)) {
+      await launch(googleUrl);
+    } else {
+      throw 'Could not open the map.';
+    }
+  }
+
   Future<UserProfile> apiProfile() async {
     print(token);
     var response = await http.get(
       Uri.parse("https://api.tirtakitaindonesia.com/profil"),
       headers: {'Accept': 'application/json', "Authorization": 'Bearer $token'},
     );
-    //final Map parsed = json.decode(response.body);
-    // DataKategori dataKategori = DataKategori.fromJson(parsed);
     UserProfile userProfile = UserProfile.fromJson(jsonDecode(response.body));
     Data data = userProfile.data;
     if (response.statusCode == 200) {
       uP = userProfile;
       setState(() {});
     }
+    print('Get Data User');
     print(data.foto);
     print(data.email);
+    return userProfile;
+  }
+
+  Future<UbahProfile> apiUbahProfile() async {
+    EasyLoading.show(
+      status: 'loading...',
+      maskType: EasyLoadingMaskType.black,
+    );
+    var response = await http.post(
+        Uri.parse("https://api.tirtakitaindonesia.com/profil_ubah"),
+        headers: {
+          'Accept': 'application/json',
+          "Authorization": 'Bearer $token'
+        },
+        body: ({
+          'email': 'Luis4621464@sambako.com', //_emailController.text,
+          'password': (_passwordController.text == null)
+              ? ''
+              : _passwordController.text,
+          'tanggal_lahir': '2021-07-12',
+          'telepon': _noTelpController.text, //'089678833231',
+          'alamat': _addressController.text,
+          //'Jl. raya menganti karangan no. 28x',
+          'latitude': '-7.3111865',
+          'longitude': '112.7474688',
+        }));
+    if (response.statusCode == 200) {
+      // UbahProfile ubahProfile = UbahProfile.fromJson(jsonDecode(response.body));
+      print('Ubah profile Success');
+      EasyLoading.showSuccess('Ubah profile Success');
+    } else {
+      // UbahProfileFailed ubahProfileFailed =
+      //     UbahProfileFailed.fromJson(jsonDecode(response.body));
+      print(response.statusCode);
+      print('Ubah data gagal');
+      EasyLoading.showError('Ubah data Gagal');
+    }
+
+    return ubahProfile;
   }
 }
 

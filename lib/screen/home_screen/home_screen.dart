@@ -326,7 +326,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   offset: Offset(10, 10),
                                                   blurRadius: 20,
                                                   color: kPrimaryColor
-                                                      .withOpacity(0.15))
+                                                      .withOpacity(0.15)),
                                             ]),
                                           ),
                                         ),

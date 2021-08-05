@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:tirta_kita/model/cabang_model.dart';
 import 'package:tirta_kita/model/kategori_model.dart';
 import 'package:tirta_kita/model/laris_model.dart';
 import 'package:tirta_kita/model/product.dart';
@@ -23,17 +24,10 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   String valueChoose;
 
-  List<String> listItem = [
-    "Outlet - Ciputra 1(2km)",
-    "Outlet - Ciputra 2(3km)",
-    "Outlet - Ciputra 3(4km)",
-    "Outlet - Ciputra 4(5km)",
-  ];
-
   String urlPhoto = '';
   String token = '';
   String kategoriId = '';
-  String cabangId = '';
+  String cabangId = '1';
   String search = '';
 
   getPref() async {
@@ -51,6 +45,7 @@ class _ProductScreenState extends State<ProductScreen> {
       Future.delayed(Duration(seconds: 1), () {
         apiKategori();
         apiProduct();
+        apiCabang();
       });
     });
   }
@@ -58,10 +53,13 @@ class _ProductScreenState extends State<ProductScreen> {
   List kategori = [];
   List laris = [];
   List product = [];
+  List cabang = [];
+  List cabangItem = [];
 
   DataLaris l;
   DataKategori k;
   DataProduct p;
+  DataCabang c;
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +130,10 @@ class _ProductScreenState extends State<ProductScreen> {
                                         ),
                                         Container(
                                           height: blockVertical * 4,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              2.6,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(5),
@@ -139,13 +141,19 @@ class _ProductScreenState extends State<ProductScreen> {
                                           child: DropdownButton(
                                               dropdownColor: Color(0xff2661AB),
                                               value: valueChoose,
-                                              icon: Icon(
-                                                LineIcons.angleDown,
-                                                size: 18,
-                                                color: Colors.white,
+                                              icon: Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 8),
+                                                child: Icon(
+                                                  LineIcons.angleDown,
+                                                  size: 18,
+                                                  color: Colors.white,
+                                                ),
                                               ),
                                               hint: AutoSizeText(
-                                                listItem[0],
+                                                (cabangItem.length == 0)
+                                                    ? 'Loading'
+                                                    : cabangItem[0],
                                                 minFontSize: 6,
                                                 style: TextStyle(
                                                     color: Colors.white,
@@ -156,10 +164,17 @@ class _ProductScreenState extends State<ProductScreen> {
                                                 setState(() {
                                                   valueChoose =
                                                       newValue as String;
-                                                  cabangId = newValue;
+                                                  cabangId =
+                                                      (cabangItem.indexOf(
+                                                                  newValue) +
+                                                              1)
+                                                          .toString();
+                                                  print(cabangId);
                                                 });
+                                                apiProduct();
                                               },
-                                              items: listItem.map((valueItem) {
+                                              items:
+                                                  cabangItem.map((valueItem) {
                                                 return DropdownMenuItem(
                                                   value: valueItem,
                                                   child: Text(
@@ -319,7 +334,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           itemBuilder: (context, index) {
                             return Padding(
                                 padding: const EdgeInsets.only(
-                                    top: 2, right: 5, left: 5),
+                                    top: 2, right: 1, left: 1),
                                 child: CardProductHome(
                                   namaProduk: product[index].nama,
                                   harga: product[index].harga,
@@ -351,6 +366,7 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
+// Api kategori
   Future<DataKategori> apiKategori() async {
     var response = await http.get(
       Uri.parse("https://api.tirtakitaindonesia.com/kategori"),
@@ -368,6 +384,44 @@ class _ProductScreenState extends State<ProductScreen> {
     return dataKategori;
   }
 
+// Api Cabang
+  Future<DataCabang> apiCabang() async {
+    var response = await http.get(
+      Uri.parse("https://api.tirtakitaindonesia.com/cabang"),
+      headers: {'Accept': 'application/json', "Authorization": 'Bearer $token'},
+    );
+    final Map parsed = json.decode(response.body);
+    DataCabang dataCabang = DataCabang.fromJson(parsed);
+    if (response.statusCode == 200) {
+      if (response.statusCode == 200) {
+        cabang = dataCabang.data;
+        c = dataCabang;
+        setState(() {});
+      }
+      for (var i = 0; i < cabang.length; i++) {
+        print(cabang[i].id);
+        print(cabang[i].nama);
+        print(cabang[i].alamat);
+        print(cabang[i].jarak);
+        print(cabang[i].harga);
+        print('\n');
+      }
+      for (var i = 0; i < cabang.length; i++) {
+        if (cabang[i].jarak != null) {
+          cabangItem.add(cabang[i].nama + ' ' + '(${cabang[i].jarak} Km) ');
+        } else {
+          cabangItem.add(cabang[i].nama);
+        }
+      }
+      for (var i = 0; i < cabangItem.length; i++) {
+        print(cabangItem);
+      }
+    }
+
+    return dataCabang;
+  }
+
+// Api Product
   Future<DataKategori> apiProduct() async {
     var response = await http.post(
         Uri.parse("https://api.tirtakitaindonesia.com/produk"),
@@ -375,7 +429,7 @@ class _ProductScreenState extends State<ProductScreen> {
           'Accept': 'application/json',
           "Authorization": 'Bearer $token'
         },
-        body: ({'cabang': '1', 'kategori': kategoriId, 'search': search}));
+        body: ({'cabang': cabangId, 'kategori': kategoriId, 'search': search}));
     final Map parsed = json.decode(response.body);
     DataKategori dataKategori = DataKategori.fromJson(parsed);
     DataProduct dataProduct = DataProduct.fromJson(parsed);
@@ -384,7 +438,10 @@ class _ProductScreenState extends State<ProductScreen> {
         product = dataProduct.data;
         p = dataProduct;
         setState(() {});
+        print('Get data berhasil');
       }
+    } else {
+      print(dataProduct.message);
     }
     return dataKategori;
   }

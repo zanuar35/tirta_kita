@@ -27,9 +27,7 @@ class CardProductHome extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(6),
-                    bottomLeft: Radius.circular(6)),
+                borderRadius: BorderRadius.circular(6),
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
@@ -57,7 +55,7 @@ class CardProductHome extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Container(
-                          width: blockHorizontal * 16.2,
+                          width: blockHorizontal * 16.5,
                           height: blockVertical * 12.1,
                           child: Image(
                             image: NetworkImage(url),

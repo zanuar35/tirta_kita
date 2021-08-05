@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:tirta_kita/constants.dart';
 import 'package:tirta_kita/model/banner_model.dart';
 import 'package:tirta_kita/model/kategori_model.dart';
@@ -244,44 +245,96 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      height: 110,
-                      child: ListView.builder(
-                          itemCount: listBanner.length,
-                          padding: EdgeInsets.only(right: 15),
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Column(
-                                children: [
-                                  Card(
-                                    elevation: 4,
-                                    color: kPrimaryColor,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    child: Container(
-                                      child: Image(
-                                          image: NetworkImage(
-                                              listBanner[index].banner),
-                                          fit: BoxFit.contain),
-                                      height: 100,
-                                      width: 207,
-                                      decoration: BoxDecoration(boxShadow: [
-                                        BoxShadow(
-                                            offset: Offset(10, 10),
-                                            blurRadius: 20,
-                                            color:
-                                                kPrimaryColor.withOpacity(0.15))
-                                      ]),
-                                    ),
-                                  ),
-                                ],
+                    (listBanner.length == 0)
+                        ? Container(
+                            height: 120,
+                            width: MediaQuery.of(context).size.width,
+                            child: Shimmer.fromColors(
+                              baseColor: Color(0xff2661AB),
+                              highlightColor: Colors.blueGrey[200],
+                              child: Container(
+                                height: 110,
+                                child: ListView.builder(
+                                    itemCount: 2,
+                                    padding: EdgeInsets.only(right: 15),
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 10),
+                                        child: Column(
+                                          children: [
+                                            Card(
+                                              elevation: 4,
+                                              color: kPrimaryColor,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20)),
+                                              child: Container(
+                                                height: 100,
+                                                width: 207,
+                                                decoration: BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          offset:
+                                                              Offset(10, 10),
+                                                          blurRadius: 20,
+                                                          color: kPrimaryColor
+                                                              .withOpacity(
+                                                                  0.15))
+                                                    ],
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    }),
                               ),
-                            );
-                          }),
-                    ),
+                            ),
+                          )
+                        : Container(
+                            height: 110,
+                            child: ListView.builder(
+                                itemCount: listBanner.length,
+                                padding: EdgeInsets.only(right: 15),
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: Column(
+                                      children: [
+                                        Card(
+                                          elevation: 4,
+                                          color: kPrimaryColor,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: Container(
+                                            child: Image(
+                                                image: NetworkImage(
+                                                    listBanner[index].banner),
+                                                fit: BoxFit.contain),
+                                            height: 100,
+                                            width: 207,
+                                            decoration:
+                                                BoxDecoration(boxShadow: [
+                                              BoxShadow(
+                                                  offset: Offset(10, 10),
+                                                  blurRadius: 20,
+                                                  color: kPrimaryColor
+                                                      .withOpacity(0.15))
+                                            ]),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }),
+                          ),
                   ],
                 ),
                 // PromoWidget(

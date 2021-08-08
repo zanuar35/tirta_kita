@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tirta_kita/model/orderProduct_model.dart';
 import 'package:tirta_kita/screen/cart_screen/widgets/card_cart.dart';
 import 'package:tirta_kita/screen/cart_screen/widgets/option.box.dart';
 import 'package:tirta_kita/screen/cart_screen/widgets/price_column.dart';
 import 'package:tirta_kita/shared/widget/button.dart';
 
 class CartScreen extends StatefulWidget {
-  //const CartScreen({ Key? key }) : super(key: key);
+  CartScreen({Key key, this.orderProduct}) : super(key: key);
+
+  List<OrderProductModel> orderProduct;
 
   @override
   _CartScreenState createState() => _CartScreenState();
@@ -85,7 +88,21 @@ class _CartScreenState extends State<CartScreen> {
                             SizedBox(
                               height: blockVertical * 3,
                             ),
+                            // Container(
+                            //     width: MediaQuery.of(context).size.width,
+                            //     height: 120,
+                            //     child: Column(
+                            //       children: <Widget>[
+                            //         Text(widget.orderProduct[0].nama),
+                            //         Text(widget.orderProduct[0].id.toString()),
+                            //         Text(widget.orderProduct[0].harga),
+                            //         Text(widget.orderProduct[0].kategoriId
+                            //             .toString())
+                            //       ],
+                            //     )),
                             CardCart(
+                                productName: widget.orderProduct[0].nama,
+                                harga: widget.orderProduct[0].harga,
                                 size: size,
                                 blockVertical: blockVertical,
                                 blockHorizontal: blockHorizontal),
@@ -93,9 +110,12 @@ class _CartScreenState extends State<CartScreen> {
                               height: 20,
                             ),
                             CardCart(
+                                productName: widget.orderProduct[1].nama,
+                                harga: widget.orderProduct[1].harga,
                                 size: size,
                                 blockVertical: blockVertical,
                                 blockHorizontal: blockHorizontal),
+
                             SizedBox(
                               height: 20,
                             ),

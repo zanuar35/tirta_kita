@@ -7,11 +7,13 @@ class CardProductHome extends StatelessWidget {
   final String url;
   final String namaProduk;
   final String harga;
+  final VoidCallback onPressed;
 
   CardProductHome({
     this.harga,
     this.namaProduk,
     this.url,
+    this.onPressed,
     Key key,
     //@required this.size,
   }) : super(key: key);
@@ -80,37 +82,40 @@ class CardProductHome extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  height: blockVertical * 6, //4.3,
-                  width: blockHorizontal * 40,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF2BBAEC),
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(6),
-                      bottomRight: Radius.circular(6),
+                InkWell(
+                  onTap: onPressed,
+                  child: Container(
+                    height: blockVertical * 6, //4.3,
+                    width: blockHorizontal * 40,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF2BBAEC),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(6),
+                        bottomRight: Radius.circular(6),
+                      ),
                     ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        LineIcons.shoppingCart,
-                        size: blockHorizontal * 8,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: blockHorizontal * 1,
-                      ),
-                      AutoSizeText(
-                        'Add to cart',
-                        minFontSize: 11,
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      )
-                    ],
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          LineIcons.shoppingCart,
+                          size: blockHorizontal * 8,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: blockHorizontal * 1,
+                        ),
+                        AutoSizeText(
+                          'Add to cart',
+                          minFontSize: 11,
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
+                        )
+                      ],
+                    ),
                   ),
                 )
               ],

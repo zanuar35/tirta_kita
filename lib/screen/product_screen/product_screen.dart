@@ -8,6 +8,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:tirta_kita/model/cabang_model.dart';
 import 'package:tirta_kita/model/kategori_model.dart';
 import 'package:tirta_kita/model/laris_model.dart';
+import 'package:tirta_kita/model/orderProduct_model.dart';
 import 'package:tirta_kita/model/product.dart';
 import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
 import 'package:http/http.dart' as http;
@@ -16,7 +17,9 @@ import 'package:tirta_kita/screen/product_screen/widget/shimmerCategory.dart';
 import 'package:badges/badges.dart';
 
 class ProductScreen extends StatefulWidget {
-  //const ProductScreen({ Key? key }) : super(key: key);
+  ProductScreen({
+    Key key,
+  }) : super(key: key);
 
   @override
   _ProductScreenState createState() => _ProductScreenState();
@@ -56,6 +59,7 @@ class _ProductScreenState extends State<ProductScreen> {
   List product = [];
   List cabang = [];
   List cabangItem = [];
+  List<OrderProductModel> orderProduct = [];
 
   DataLaris l;
   DataKategori k;
@@ -340,6 +344,26 @@ class _ProductScreenState extends State<ProductScreen> {
                                   namaProduk: product[index].nama,
                                   harga: product[index].harga,
                                   url: product[index].urlFoto,
+                                  onPressed: () {
+                                    setState(() {
+                                      orderProduct.add(OrderProductModel(
+                                          product[index].id,
+                                          product[index].nama,
+                                          product[index].kategoriId,
+                                          product[index].stok,
+                                          product[index].harga,
+                                          product[index].urlFoto));
+                                      //orderProduct.clear();
+                                    });
+                                    for (var i = 0;
+                                        i < orderProduct.length;
+                                        i++) {
+                                      print(orderProduct[i].id);
+                                      print(orderProduct[i].nama);
+                                      print(orderProduct[i].harga);
+                                      print('\n\n');
+                                    }
+                                  },
                                 ));
                           }),
                 ),
@@ -353,9 +377,9 @@ class _ProductScreenState extends State<ProductScreen> {
                   toAnimate: true,
                   shape: BadgeShape.circle,
                   badgeColor: Colors.red,
-                  borderRadius: BorderRadius.circular(8),
-                  badgeContent:
-                      Text('5', style: TextStyle(color: Colors.white)),
+                  borderRadius: BorderRadius.circular(10),
+                  badgeContent: Text('${orderProduct.length}',
+                      style: TextStyle(color: Colors.white)),
                   child: Icon(
                     LineIcons.shoppingCart,
                     size: 30,
@@ -365,7 +389,9 @@ class _ProductScreenState extends State<ProductScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => CartScreen(),
+                      builder: (context) => CartScreen(
+                        orderProduct: orderProduct,
+                      ),
                     ),
                   );
                 }),

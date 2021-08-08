@@ -4,15 +4,19 @@ import 'package:tirta_kita/blocs/counter.dart';
 
 class CardCart extends StatefulWidget {
   const CardCart({
+    this.productName,
     Key key,
-     this.size,
-     this.blockVertical,
-     this.blockHorizontal,
+    this.size,
+    this.blockVertical,
+    this.blockHorizontal,
+    this.harga,
   }) : super(key: key);
 
   final Size size;
   final double blockVertical;
   final double blockHorizontal;
+  final String productName;
+  final String harga;
 
   @override
   _CardCartState createState() => _CardCartState();
@@ -53,9 +57,6 @@ class _CardCartState extends State<CardCart> {
                 fit: BoxFit.fill,
               ),
             ),
-            SizedBox(
-              width: 7,
-            ),
             Container(
               margin: EdgeInsets.only(
                   top: widget.blockHorizontal * 5.3,
@@ -66,13 +67,13 @@ class _CardCartState extends State<CardCart> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Text(
-                    'Air Mineral Aqua 19L',
+                    widget.productName,
                     style: TextStyle(
-                        fontSize: widget.blockVertical * 1.8,
+                        fontSize: widget.blockVertical * 2.2,
                         fontWeight: FontWeight.w600),
                   ),
                   Text(
-                    'Rp 18.000',
+                    widget.harga,
                     style: TextStyle(
                         fontSize: widget.blockVertical * 2,
                         fontWeight: FontWeight.w600),

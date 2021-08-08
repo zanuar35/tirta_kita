@@ -35,6 +35,7 @@ class Button extends StatelessWidget {
         child: Text(
           text,
           style: GoogleFonts.rubik(
+            color: Colors.white,
             textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
           ),
         ),

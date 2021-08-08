@@ -13,6 +13,7 @@ import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:tirta_kita/screen/product_screen/widget/productCard.dart';
 import 'package:tirta_kita/screen/product_screen/widget/shimmerCategory.dart';
+import 'package:badges/badges.dart';
 
 class ProductScreen extends StatefulWidget {
   //const ProductScreen({ Key? key }) : super(key: key);
@@ -348,9 +349,17 @@ class _ProductScreenState extends State<ProductScreen> {
           Align(
             alignment: Alignment(0.89, 0.89),
             child: FloatingActionButton(
-                child: Icon(
-                  LineIcons.shoppingCart,
-                  size: 32,
+                child: Badge(
+                  toAnimate: true,
+                  shape: BadgeShape.circle,
+                  badgeColor: Colors.red,
+                  borderRadius: BorderRadius.circular(8),
+                  badgeContent:
+                      Text('5', style: TextStyle(color: Colors.white)),
+                  child: Icon(
+                    LineIcons.shoppingCart,
+                    size: 30,
+                  ),
                 ),
                 onPressed: () {
                   Navigator.push(

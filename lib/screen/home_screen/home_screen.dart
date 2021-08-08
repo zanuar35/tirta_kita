@@ -317,17 +317,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                             child: Image(
                                                 image: NetworkImage(
                                                     listBanner[index].banner),
-                                                fit: BoxFit.contain),
+                                                fit: BoxFit.fill),
                                             height: 100,
                                             width: 207,
-                                            decoration:
-                                                BoxDecoration(boxShadow: [
-                                              BoxShadow(
-                                                  offset: Offset(10, 10),
-                                                  blurRadius: 20,
-                                                  color: kPrimaryColor
-                                                      .withOpacity(0.15)),
-                                            ]),
+                                            decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    offset: Offset(10, 10),
+                                                    blurRadius: 20,
+                                                    color: kPrimaryColor
+                                                        .withOpacity(0.15)),
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
                                           ),
                                         ),
                                       ],

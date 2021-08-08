@@ -39,6 +39,9 @@ dependencies:
   get: ^4.1.4
   url_launcher: ^6.0.9
   shimmer: ^2.0.0
+  google_maps_flutter: ^2.0.6
+  geolocator: ^7.4.0
+  badges: ^2.0.1
   
 
 dev_dependencies:

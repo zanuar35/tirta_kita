@@ -8,6 +8,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:tirta_kita/model/cabang_model.dart';
 import 'package:tirta_kita/model/kategori_model.dart';
 import 'package:tirta_kita/model/laris_model.dart';
+import 'package:tirta_kita/model/orderModel.dart';
 import 'package:tirta_kita/model/orderProduct_model.dart';
 import 'package:tirta_kita/model/product.dart';
 import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
@@ -346,14 +347,15 @@ class _ProductScreenState extends State<ProductScreen> {
                                   url: product[index].urlFoto,
                                   onPressed: () {
                                     setState(() {
-                                      orderProduct.add(OrderProductModel(
+                                      orderModel.add(OrderModel(
                                           product[index].id,
+                                          1,
                                           product[index].nama,
                                           product[index].kategoriId,
                                           product[index].stok,
                                           product[index].harga,
                                           product[index].urlFoto));
-                                      //orderProduct.clear();
+                                      // orderModel.clear();
                                     });
                                     for (var i = 0;
                                         i < orderProduct.length;
@@ -361,8 +363,10 @@ class _ProductScreenState extends State<ProductScreen> {
                                       print(orderProduct[i].id);
                                       print(orderProduct[i].nama);
                                       print(orderProduct[i].harga);
+                                      print(orderProduct[i].urlFoto);
                                       print('\n\n');
                                     }
+                                    print(orderModel[0].nama);
                                   },
                                 ));
                           }),
@@ -374,11 +378,12 @@ class _ProductScreenState extends State<ProductScreen> {
             alignment: Alignment(0.89, 0.89),
             child: FloatingActionButton(
                 child: Badge(
+                  animationDuration: Duration(milliseconds: 700),
                   toAnimate: true,
                   shape: BadgeShape.circle,
                   badgeColor: Colors.red,
                   borderRadius: BorderRadius.circular(10),
-                  badgeContent: Text('${orderProduct.length}',
+                  badgeContent: Text('${orderModel.length}',
                       style: TextStyle(color: Colors.white)),
                   child: Icon(
                     LineIcons.shoppingCart,

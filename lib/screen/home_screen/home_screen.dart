@@ -308,31 +308,32 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Column(
                                       children: [
                                         Card(
-                                          elevation: 4,
-                                          color: kPrimaryColor,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          child: Container(
-                                            child: Image(
-                                                image: NetworkImage(
-                                                    listBanner[index].banner),
-                                                fit: BoxFit.fill),
-                                            height: 100,
-                                            width: 207,
-                                            decoration: BoxDecoration(
-                                              boxShadow: [
-                                                BoxShadow(
-                                                    offset: Offset(10, 10),
-                                                    blurRadius: 20,
-                                                    color: kPrimaryColor
-                                                        .withOpacity(0.15)),
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                          ),
-                                        ),
+                                            elevation: 4,
+                                            color: kPrimaryColor,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(20)),
+                                            child: Container(
+                                              height: 100,
+                                              width: 207,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                        offset: Offset(0, 10),
+                                                        blurRadius: 25,
+                                                        color: Colors.black
+                                                            .withOpacity(0.1))
+                                                  ]),
+                                              child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  child: Image.network(
+                                                      '${listBanner[index].banner}',
+                                                      fit: BoxFit.fill)),
+                                            )),
                                       ],
                                     ),
                                   );

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:tirta_kita/model/orderModel.dart';
+
 class CounterBloc {
   int _counter = 1;
 
@@ -15,13 +17,16 @@ class CounterBloc {
     _inputController.stream.listen((event) {
       if (event == 'add') {
         _counter++;
+        orderModel[0].jumlah++;
       } else if (event == 'minus') {
         _counter--;
-        if (_counter < 1) {
+        orderModel[0].jumlah--;
+        if (_counter < 1 && orderModel[0].jumlah == 1) {
           _counter = 1;
+          orderModel[0].jumlah = 1;
         }
       }
-      _sinkOut.add(_counter);
+      _sinkOut.add(orderModel[0].jumlah);
     });
   }
 

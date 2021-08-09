@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:tirta_kita/blocs/totalHarga.dart';
 
 class PriceColumn extends StatelessWidget {
-  const PriceColumn({
+  PriceColumn({
+    this.hargaTotal,
     Key key,
-     this.labelStyle,
-     this.priceStyle,
+    this.labelStyle,
+    this.priceStyle,
   }) : super(key: key);
 
   final TextStyle labelStyle;
   final TextStyle priceStyle;
+  final String hargaTotal;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class PriceColumn extends StatelessWidget {
                 style: labelStyle,
               ),
               Text(
-                'Rp 48.000',
+                hargaTotal,
                 style: priceStyle,
               )
             ],
@@ -58,9 +61,9 @@ class PriceColumn extends StatelessWidget {
                 style: labelStyle,
               ),
               Text(
-                'Rp 53.000',
+                hargaTotal,
                 style: priceStyle,
-              )
+              ),
             ],
           )
         ],

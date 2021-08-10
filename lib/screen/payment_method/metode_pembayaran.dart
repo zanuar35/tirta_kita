@@ -1,8 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tirta_kita/model/orderModel.dart';
 import 'package:tirta_kita/screen/payment_method/widget/payment_panel.dart';
 import 'package:tirta_kita/screen/payment_method/widget/pymt_pnl_png.dart';
 import 'package:tirta_kita/shared/widget/button.dart';
+import 'package:tirta_kita/blocs/paymentMethod.dart';
 
 class PaymentMethod extends StatefulWidget {
   //const PaymentMethod({ Key? key }) : super(key: key);
@@ -11,8 +15,15 @@ class PaymentMethod extends StatefulWidget {
   _PaymentMethodState createState() => _PaymentMethodState();
 }
 
+final prefs = SharedPreferences.getInstance();
+
 class _PaymentMethodState extends State<PaymentMethod> {
   int _value = 1;
+  void initState() {
+    super.initState();
+  }
+
+  PaymentBloc blocs = PaymentBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +32,11 @@ class _PaymentMethodState extends State<PaymentMethod> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(LineIcons.angleLeft)),
         toolbarHeight: blockVertical * 9,
         title: Text('Metode Pembayaran'),
         centerTitle: true,
@@ -45,6 +61,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       nilai: 2,
                       valueGroup: _value,
                       onTap: () {
+                        blocs.inputan.add('transfer bank');
                         setState(() {
                           _value = 2;
                         });
@@ -57,6 +74,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       nilai: 3,
                       valueGroup: _value,
                       onTap: () {
+                        blocs.inputan.add('ovo');
                         setState(() {
                           _value = 3;
                         });
@@ -70,6 +88,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       nilai: 4,
                       valueGroup: _value,
                       onTap: () {
+                        blocs.inputan.add('dana');
                         setState(() {
                           _value = 4;
                         });
@@ -113,6 +132,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                                 value: 1,
                                 groupValue: _value,
                                 onChanged: (value) {
+                                  blocs.inputan.add('cod');
                                   setState(() {
                                     _value = 1;
                                   });
@@ -121,6 +141,11 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         ],
                       ),
                     ),
+                    StreamBuilder(
+                        stream: blocs.output,
+                        builder: (context, snapshot) {
+                          return Text('${snapshot.data}');
+                        })
                   ],
                 ),
               ),
@@ -132,6 +157,10 @@ class _PaymentMethodState extends State<PaymentMethod> {
           child: Align(
               alignment: Alignment.bottomCenter,
               child: Button(
+                onPress: () async {
+                  final prefs = await SharedPreferences.getInstance();
+                  prefs.setString('payment', orderModel[0].payment);
+                },
                 text: 'Pilih method',
                 color: Color(0xff2BBAEC),
               )),

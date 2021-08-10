@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
@@ -350,6 +349,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                       orderModel.add(OrderModel(
                                           product[index].id,
                                           1,
+                                          '',
                                           product[index].nama,
                                           product[index].kategoriId,
                                           product[index].stok,

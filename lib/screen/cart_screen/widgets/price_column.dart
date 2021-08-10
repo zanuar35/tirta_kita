@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tirta_kita/blocs/totalHarga.dart';
 
 class PriceColumn extends StatelessWidget {
   PriceColumn({

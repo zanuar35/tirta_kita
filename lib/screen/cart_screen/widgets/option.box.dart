@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tirta_kita/blocs/paymentMethod.dart';
+import 'package:tirta_kita/model/orderModel.dart';
 import 'package:tirta_kita/screen/pakai_promo/pakai_promo.dart';
 import 'package:tirta_kita/screen/payment_method/metode_pembayaran.dart';
 
-class OptionBox extends StatelessWidget {
-  const OptionBox({
+class OptionBox extends StatefulWidget {
+  OptionBox({
     Key key,
-     this.size,
-     this.blockVertical,
-     this.blockHorizontal,
+    this.size,
+    this.blockVertical,
+    this.blockHorizontal,
   }) : super(key: key);
 
   final Size size;
@@ -16,10 +19,28 @@ class OptionBox extends StatelessWidget {
   final double blockHorizontal;
 
   @override
+  State<OptionBox> createState() => _OptionBoxState();
+}
+
+class _OptionBoxState extends State<OptionBox> {
+  PaymentBloc blocs = PaymentBloc();
+
+  void initState() {
+    super.initState();
+  }
+
+  String payment;
+
+  getData() async {
+    final prefs = await SharedPreferences.getInstance();
+    payment = prefs.getString('payment');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      width: size.width / 1,
-      height: blockVertical * 10,
+      width: widget.size.width / 1,
+      height: widget.blockVertical * 10,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           border: Border.all(width: 2, color: Colors.grey),
@@ -28,9 +49,9 @@ class OptionBox extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.all(blockVertical * 1.2),
-            width: blockHorizontal * 35,
-            height: size.height / 1,
+            margin: EdgeInsets.all(widget.blockVertical * 1.2),
+            width: widget.blockHorizontal * 35,
+            height: widget.size.height / 1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -41,14 +62,14 @@ class OptionBox extends StatelessWidget {
                     Text(
                       'Pakai Promo',
                       style: TextStyle(
-                          fontSize: blockHorizontal * 3.7,
+                          fontSize: widget.blockHorizontal * 3.7,
                           fontWeight: FontWeight.w500),
                     ),
                     Text(
                       'DISC 123',
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: blockHorizontal * 3.7),
+                          fontSize: widget.blockHorizontal * 3.7),
                     )
                   ],
                 ),
@@ -71,9 +92,9 @@ class OptionBox extends StatelessWidget {
             thickness: 3,
           ),
           Container(
-            margin: EdgeInsets.all(blockVertical * 1.2),
-            width: blockHorizontal * 36.7,
-            height: size.height / 1,
+            margin: EdgeInsets.all(widget.blockVertical * 1.2),
+            width: widget.blockHorizontal * 36.7,
+            height: widget.size.height / 1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -83,13 +104,15 @@ class OptionBox extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       'Pilih Pembayaran',
-                      style: TextStyle(fontSize: blockHorizontal * 3.7),
+                      style: TextStyle(fontSize: widget.blockHorizontal * 3.7),
                     ),
                     Text(
-                      'Transfer BCA',
+                      (orderModel[0].payment == null)
+                          ? 'Pilih Metode'
+                          : orderModel[0].payment,
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: blockHorizontal * 3.7),
+                          fontSize: widget.blockHorizontal * 3.7),
                     )
                   ],
                 ),

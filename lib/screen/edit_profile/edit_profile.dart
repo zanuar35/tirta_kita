@@ -71,7 +71,7 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
-    print(token);
+    print(' === build screen ===');
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
@@ -171,11 +171,11 @@ class _EditProfileState extends State<EditProfile> {
                   children: <Widget>[
                     InkWell(
                       onTap: () {
-                        _getCurrentLocation();
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => MapScreen()));
+                        //_getCurrentLocation();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MapScreen()));
                       },
                       child: CircleAvatar(
                         backgroundColor: Colors.transparent,
@@ -188,8 +188,8 @@ class _EditProfileState extends State<EditProfile> {
                       ),
                     ),
                     //Text(lokasiLatitude)
-                    CoordinatTextField(
-                        latitude: lokasiLatitude, longitude: lokasiLongitude)
+                    // CoordinatTextField(
+                    //     latitude: lokasiLatitude, longitude: lokasiLongitude)
                   ]),
               // input email
               LabelText(text: 'Email'),

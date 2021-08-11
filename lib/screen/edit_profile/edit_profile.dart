@@ -12,6 +12,7 @@ import 'package:tirta_kita/model/failedUbahProfile.dart';
 import 'package:tirta_kita/model/ubahProfile_model.dart';
 import 'package:tirta_kita/model/user_profile.dart';
 import 'package:tirta_kita/screen/map_screen/mapScreen.dart';
+import 'package:tirta_kita/screen/payment_method/metode_pembayaran.dart';
 import 'package:tirta_kita/shared/widget/button.dart';
 import 'package:tirta_kita/shared/widget/input_password.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';
@@ -46,8 +47,9 @@ class _EditProfileState extends State<EditProfile> {
   UbahProfile ubahProfile;
   DateTime date = DateTime.now();
   void initState() {
-    super.initState();
     getPref();
+
+    super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.delayed(Duration(microseconds: 2), () {
         apiProfile();
@@ -55,15 +57,15 @@ class _EditProfileState extends State<EditProfile> {
     });
   }
 
-  String lokasiLatitude = '';
-  String lokasiLongitude = '';
+  double lokasiLatitude;
+  double lokasiLongitude;
 
   void _getCurrentLocation() async {
     final position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     setState(() {
-      lokasiLatitude = position.latitude.toString();
-      lokasiLongitude = position.longitude.toString();
+      lokasiLatitude = position.latitude;
+      lokasiLongitude = position.longitude;
     });
     print(lokasiLatitude);
     print(lokasiLongitude);
@@ -72,6 +74,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     print(' === build screen ===');
+
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
@@ -170,12 +173,12 @@ class _EditProfileState extends State<EditProfile> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     InkWell(
-                      onTap: () {
+                      onTap: () async {
                         //_getCurrentLocation();
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MapScreen()));
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MapScreen()),
+                        ).then((value) => setState(() {}));
                       },
                       child: CircleAvatar(
                         backgroundColor: Colors.transparent,
@@ -187,9 +190,9 @@ class _EditProfileState extends State<EditProfile> {
                         radius: 28,
                       ),
                     ),
-                    //Text(lokasiLatitude)
+                    // Text(lat.toString())
                     // CoordinatTextField(
-                    //     latitude: lokasiLatitude, longitude: lokasiLongitude)
+                    //     latitude: (lat == null) ? 0 : lat, longitude: 0)
                   ]),
               // input email
               LabelText(text: 'Email'),
@@ -273,6 +276,14 @@ class _EditProfileState extends State<EditProfile> {
         status: 'loading...',
         maskType: EasyLoadingMaskType.black,
       );
+      double lat;
+      double long;
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      setState(() {
+        lat = prefs.getDouble('Lat');
+        long = prefs.getDouble('Long');
+      });
 
       var response = await http.post(
           Uri.parse("https://api.tirtakitaindonesia.com/profil_ubah"),
@@ -290,8 +301,8 @@ class _EditProfileState extends State<EditProfile> {
                 '${date.day.toString()}',
             'telepon': _noTelpController.text, //'089678833231',
             'alamat': _addressController.text,
-            'latitude': '-7.3111865',
-            'longitude': '112.7474688',
+            'latitude': lat.toString(),
+            'longitude': long.toString(),
           }));
       if (response.statusCode == 200) {
         // UbahProfile ubahProfile = UbahProfile.fromJson(jsonDecode(response.body));
@@ -317,8 +328,8 @@ class CoordinatTextField extends StatefulWidget {
     Key key,
   }) : super(key: key);
 
-  String latitude;
-  String longitude;
+  double latitude;
+  double longitude;
 
   @override
   State<CoordinatTextField> createState() => _CoordinatTextFieldState();
@@ -334,7 +345,7 @@ class _CoordinatTextFieldState extends State<CoordinatTextField> {
         decoration: InputDecoration(
           hintText: (widget.latitude == '' && widget.longitude == '')
               ? ''
-              : widget.latitude + widget.longitude,
+              : widget.latitude.toString() + widget.longitude.toString(),
           hintStyle: GoogleFonts.rubik(
             textStyle: TextStyle(
               fontSize: 14,

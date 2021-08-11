@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tirta_kita/screen/edit_profile/edit_profile.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key key}) : super(key: key);
@@ -16,6 +19,9 @@ class _MapScreenState extends State<MapScreen> {
   /// < DEKLARASI VARIABLE>
   double lokasiLatitude;
   double lokasiLongitude;
+
+  double lat;
+  double long;
 
   Completer<GoogleMapController> _controller = Completer();
   final Set<Marker> _markers = {};
@@ -73,12 +79,14 @@ class _MapScreenState extends State<MapScreen> {
       ),
       body: GoogleMap(
         onTap: (latlang) {
+          lat = latlang.latitude;
+          long = latlang.longitude;
           _onAddMarkerButtonPressed(latlang);
           print(latlang.latitude);
           print(latlang.longitude);
         },
         onMapCreated: _onMapCreated,
-        onCameraMove: _onCameraMove,
+        //onCameraMove: _onCameraMove,
         markers: _markers,
         mapType: MapType.normal,
         initialCameraPosition: CameraPosition(
@@ -87,8 +95,17 @@ class _MapScreenState extends State<MapScreen> {
             zoom: 12),
       ),
       floatingActionButton: ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setDouble('Lat', lat);
+          prefs.setDouble('Long', long);
           EasyLoading.showSuccess('Berhasil Set Lokasi');
+          print('Latitude : ' + prefs.getDouble('Lat').toString());
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Future.delayed(Duration(seconds: 3), () {
+              Navigator.pop(context);
+            });
+          });
         },
         child: Text('Set Lokasi'),
         style: ElevatedButton.styleFrom(

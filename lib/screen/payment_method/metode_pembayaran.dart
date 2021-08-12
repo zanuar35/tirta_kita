@@ -18,12 +18,16 @@ class PaymentMethod extends StatefulWidget {
 final prefs = SharedPreferences.getInstance();
 
 class _PaymentMethodState extends State<PaymentMethod> {
-  int _value = 1;
+  @override
   void initState() {
     super.initState();
   }
 
+  int index;
+  int _value = 1;
+
   PaymentBloc blocs = PaymentBloc();
+  String pay;
 
   @override
   Widget build(BuildContext context) {
@@ -144,8 +148,9 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     StreamBuilder(
                         stream: blocs.output,
                         builder: (context, snapshot) {
-                          return Text('${snapshot.data}');
-                        })
+                          orderModel[0].payment = snapshot.data;
+                          return Text('');
+                        }),
                   ],
                 ),
               ),
@@ -158,8 +163,13 @@ class _PaymentMethodState extends State<PaymentMethod> {
               alignment: Alignment.bottomCenter,
               child: Button(
                 onPress: () async {
+                  _sendDataBack(context);
                   final prefs = await SharedPreferences.getInstance();
-                  prefs.setString('payment', orderModel[0].payment);
+                  prefs.setInt('index', _value);
+                  setState(() {
+                    _value = prefs.getInt('index');
+                  });
+                  // prefs.setString('payment', orderModel[0].payment);
                 },
                 text: 'Pilih method',
                 color: Color(0xff2BBAEC),
@@ -167,5 +177,10 @@ class _PaymentMethodState extends State<PaymentMethod> {
         )
       ]),
     );
+  }
+
+  void _sendDataBack(BuildContext context) {
+    String textToSendBack = orderModel[0].payment;
+    Navigator.pop(context, textToSendBack);
   }
 }

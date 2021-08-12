@@ -31,10 +31,10 @@ class _OptionBoxState extends State<OptionBox> {
 
   String payment;
 
-  getData() async {
-    final prefs = await SharedPreferences.getInstance();
-    payment = prefs.getString('payment');
-  }
+  // getData() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   payment = prefs.getString('payment');
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -91,44 +91,62 @@ class _OptionBoxState extends State<OptionBox> {
             endIndent: 10,
             thickness: 3,
           ),
-          Container(
-            margin: EdgeInsets.all(widget.blockVertical * 1.2),
-            width: widget.blockHorizontal * 36.7,
-            height: widget.size.height / 1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text(
-                      'Pilih Pembayaran',
-                      style: TextStyle(fontSize: widget.blockHorizontal * 3.7),
-                    ),
-                    Text(
-                      (orderModel[0].payment == null)
-                          ? 'Pilih Metode'
-                          : orderModel[0].payment,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: widget.blockHorizontal * 3.7),
-                    )
-                  ],
-                ),
-                InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PaymentMethod()));
-                    },
-                    child: Icon(LineIcons.angleRight))
-              ],
+          InkWell(
+            onTap: () {
+              _awaitReturnValueFromSecondScreen(context);
+            },
+            child: Container(
+              margin: EdgeInsets.all(widget.blockVertical * 1.2),
+              width: widget.blockHorizontal * 36.7,
+              height: widget.size.height / 1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text(
+                        'Pilih Pembayaran',
+                        style:
+                            TextStyle(fontSize: widget.blockHorizontal * 3.7),
+                      ),
+                      Text(
+                        (orderModel[0].payment == null)
+                            ? 'Pilih Method'
+                            : orderModel[0].payment,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: widget.blockHorizontal * 3.7),
+                      )
+                    ],
+                  ),
+                  InkWell(
+                      onTap: () {
+                        _awaitReturnValueFromSecondScreen(context);
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => PaymentMethod()));
+                      },
+                      child: Icon(LineIcons.angleRight))
+                ],
+              ),
             ),
           )
         ],
       ),
     );
+  }
+
+  void _awaitReturnValueFromSecondScreen(BuildContext context) async {
+    // start the SecondScreen and wait for it to finish with a result
+    final result = await Navigator.push(
+        context, MaterialPageRoute(builder: (context) => PaymentMethod()));
+
+    // after the SecondScreen result comes back update the Text widget with it
+    setState(() {
+      orderModel[0].payment = result;
+    });
   }
 }

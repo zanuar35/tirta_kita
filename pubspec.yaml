@@ -43,6 +43,7 @@ dependencies:
   geolocator: ^7.4.0
   badges: ^2.0.1
   flutter_bloc: ^7.1.0
+  sqflite: ^2.0.0+3
 
 dev_dependencies:
   flutter_test:

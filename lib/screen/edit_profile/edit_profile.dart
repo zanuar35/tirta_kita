@@ -35,11 +35,13 @@ class _EditProfileState extends State<EditProfile> {
 
   String token = '';
   String tanggal = '';
+  String urlFoto;
 
   getPref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       token = prefs.getString('token').toString();
+      urlFoto = prefs.getString('userUrlPhoto').toString();
     });
   }
 
@@ -100,9 +102,10 @@ class _EditProfileState extends State<EditProfile> {
                 child: Container(
                   child: Image(
                     image: NetworkImage(
-                        'https://adm.tirtakitaindonesia.com/images/foto/kustomer/default.jpg'
-                        // 'https://i.ibb.co/z4zCXW6/Rectangle-116.png'
-                        ),
+                      urlFoto,
+                      // 'https://adm.tirtakitaindonesia.com/images/foto/kustomer/default.jpg'
+                      // 'https://i.ibb.co/z4zCXW6/Rectangle-116.png'
+                    ),
                     fit: BoxFit.fill,
                   ),
                   decoration: BoxDecoration(
@@ -190,9 +193,7 @@ class _EditProfileState extends State<EditProfile> {
                         radius: 28,
                       ),
                     ),
-                    // Text(lat.toString())
-                    // CoordinatTextField(
-                    //     latitude: (lat == null) ? 0 : lat, longitude: 0)
+                    CoordinatTextField(latitude: 0, longitude: 0)
                   ]),
               // input email
               LabelText(text: 'Email'),
@@ -299,18 +300,15 @@ class _EditProfileState extends State<EditProfile> {
             'tanggal_lahir': '${date.year.toString()}-' +
                 '${date.month.toString()}-' +
                 '${date.day.toString()}',
-            'telepon': _noTelpController.text, //'089678833231',
+            'telepon': '0' + _noTelpController.text, //'089678833231',
             'alamat': _addressController.text,
             'latitude': lat.toString(),
             'longitude': long.toString(),
           }));
       if (response.statusCode == 200) {
-        // UbahProfile ubahProfile = UbahProfile.fromJson(jsonDecode(response.body));
         print('Ubah profile Success');
         EasyLoading.showSuccess('Ubah profile Success');
       } else {
-        // UbahProfileFailed ubahProfileFailed =
-        //     UbahProfileFailed.fromJson(jsonDecode(response.body));
         print(response.statusCode);
         print('Ubah data gagal');
         EasyLoading.showError('Ubah data Gagal');

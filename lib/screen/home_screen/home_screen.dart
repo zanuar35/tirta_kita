@@ -11,11 +11,13 @@ import 'package:tirta_kita/model/kategori_model.dart';
 import 'package:tirta_kita/model/laris_model.dart';
 import 'package:tirta_kita/model/user_model.dart';
 import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
+import 'package:tirta_kita/screen/home_page/home.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/card_product.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:tirta_kita/screen/home_screen/widgets/shimer_Produk.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/shimmer_Category.dart';
+import 'package:tirta_kita/screen/product_screen/product_screen.dart';
 import 'widgets/promo_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -195,33 +197,43 @@ class _HomeScreenState extends State<HomeScreen> {
                               return Padding(
                                 padding:
                                     const EdgeInsets.only(left: 22, right: 0),
-                                child: Column(
-                                  children: [
-                                    Card(
-                                      elevation: 4,
-                                      shape: CircleBorder(),
-                                      child: Container(
-                                        margin: EdgeInsets.all(2),
-                                        height:
-                                            MediaQuery.of(context).size.height /
-                                                13,
-                                        width:
-                                            MediaQuery.of(context).size.height /
-                                                13,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: NetworkImage(
-                                                  '${kategori[index].gambar}'),
-                                              fit: BoxFit.cover),
-                                          shape: BoxShape.circle,
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => HomePage()));
+                                  },
+                                  child: Column(
+                                    children: [
+                                      Card(
+                                        elevation: 4,
+                                        shape: CircleBorder(),
+                                        child: Container(
+                                          margin: EdgeInsets.all(2),
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              13,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              13,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                    '${kategori[index].gambar}'),
+                                                fit: BoxFit.cover),
+                                            shape: BoxShape.circle,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 2,
-                                    ),
-                                    Text(kategori[index].nama)
-                                  ],
+                                      SizedBox(
+                                        height: 2,
+                                      ),
+                                      Text(kategori[index].nama)
+                                    ],
+                                  ),
                                 ),
                               );
                             })),

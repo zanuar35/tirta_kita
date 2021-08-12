@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:tirta_kita/screen/home_screen/home_screen.dart';
@@ -5,12 +7,20 @@ import 'package:tirta_kita/screen/product_screen/product_screen.dart';
 import 'package:tirta_kita/screen/profile_screen/profile_screen.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key,}) : super(key: key);
+  HomePage({
+    Key key,
+  }) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   int _currentIndex = 0;
 
   final List<Widget> _children = [

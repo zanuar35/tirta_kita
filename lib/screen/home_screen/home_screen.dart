@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   getPref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
+    setState(()  {
       nama = prefs.getString('userName').toString();
       token = prefs.getString('token').toString();
       urlPhoto = prefs.getString('userUrlPhoto').toString();
@@ -202,7 +202,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => HomePage()));
+                                            builder: (context) =>
+                                                ProductScreen()));
                                   },
                                   child: Column(
                                     children: [

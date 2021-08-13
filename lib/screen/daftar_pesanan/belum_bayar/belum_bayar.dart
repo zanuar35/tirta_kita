@@ -18,15 +18,16 @@ class BelumBayar extends StatelessWidget {
           margin: EdgeInsets.all(blockHorizontal * 6),
           width: size.width / 1,
           child: ListView.builder(
-              itemCount: orderModel.length,
+              itemCount: 1,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 20),
                   child: CardOrderProduct(
-                      jumlah: orderModel[index].jumlah,
-                      urlProduk: orderModel[index].urlFoto,
-                      namaProduk: orderModel[index].nama,
-                      hargaProduk: orderModel[index].harga,
+                      jumlah: 2,
+                      urlProduk:
+                          'https://adm.tirtakitaindonesia.com/images/foto/produk/default.jpg',
+                      namaProduk: 'contoh',
+                      hargaProduk: '10000',
                       size: size,
                       blockVertical: blockVertical,
                       blockHorizontal: blockHorizontal),
@@ -60,7 +61,7 @@ class CardOrderProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: size.width / 1,
-      height: blockVertical * 23,
+      //height: blockVertical * 23,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
         color: Color(0xfffdfdfd),
@@ -75,7 +76,7 @@ class CardOrderProduct extends StatelessWidget {
       ),
       child: Container(
         margin: EdgeInsets.symmetric(
-            horizontal: blockHorizontal * 5, vertical: blockVertical * 2),
+            horizontal: blockHorizontal * 5, vertical: blockVertical * 3),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,14 +96,14 @@ class CardOrderProduct extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      namaProduk,
+                      'Contoh',
                       style: TextStyle(
                           fontSize: blockHorizontal * 3.73,
                           fontWeight: FontWeight.w400),
                     ),
                     SizedBox(height: blockVertical * 1.5),
                     Text(
-                      "Jumlah : $jumlah",
+                      "Jumlah : $jumlah pcs",
                       style: TextStyle(
                           fontSize: blockHorizontal * 3.73,
                           fontWeight: FontWeight.w400),
@@ -110,7 +111,7 @@ class CardOrderProduct extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  'Rp. $hargaProduk',
+                  'Rp. 19000',
                   style: GoogleFonts.rubik(
                     textStyle: TextStyle(
                         fontSize: blockHorizontal * 3.4,
@@ -120,41 +121,73 @@ class CardOrderProduct extends StatelessWidget {
                 )
               ],
             ),
+
+            Divider(
+              height: 20,
+              thickness: 2,
+              indent: 10,
+              endIndent: 10,
+            ),
+            Text('inv2021080117',
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18)),
+            SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(
-                  "Total Bayar :",
-                  style: TextStyle(
-                      fontSize: blockHorizontal * 3.73,
-                      fontWeight: FontWeight.w400),
-                ),
-                Text(
-                  "Rp. ${int.parse(hargaProduk) * jumlah}",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: blockHorizontal * 4.8),
-                ),
+                Text('Sub Total           :'),
+                Text('Rp  50.000')
               ],
             ),
-            Center(
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => KonfirmasiPembayaran()));
-                },
-                child: Text(
-                  'Konfirmasi Pembayaran',
-                  style: TextStyle(
-                      fontSize: blockHorizontal * 3.7,
-                      letterSpacing: 0.7,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text('Ongkir                :'),
+                Text('Rp  50.000')
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[Text('Diskon Promo  :'), Text('Rp  50.000')],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text('Total Bayar       :'),
+                Text('Rp  50.000',
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14))
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              children: <Widget>[
+                Text('Status : '),
+                Text('Dikonfirmasi',
+                    style: TextStyle(
+                      letterSpacing: 1,
+                      fontSize: 16,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xff265FAA)),
-                ),
-              ),
+                      color: Color(0xff00FF47),
+                    ))
+              ],
             )
+            // Center(
+            //   child: InkWell(
+            //     onTap: () {
+            //       Navigator.push(
+            //           context,
+            //           MaterialPageRoute(
+            //               builder: (context) => KonfirmasiPembayaran()));
+            //     },
+            //     child: Text(
+            //       'Konfirmasi Pembayaran',
+            //       style: TextStyle(
+            //           fontSize: blockHorizontal * 3.7,
+            //           letterSpacing: 0.7,
+            //           fontWeight: FontWeight.w700,
+            //           color: Color(0xff265FAA)),
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ),

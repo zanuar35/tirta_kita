@@ -23,6 +23,8 @@ class _MapScreenState extends State<MapScreen> {
   double lat;
   double long;
 
+  List<double> lokasi;
+
   Completer<GoogleMapController> _controller = Completer();
   final Set<Marker> _markers = {};
 
@@ -75,7 +77,6 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
         title: Text('Pilih Lokasi Anda'),
       ),
       body: GoogleMap(
@@ -102,11 +103,7 @@ class _MapScreenState extends State<MapScreen> {
           prefs.setDouble('Long', long);
           EasyLoading.showSuccess('Berhasil Set Lokasi');
           print('Latitude : ' + prefs.getDouble('Lat').toString());
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            Future.delayed(Duration(seconds: 3), () {
-              Navigator.pop(context);
-            });
-          });
+          _sendDataBack(context);
         },
         child: Text('Set Lokasi'),
         style: ElevatedButton.styleFrom(
@@ -114,5 +111,11 @@ class _MapScreenState extends State<MapScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+  }
+
+  void _sendDataBack(BuildContext context) {
+    String textToSendBack = 'a';
+
+    Navigator.pop(context, textToSendBack);
   }
 }

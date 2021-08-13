@@ -124,10 +124,6 @@ class _OptionBoxState extends State<OptionBox> {
                   InkWell(
                       onTap: () {
                         _awaitReturnValueFromSecondScreen(context);
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => PaymentMethod()));
                       },
                       child: Icon(LineIcons.angleRight))
                 ],

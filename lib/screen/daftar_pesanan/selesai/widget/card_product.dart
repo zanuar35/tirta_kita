@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class CardProduct extends StatelessWidget {
   const CardProduct({
     Key key,
-     this.size,
-     this.blockVertical,
-     this.blockHorizontal,
+    this.size,
+    this.blockVertical,
+    this.blockHorizontal,
   }) : super(key: key);
 
   final Size size;
@@ -15,8 +15,6 @@ class CardProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: size.width / 1,
-      height: blockVertical * 24,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
         color: Color(0xfffdfdfd),
@@ -79,6 +77,7 @@ class CardProduct extends StatelessWidget {
                         letterSpacing: 0.2))
               ],
             ),
+            SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,11 +91,12 @@ class CardProduct extends StatelessWidget {
                 Text(
                   "Rp. 100.000",
                   style: TextStyle(
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w800,
                       fontSize: blockHorizontal * 4.8),
                 ),
               ],
             ),
+            SizedBox(height: 10),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,

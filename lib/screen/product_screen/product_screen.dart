@@ -479,6 +479,7 @@ class _ProductScreenState extends State<ProductScreen> {
         p = dataProduct;
         setState(() {});
         print('Get data berhasil');
+        print(product[0].urlFoto);
       }
     } else {
       print(dataProduct.message);

@@ -6,11 +6,21 @@ class CardProduct extends StatelessWidget {
     this.size,
     this.blockVertical,
     this.blockHorizontal,
+    this.totalHarga,
+    this.jumlah,
+    this.harga,
+    this.nama,
+    this.urlFoto,
   }) : super(key: key);
 
   final Size size;
   final double blockVertical;
   final double blockHorizontal;
+  final int totalHarga;
+  final String jumlah;
+  final String harga;
+  final String nama;
+  final String urlFoto;
 
   @override
   Widget build(BuildContext context) {
@@ -41,36 +51,31 @@ class CardProduct extends StatelessWidget {
                 Container(
                   height: blockHorizontal * 15,
                   width: blockHorizontal * 15,
-                  child: Image(
-                    image: NetworkImage(
-                      'https://i.ibb.co/NsYWbNM/Rectangle-117.png',
-                    ),
-                    fit: BoxFit.fill,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network('$urlFoto', fit: BoxFit.fill),
                   ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.red),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "Beras Rojo Lele 5 kg",
+                      "$nama",
                       style: TextStyle(
                           fontSize: blockHorizontal * 3.73,
                           fontWeight: FontWeight.w400),
                     ),
                     SizedBox(height: blockVertical * 1.5),
                     Text(
-                      "Jumlah : 2 Pcs",
+                      "Jumlah : $jumlah pcs",
                       style: TextStyle(
                           fontSize: blockHorizontal * 3.73,
                           fontWeight: FontWeight.w400),
                     )
                   ],
                 ),
-                Text("Rp 50.000",
+                Text("Rp $harga",
                     style: TextStyle(
                         fontSize: blockHorizontal * 3.2,
                         fontWeight: FontWeight.w600,
@@ -89,7 +94,7 @@ class CardProduct extends StatelessWidget {
                       fontWeight: FontWeight.w400),
                 ),
                 Text(
-                  "Rp. 100.000",
+                  "Rp. $totalHarga",
                   style: TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: blockHorizontal * 4.8),

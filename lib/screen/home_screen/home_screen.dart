@@ -11,14 +11,12 @@ import 'package:tirta_kita/model/kategori_model.dart';
 import 'package:tirta_kita/model/laris_model.dart';
 import 'package:tirta_kita/model/user_model.dart';
 import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
-import 'package:tirta_kita/screen/home_page/home.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/card_product.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:tirta_kita/screen/home_screen/widgets/shimer_Produk.dart';
 import 'package:tirta_kita/screen/home_screen/widgets/shimmer_Category.dart';
 import 'package:tirta_kita/screen/product_screen/product_screen.dart';
-import 'widgets/promo_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({
@@ -36,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   getPref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(()  {
+    setState(() {
       nama = prefs.getString('userName').toString();
       token = prefs.getString('token').toString();
       urlPhoto = prefs.getString('userUrlPhoto').toString();
@@ -160,7 +158,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                             color: kPrimaryColor),
                                         child: CircleAvatar(
                                           backgroundImage: NetworkImage(
-                                              'https://smkppnparingin.sch.id/media_library/images/headmaster_photo.png'),
+                                              (urlPhoto == null)
+                                                  ? 'https://sgmh.org/wp-content/uploads/2017/07/placeholder-user.png'
+                                                  : '$urlPhoto'),
                                         ))
                                   ],
                                 ),

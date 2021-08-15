@@ -3,20 +3,21 @@ import 'package:flutter/material.dart';
 class CardProduct extends StatelessWidget {
   const CardProduct({
     Key key,
-     this.size,
-     this.blockVertical,
-     this.blockHorizontal,
+    this.size,
+    this.blockVertical,
+    this.blockHorizontal,
+    this.jumlahProduk,
   }) : super(key: key);
 
   final Size size;
   final double blockVertical;
   final double blockHorizontal;
+  final int jumlahProduk;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: size.width / 1,
-      height: blockVertical * 22,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
         color: Color(0xfffdfdfd),
@@ -36,51 +37,26 @@ class CardProduct extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: blockHorizontal * 15,
-                  width: blockHorizontal * 15,
-                  child: Image(
-                    image: NetworkImage(
-                      'https://i.ibb.co/NsYWbNM/Rectangle-117.png',
-                    ),
-                    fit: BoxFit.fill,
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.red),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "Beras Rojo Lele 5 kg",
-                      style: TextStyle(
-                          fontSize: blockHorizontal * 3.73,
-                          fontWeight: FontWeight.w400),
-                    ),
-                    SizedBox(height: blockVertical * 1.5),
-                    Text(
-                      "Jumlah : 2 Pcs",
-                      style: TextStyle(
-                          fontSize: blockHorizontal * 3.73,
-                          fontWeight: FontWeight.w400),
-                    )
-                  ],
-                ),
-                Text(
-                  "Rp 50.000",
-                  style: TextStyle(
-                      fontSize: blockHorizontal * 3.4,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 0.2),
-                ),
-              ],
-            ),
+            ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: 200, minHeight: 26.0),
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: jumlahProduk,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: 15),
+                      child: RowProduk(
+                          blockHorizontal: blockHorizontal,
+                          blockVertical: blockVertical),
+                    );
+                  }),
+            )
+            // RowProduk(
+            //   blockHorizontal: blockHorizontal,
+            //   blockVertical: blockVertical,
+            // ),
+            ,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -114,6 +90,65 @@ class CardProduct extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class RowProduk extends StatelessWidget {
+  const RowProduk({
+    Key key,
+    @required this.blockHorizontal,
+    @required this.blockVertical,
+  }) : super(key: key);
+
+  final double blockHorizontal;
+  final double blockVertical;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          height: blockHorizontal * 15,
+          width: blockHorizontal * 15,
+          child: Image(
+            image: NetworkImage(
+              'https://i.ibb.co/NsYWbNM/Rectangle-117.png',
+            ),
+            fit: BoxFit.fill,
+          ),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5), color: Colors.red),
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              "Beras Rojo Lele 5 kg",
+              style: TextStyle(
+                  fontSize: blockHorizontal * 3.73,
+                  fontWeight: FontWeight.w400),
+            ),
+            SizedBox(height: blockVertical * 1.5),
+            Text(
+              "Jumlah : 2 Pcs",
+              style: TextStyle(
+                  fontSize: blockHorizontal * 3.73,
+                  fontWeight: FontWeight.w400),
+            )
+          ],
+        ),
+        Text(
+          "Rp 50.000",
+          style: TextStyle(
+              fontSize: blockHorizontal * 3.4,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.2),
+        ),
+      ],
     );
   }
 }

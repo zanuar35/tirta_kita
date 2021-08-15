@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tirta_kita/screen/daftar_pesanan/selesai/widget/row_produk.dart';
 
 class CardProduct extends StatelessWidget {
   const CardProduct({
@@ -11,6 +12,9 @@ class CardProduct extends StatelessWidget {
     this.harga,
     this.nama,
     this.urlFoto,
+    this.jumlahProduk,
+    this.produk,
+    this.status,
   }) : super(key: key);
 
   final Size size;
@@ -20,7 +24,10 @@ class CardProduct extends StatelessWidget {
   final String jumlah;
   final String harga;
   final String nama;
+  final int jumlahProduk;
   final String urlFoto;
+  final List produk;
+  final String status;
 
   @override
   Widget build(BuildContext context) {
@@ -44,43 +51,25 @@ class CardProduct extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: blockHorizontal * 15,
-                  width: blockHorizontal * 15,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network('$urlFoto', fit: BoxFit.fill),
-                  ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "$nama",
-                      style: TextStyle(
-                          fontSize: blockHorizontal * 3.73,
-                          fontWeight: FontWeight.w400),
-                    ),
-                    SizedBox(height: blockVertical * 1.5),
-                    Text(
-                      "Jumlah : $jumlah pcs",
-                      style: TextStyle(
-                          fontSize: blockHorizontal * 3.73,
-                          fontWeight: FontWeight.w400),
-                    )
-                  ],
-                ),
-                Text("Rp $harga",
-                    style: TextStyle(
-                        fontSize: blockHorizontal * 3.2,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.2))
-              ],
+            ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: 800, minHeight: 26.0),
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: jumlahProduk,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: RowProduk(
+                        blockHorizontal: blockHorizontal,
+                        urlFoto: produk[index].gambar,
+                        nama: produk[index].nama,
+                        blockVertical: blockVertical,
+                        jumlah: produk[index].jumlah,
+                        harga: produk[index].harga,
+                      ),
+                    );
+                  }),
             ),
             SizedBox(height: 10),
             Row(
@@ -107,21 +96,27 @@ class CardProduct extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "Barang telah diterima",
+                  (status == 'selesai')
+                      ? "Pesanan ditolak"
+                      : "Barang telah diterima",
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: blockHorizontal * 3.4,
-                      color: Color(0xff3FC23D)),
+                      color: (status == 'selesai')
+                          ? Colors.red
+                          : Color(0xff3FC23D)),
                 ),
                 SizedBox(
                   height: blockVertical * 1,
                 ),
-                Text(
-                  "Anda mendapat 20 poin",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: blockHorizontal * 3.75),
-                )
+                (status == 'selesai')
+                    ? SizedBox(height: 1)
+                    : Text(
+                        "Anda mendapat 20 poin",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: blockHorizontal * 3.75),
+                      )
               ],
             ),
           ],

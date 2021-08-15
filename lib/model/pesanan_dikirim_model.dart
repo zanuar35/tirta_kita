@@ -18,13 +18,16 @@ class PesananDikirim {
 
   bool success;
   String message;
-  List<Datum> data;
+  List<DataListPesananDikirim> data;
 
-  factory PesananDikirim.fromJson(Map<String, dynamic> json) => PesananDikirim(
-        success: json["success"],
-        message: json["message"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
-      );
+  PesananDikirim.fromJson(Map<String, dynamic> json) {
+    this.message = json['message'];
+    this.data = (json['data'] as List) != null
+        ? (json['data'] as List)
+            .map((i) => DataListPesananDikirim.fromJson(i))
+            .toList()
+        : null;
+  }
 
   Map<String, dynamic> toJson() => {
         "success": success,
@@ -33,8 +36,8 @@ class PesananDikirim {
       };
 }
 
-class Datum {
-  Datum({
+class DataListPesananDikirim {
+  DataListPesananDikirim({
     this.id,
     this.invoice,
     this.status,
@@ -54,7 +57,8 @@ class Datum {
   int total;
   List<Produk> produk;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory DataListPesananDikirim.fromJson(Map<String, dynamic> json) =>
+      DataListPesananDikirim(
         id: json["id"],
         invoice: json["invoice"],
         status: json["status"],

@@ -45,33 +45,35 @@ class _BelumBayarState extends State<BelumBayar> {
     double blockVertical = (MediaQuery.of(context).size.height) / 100;
 
     return Scaffold(
-        backgroundColor: Color(0xffE5E5E5),
-        body: Container(
-          margin: EdgeInsets.all(blockHorizontal * 6),
-          width: size.width / 1,
-          child: (pesanan == null)
-              ? Center(child: CircularProgressIndicator())
-              : ListView.builder(
-                  itemCount: pesanan.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: CardOrderProduct(
-                          produk: pesanan[index].produk,
-                          i: index,
-                          invoice: pesanan[index].invoice,
-                          status: pesanan[index].status,
-                          jumlahProduk: pesanan[index].produk.length,
-                          subTotal: pesanan[index].subtotal,
-                          totalBayar: pesanan[index].total,
-                          ongkir: pesanan[index].ongkir,
-                          promo: pesanan[index].promo,
-                          size: size,
-                          blockVertical: blockVertical,
-                          blockHorizontal: blockHorizontal),
-                    );
-                  }),
-        ));
+      backgroundColor: Color(0xffE5E5E5),
+      body: Container(
+        margin: EdgeInsets.all(blockHorizontal * 6),
+        width: size.width / 1,
+        child: (pesanan == null)
+            ? Center(child: CircularProgressIndicator())
+            : ListView.builder(
+                itemCount: pesanan.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: CardOrderProduct(
+                        produk: pesanan[index].produk,
+                        i: index,
+                        invoice: pesanan[index].invoice,
+                        status: pesanan[index].status,
+                        jumlahProduk: pesanan[index].produk.length,
+                        subTotal: pesanan[index].subtotal,
+                        totalBayar: pesanan[index].total,
+                        ongkir: pesanan[index].ongkir,
+                        promo: pesanan[index].promo,
+                        size: size,
+                        blockVertical: blockVertical,
+                        blockHorizontal: blockHorizontal),
+                  );
+                },
+              ),
+      ),
+    );
   }
 
   Future<PesananBaru> apiPesananBaru() async {
@@ -159,25 +161,27 @@ class CardOrderProduct extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             ConstrainedBox(
-                constraints: BoxConstraints(maxHeight: 200, minHeight: 26.0),
-                // height: 100,
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: jumlahProduk,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: RowProduk(
-                          blockHorizontal: blockHorizontal,
-                          urlProduk: produk[index].gambar,
-                          namaProduk: produk[index].nama,
-                          blockVertical: blockVertical,
-                          jumlah: produk[index].jumlah,
-                          harga: produk[index].harga,
-                        ),
-                      );
-                    })),
+              constraints: BoxConstraints(maxHeight: 200, minHeight: 26.0),
+              // height: 100,
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: jumlahProduk,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: RowProduk(
+                      blockHorizontal: blockHorizontal,
+                      urlProduk: produk[index].gambar,
+                      namaProduk: produk[index].nama,
+                      blockVertical: blockVertical,
+                      jumlah: produk[index].jumlah,
+                      harga: produk[index].harga,
+                    ),
+                  );
+                },
+              ),
+            ),
             Divider(
               height: 20,
               thickness: 2,

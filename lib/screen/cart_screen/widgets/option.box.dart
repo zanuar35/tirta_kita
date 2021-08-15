@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tirta_kita/blocs/paymentMethod.dart';
 import 'package:tirta_kita/model/orderModel.dart';
 import 'package:tirta_kita/screen/pakai_promo/pakai_promo.dart';

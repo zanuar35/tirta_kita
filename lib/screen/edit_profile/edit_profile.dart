@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -6,12 +8,11 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:tirta_kita/constants.dart';
 import 'package:tirta_kita/model/ubahProfile_model.dart';
 import 'package:tirta_kita/model/user_profile.dart';
+import 'package:tirta_kita/screen/edit_profile/widgets/coordinatTextField.dart';
 import 'package:tirta_kita/screen/map_screen/mapScreen.dart';
-import 'package:tirta_kita/screen/payment_method/metode_pembayaran.dart';
 import 'package:tirta_kita/shared/widget/button.dart';
 import 'package:tirta_kita/shared/widget/input_password.dart';
 import 'package:tirta_kita/shared/widget/input_text.dart';
@@ -272,16 +273,6 @@ class _EditProfileState extends State<EditProfile> {
     }
   }
 
-  Future<void> openMap() async {
-    String googleUrl =
-        'https://www.google.com/maps/search/?api=1&query=-7.3111865,112.7474688';
-    if (await canLaunch(googleUrl)) {
-      await launch(googleUrl);
-    } else {
-      throw 'Could not open the map.';
-    }
-  }
-
   Future<UserProfile> apiProfile() async {
     print(token);
     var response = await http.get(
@@ -303,6 +294,7 @@ class _EditProfileState extends State<EditProfile> {
   Future<UbahProfile> apiUbahProfile() async {
     if (_emailController.text.isEmpty ||
         _noTelpController.text.isEmpty ||
+        date == null ||
         _addressController.text.isEmpty) {
       EasyLoading.showError('Data tidak boleh kosong');
     } else {
@@ -339,64 +331,13 @@ class _EditProfileState extends State<EditProfile> {
             'longitude': long.toString(),
           }));
       if (response.statusCode == 200) {
-        print('Ubah profile Success');
         EasyLoading.showSuccess('Ubah profile Success');
       } else {
         print(response.statusCode);
         print('Ubah data gagal');
         EasyLoading.showError('Ubah data Gagal');
       }
-
-      return ubahProfile;
     }
-  }
-}
-
-class CoordinatTextField extends StatefulWidget {
-  CoordinatTextField({
-    this.latitude,
-    this.longitude,
-    Key key,
-  }) : super(key: key);
-
-  String latitude;
-  String longitude;
-
-  @override
-  State<CoordinatTextField> createState() => _CoordinatTextFieldState();
-}
-
-class _CoordinatTextFieldState extends State<CoordinatTextField> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width - 130,
-      height: 50,
-      child: TextFormField(
-        decoration: InputDecoration(
-          hintText: (widget.latitude == '' && widget.longitude == '')
-              ? ''
-              : widget.latitude.toString() +
-                  ' , ' +
-                  widget.longitude.toString(),
-          hintStyle: GoogleFonts.rubik(
-            textStyle: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: Color(0xff2A2A2A).withOpacity(0.40),
-            ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(4),
-            borderSide:
-                BorderSide(color: kBorderColor.withOpacity(0.3), width: 2),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(4),
-            borderSide: BorderSide(color: Colors.blue, width: 2),
-          ),
-        ),
-      ),
-    );
+    return ubahProfile;
   }
 }

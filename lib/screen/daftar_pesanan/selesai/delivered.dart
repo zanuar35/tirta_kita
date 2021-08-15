@@ -44,30 +44,32 @@ class _SelesaiKirimState extends State<SelesaiKirim> {
     double blockVertical = (MediaQuery.of(context).size.height) / 100;
 
     return Scaffold(
-        backgroundColor: Color(0xffE5E5E5),
-        body: Container(
-            margin: EdgeInsets.fromLTRB(24, 10, 24, 5),
-            width: size.width / 1,
-            child: (pesanan == null)
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : ListView.builder(
-                    itemCount: pesanan.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: CardProduct(
-                            urlFoto: pesanan[index].produk[0].gambar,
-                            harga: pesanan[index].produk[0].harga,
-                            size: size,
-                            nama: pesanan[index].produk[0].nama,
-                            jumlah: pesanan[index].produk[0].jumlah,
-                            blockVertical: blockVertical,
-                            blockHorizontal: blockHorizontal,
-                            totalHarga: pesanan[index].total),
-                      );
-                    })));
+      backgroundColor: Color(0xffE5E5E5),
+      body: Container(
+        margin: EdgeInsets.fromLTRB(24, 10, 24, 5),
+        width: size.width / 1,
+        child: (pesanan == null)
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView.builder(
+                itemCount: pesanan.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: CardProduct(
+                        jumlahProduk: pesanan[index].produk.length,
+                        size: size,
+                        status: pesanan[index].status,
+                        produk: pesanan[index].produk,
+                        blockVertical: blockVertical,
+                        blockHorizontal: blockHorizontal,
+                        totalHarga: pesanan[index].total),
+                  );
+                },
+              ),
+      ),
+    );
   }
 
   Future<PesananSelesai> apiPesananSelesai() async {
@@ -83,14 +85,6 @@ class _SelesaiKirimState extends State<SelesaiKirim> {
         pesanan = pesananSelesai.data;
         pesananSelesai = pesananSelesai;
         setState(() {});
-      }
-      for (var i = 0; i < pesanan.length; i++) {
-        print(pesanan[i].id);
-        print(pesanan[i].invoice);
-        print(pesanan[i].ongkir);
-        print(pesanan[i].total);
-        print(pesanan[i].produk[0].nama);
-        print('\n');
       }
     }
 

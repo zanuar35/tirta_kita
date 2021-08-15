@@ -2,11 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:get/get.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tirta_kita/screen/edit_profile/edit_profile.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key key}) : super(key: key);
@@ -30,6 +29,7 @@ class _MapScreenState extends State<MapScreen> {
 
   static LatLng _center = LatLng(-7.3146, 112.7571);
   LatLng _lastMapPosition = _center;
+  var alamat;
 
   /// <END DEKLARASI>
 
@@ -79,22 +79,93 @@ class _MapScreenState extends State<MapScreen> {
       appBar: AppBar(
         title: Text('Pilih Lokasi Anda'),
       ),
-      body: GoogleMap(
-        onTap: (latlang) {
-          lat = latlang.latitude;
-          long = latlang.longitude;
-          _onAddMarkerButtonPressed(latlang);
-          print(latlang.latitude);
-          print(latlang.longitude);
-        },
-        onMapCreated: _onMapCreated,
-        //onCameraMove: _onCameraMove,
-        markers: _markers,
-        mapType: MapType.normal,
-        initialCameraPosition: CameraPosition(
-            target: _center,
-            // LatLng(-7.9479768, 111.9641728),
-            zoom: 12),
+      body: Container(
+        child: Stack(
+          children: [
+            GoogleMap(
+              onTap: (latlang) async {
+                lat = latlang.latitude;
+                long = latlang.longitude;
+                _onAddMarkerButtonPressed(latlang);
+                print(latlang.latitude);
+                print(latlang.longitude);
+
+                List<Placemark> placemarks =
+                    await placemarkFromCoordinates(lat, long);
+                print(placemarks);
+
+                setState(() {
+                  alamat = placemarks[0].street +
+                      ", " +
+                      placemarks[0].subLocality +
+                      ", " +
+                      placemarks[0].locality;
+                });
+              },
+              onMapCreated: _onMapCreated,
+              //onCameraMove: _onCameraMove,
+              markers: _markers,
+              mapType: MapType.normal,
+              initialCameraPosition: CameraPosition(
+                  target: _center,
+                  // LatLng(-7.9479768, 111.9641728),
+                  zoom: 12),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.only(top: 10, left: 10),
+                height: 150,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      // ignore: prefer_const_literals_to_create_immutables
+                      mainAxisSize: MainAxisSize.min,
+
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      // ignore: prefer_const_literals_to_create_immutables
+                      children: [
+                        Icon(
+                          Icons.local_shipping_outlined,
+                          color: Colors.white,
+                          size: 32,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text('Alamat Pengiriman :',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            )),
+                      ],
+                    ),
+                    Text(
+                      (alamat == null)
+                          ? 'Cari alamat anda pada Map'
+                          : '$alamat',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: (alamat == null) ? 22 : 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15)),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
       floatingActionButton: ElevatedButton(
         onPressed: () async {

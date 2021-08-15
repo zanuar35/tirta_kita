@@ -145,9 +145,7 @@ class _MapScreenState extends State<MapScreen> {
                       ],
                     ),
                     Text(
-                      (alamat == null)
-                          ? 'Cari alamat anda pada Map'
-                          : '$alamat',
+                      (alamat == null) ? 'Cari alamat pada Map' : '$alamat',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: (alamat == null) ? 22 : 16,
@@ -174,7 +172,11 @@ class _MapScreenState extends State<MapScreen> {
           prefs.setDouble('Long', long);
           EasyLoading.showSuccess('Berhasil Set Lokasi');
           print('Latitude : ' + prefs.getDouble('Lat').toString());
-          _sendDataBack(context);
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Future.delayed(Duration(seconds: 2), () {
+              _sendDataBack(context);
+            });
+          });
         },
         child: Text('Set Lokasi'),
         style: ElevatedButton.styleFrom(

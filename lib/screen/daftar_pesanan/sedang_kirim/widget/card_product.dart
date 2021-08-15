@@ -7,12 +7,16 @@ class CardProduct extends StatelessWidget {
     this.blockVertical,
     this.blockHorizontal,
     this.jumlahProduk,
+    this.totalHarga,
+    this.produk,
   }) : super(key: key);
 
   final Size size;
   final double blockVertical;
   final double blockHorizontal;
   final int jumlahProduk;
+  final int totalHarga;
+  final List produk;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +51,10 @@ class CardProduct extends StatelessWidget {
                     return Padding(
                       padding: EdgeInsets.only(bottom: 15),
                       child: RowProduk(
+                          urlFoto: produk[index].gambar,
+                          harga: produk[index].harga,
+                          namaProduk: produk[index].nama,
+                          jumlah: produk[index].jumlah,
                           blockHorizontal: blockHorizontal,
                           blockVertical: blockVertical),
                     );
@@ -67,7 +75,7 @@ class CardProduct extends StatelessWidget {
                       fontWeight: FontWeight.w400),
                 ),
                 Text(
-                  "Rp. 100.000",
+                  "Rp. $totalHarga",
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: blockHorizontal * 4.8),
@@ -99,10 +107,18 @@ class RowProduk extends StatelessWidget {
     Key key,
     @required this.blockHorizontal,
     @required this.blockVertical,
+    this.namaProduk,
+    this.jumlah,
+    this.harga,
+    this.urlFoto,
   }) : super(key: key);
 
   final double blockHorizontal;
   final double blockVertical;
+  final String namaProduk;
+  final String jumlah;
+  final String harga;
+  final String urlFoto;
 
   @override
   Widget build(BuildContext context) {
@@ -113,28 +129,23 @@ class RowProduk extends StatelessWidget {
         Container(
           height: blockHorizontal * 15,
           width: blockHorizontal * 15,
-          child: Image(
-            image: NetworkImage(
-              'https://i.ibb.co/NsYWbNM/Rectangle-117.png',
-            ),
-            fit: BoxFit.fill,
-          ),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5), color: Colors.red),
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network('$urlFoto', fit: BoxFit.fill)),
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              "Beras Rojo Lele 5 kg",
+              "$namaProduk",
               style: TextStyle(
                   fontSize: blockHorizontal * 3.73,
                   fontWeight: FontWeight.w400),
             ),
             SizedBox(height: blockVertical * 1.5),
             Text(
-              "Jumlah : 2 Pcs",
+              "Jumlah : $jumlah Pcs",
               style: TextStyle(
                   fontSize: blockHorizontal * 3.73,
                   fontWeight: FontWeight.w400),
@@ -142,7 +153,7 @@ class RowProduk extends StatelessWidget {
           ],
         ),
         Text(
-          "Rp 50.000",
+          "Rp $harga",
           style: TextStyle(
               fontSize: blockHorizontal * 3.4,
               fontWeight: FontWeight.w600,

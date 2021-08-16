@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CardProduct extends StatelessWidget {
   const CardProduct({
@@ -9,6 +10,7 @@ class CardProduct extends StatelessWidget {
     this.jumlahProduk,
     this.totalHarga,
     this.produk,
+    this.status,
   }) : super(key: key);
 
   final Size size;
@@ -17,6 +19,7 @@ class CardProduct extends StatelessWidget {
   final int jumlahProduk;
   final int totalHarga;
   final List produk;
+  final String status;
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +68,12 @@ class CardProduct extends StatelessWidget {
             //   blockVertical: blockVertical,
             // ),
             ,
+            Divider(
+              height: 20,
+              thickness: 2,
+              indent: 10,
+              endIndent: 10,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -82,19 +91,50 @@ class CardProduct extends StatelessWidget {
                 ),
               ],
             ),
-            Center(
-              child: InkWell(
-                onTap: () {},
-                child: Text(
-                  'Lacak Pesanan',
-                  style: TextStyle(
-                      fontSize: blockHorizontal * 3.7,
-                      letterSpacing: 0.7,
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: <Widget>[
+                Text('Status : '),
+                Text('$status',
+                    style: TextStyle(
+                      letterSpacing: 1,
+                      fontSize: 17,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xff265FAA)),
-                ),
-              ),
-            )
+                      color: (status == 'dikirim')
+                          ? Color(0xff00FF47)
+                          : Color(0xff265FAA),
+                    )),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            (status == 'diproses')
+                ? SizedBox(
+                    width: 1,
+                  )
+                : Center(
+                    child: InkWell(
+                      onTap: () async {
+                        const url = "https://www.google.com/maps/?hl=id";
+                        if (await canLaunch(url))
+                          await launch(url);
+                        else
+                          // can't launch url, there is some error
+                          throw "Could not launch $url";
+                      },
+                      child: Text(
+                        'Lacak Pesanan',
+                        style: TextStyle(
+                            fontSize: blockHorizontal * 3.7,
+                            letterSpacing: 0.7,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xff265FAA)),
+                      ),
+                    ),
+                  )
           ],
         ),
       ),

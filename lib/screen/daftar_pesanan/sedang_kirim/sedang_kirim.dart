@@ -61,6 +61,7 @@ class _SedangKirimState extends State<SedangKirim> {
                         produk: pesanan[index].produk,
                         jumlahProduk: pesanan[index].produk.length,
                         size: size,
+                        status: pesanan[index].status,
                         totalHarga: pesanan[index].total,
                         blockVertical: blockVertical,
                         blockHorizontal: blockHorizontal),

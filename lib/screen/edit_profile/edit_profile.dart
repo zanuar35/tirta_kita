@@ -318,7 +318,8 @@ class _EditProfileState extends State<EditProfile> {
             "Authorization": 'Bearer $token'
           },
           body: ({
-            'email': 'Luis4621464@sambako.com', //_emailController.text,
+            'email': _emailController.text,
+            //'Luis4621464@sambako.com', 
             'password': (_passwordController.text == null)
                 ? ''
                 : _passwordController.text,

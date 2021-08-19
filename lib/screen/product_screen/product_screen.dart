@@ -12,6 +12,7 @@ import 'package:tirta_kita/model/orderProduct_model.dart';
 import 'package:tirta_kita/model/product.dart';
 import 'package:tirta_kita/screen/cart_screen/cart_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:tirta_kita/screen/product_screen/widget/buttonCart.dart';
 import 'package:tirta_kita/screen/product_screen/widget/productCard.dart';
 import 'package:tirta_kita/screen/product_screen/widget/shimmerCategory.dart';
 import 'package:badges/badges.dart';
@@ -65,6 +66,11 @@ class _ProductScreenState extends State<ProductScreen> {
   DataKategori k;
   DataProduct p;
   DataCabang c;
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -357,16 +363,6 @@ class _ProductScreenState extends State<ProductScreen> {
                                           product[index].urlFoto));
                                       // orderModel.clear();
                                     });
-                                    for (var i = 0;
-                                        i < orderProduct.length;
-                                        i++) {
-                                      print(orderProduct[i].id);
-                                      print(orderProduct[i].nama);
-                                      print(orderProduct[i].harga);
-                                      print(orderProduct[i].urlFoto);
-                                      print('\n\n');
-                                    }
-                                    print(orderModel[0].nama);
                                   },
                                 ));
                           }),
@@ -374,33 +370,7 @@ class _ProductScreenState extends State<ProductScreen> {
               ],
             ),
           ),
-          Align(
-            alignment: Alignment(0.89, 0.89),
-            child: FloatingActionButton(
-                child: Badge(
-                  animationDuration: Duration(milliseconds: 700),
-                  toAnimate: true,
-                  shape: BadgeShape.circle,
-                  badgeColor: Colors.red,
-                  borderRadius: BorderRadius.circular(10),
-                  badgeContent: Text('${orderModel.length}',
-                      style: TextStyle(color: Colors.white)),
-                  child: Icon(
-                    LineIcons.shoppingCart,
-                    size: 30,
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CartScreen(
-                        orderProduct: orderProduct,
-                      ),
-                    ),
-                  );
-                }),
-          )
+          ButtonCart(orderProduct: orderProduct)
         ]),
       ),
     );
@@ -437,14 +407,6 @@ class _ProductScreenState extends State<ProductScreen> {
         cabang = dataCabang.data;
         c = dataCabang;
         setState(() {});
-      }
-      for (var i = 0; i < cabang.length; i++) {
-        print(cabang[i].id);
-        print(cabang[i].nama);
-        print(cabang[i].alamat);
-        print(cabang[i].jarak);
-        print(cabang[i].harga);
-        print('\n');
       }
       for (var i = 0; i < cabang.length; i++) {
         if (cabang[i].jarak != null) {

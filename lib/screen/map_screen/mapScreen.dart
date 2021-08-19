@@ -47,9 +47,9 @@ class _MapScreenState extends State<MapScreen> {
     _controller.complete(controller);
   }
 
-  void _onCameraMove(CameraPosition position) {
-    _lastMapPosition = position.target;
-  }
+  // void _onCameraMove(CameraPosition position) {
+  //   _lastMapPosition = position.target;
+  // }
 
   void _onAddMarkerButtonPressed(LatLng latlang) {
     _center = latlang;

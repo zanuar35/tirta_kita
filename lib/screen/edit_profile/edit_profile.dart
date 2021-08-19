@@ -1,10 +1,7 @@
 // ignore_for_file: must_be_immutable
-
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -77,16 +74,16 @@ class _EditProfileState extends State<EditProfile> {
   double lat;
   double long;
 
-  void _getCurrentLocation() async {
-    final position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    setState(() {
-      lokasiLatitude = position.latitude;
-      lokasiLongitude = position.longitude;
-    });
-    print(lokasiLatitude);
-    print(lokasiLongitude);
-  }
+  // void _getCurrentLocation() async {
+  //   final position = await Geolocator.getCurrentPosition(
+  //       desiredAccuracy: LocationAccuracy.high);
+  //   setState(() {
+  //     lokasiLatitude = position.latitude;
+  //     lokasiLongitude = position.longitude;
+  //   });
+  //   print(lokasiLatitude);
+  //   print(lokasiLongitude);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -124,8 +121,6 @@ class _EditProfileState extends State<EditProfile> {
                         child: Image(
                           image: NetworkImage(
                             urlFoto,
-                            // 'https://adm.tirtakitaindonesia.com/images/foto/kustomer/default.jpg'
-                            // 'https://i.ibb.co/z4zCXW6/Rectangle-116.png'
                           ),
                           fit: BoxFit.fill,
                         ),
@@ -202,11 +197,6 @@ class _EditProfileState extends State<EditProfile> {
                           InkWell(
                             onTap: () async {
                               _awaitReturnValueFromSecondScreen(context);
-                              //_getCurrentLocation();
-                              // await Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(builder: (context) => MapScreen()),
-                              // ).then((value) => setState(() {}));
                             },
                             child: CircleAvatar(
                               backgroundColor: Colors.transparent,
@@ -258,12 +248,9 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   void _awaitReturnValueFromSecondScreen(BuildContext context) async {
-    // start the SecondScreen and wait for it to finish with a result
-    //openMap();
     String result = await Navigator.push(
         context, MaterialPageRoute(builder: (context) => MapScreen()));
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    // after the SecondScreen result comes back update the Text widget with it
     setState(() {
       lat = prefs.getDouble('Lat');
       long = prefs.getDouble('Long');
@@ -297,15 +284,6 @@ class _EditProfileState extends State<EditProfile> {
       setState(() {});
     }
     print('Get Data User');
-    print(data.foto);
-    print(data.email);
-    print(date);
-    print((data.tanggalLahir.year).toString() +
-        '-' +
-        (data.tanggalLahir.month).toString() +
-        '-' +
-        (data.tanggalLahir.day).toString());
-
     return userProfile;
   }
 

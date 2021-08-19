@@ -44,36 +44,36 @@ class _BelumBayarState extends State<BelumBayar> {
     double blockVertical = (MediaQuery.of(context).size.height) / 100;
 
     return Scaffold(
-      backgroundColor: Color(0xffE5E5E5),
-      body: Container(
-        margin: EdgeInsets.all(blockHorizontal * 6),
-        width: size.width / 1,
-        child: (pesanan == null)
+        backgroundColor: Color(0xffE5E5E5),
+        body: pesanan == null
             ? Center(child: CircularProgressIndicator())
-            : ListView.builder(
-                itemCount: pesanan.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: CardOrderProduct(
-                        id: pesanan[index].id,
-                        produk: pesanan[index].produk,
-                        i: index,
-                        invoice: pesanan[index].invoice,
-                        status: pesanan[index].status,
-                        jumlahProduk: pesanan[index].produk.length,
-                        subTotal: pesanan[index].subtotal,
-                        totalBayar: pesanan[index].total,
-                        ongkir: pesanan[index].ongkir,
-                        promo: pesanan[index].promo,
-                        size: size,
-                        blockVertical: blockVertical,
-                        blockHorizontal: blockHorizontal),
-                  );
-                },
-              ),
-      ),
-    );
+            : Container(
+                margin: EdgeInsets.all(blockHorizontal * 6),
+                width: size.width / 1,
+                child: (pesanan == 0)
+                    ? Center(child: Text("Keranjang Belanja Kosong"))
+                    : ListView.builder(
+                        itemCount: pesanan.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: CardOrderProduct(
+                                id: pesanan[index].id,
+                                produk: pesanan[index].produk,
+                                i: index,
+                                invoice: pesanan[index].invoice,
+                                status: pesanan[index].status,
+                                jumlahProduk: pesanan[index].produk.length,
+                                subTotal: pesanan[index].subtotal,
+                                totalBayar: pesanan[index].total,
+                                ongkir: pesanan[index].ongkir,
+                                promo: pesanan[index].promo,
+                                size: size,
+                                blockVertical: blockVertical,
+                                blockHorizontal: blockHorizontal),
+                          );
+                        },
+                      )));
   }
 
   Future<PesananBaru> apiPesananBaru() async {

@@ -10,8 +10,8 @@ class CoordinatTextField extends StatefulWidget {
     Key key,
   }) : super(key: key);
 
-  String latitude;
-  String longitude;
+  final String latitude;
+  final String longitude;
 
   @override
   State<CoordinatTextField> createState() => _CoordinatTextFieldState();

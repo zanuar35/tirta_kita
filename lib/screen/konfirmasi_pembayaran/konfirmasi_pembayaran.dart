@@ -1,20 +1,41 @@
+import 'dart:async';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tirta_kita/shared/widget/button.dart';
 import 'dart:io';
+import 'package:dio/dio.dart';
 
 class KonfirmasiPembayaran extends StatefulWidget {
-  // const KonfirmasiPembayaran({ Key? key }) : super(key: key);
+  KonfirmasiPembayaran({Key key, this.id}) : super(key: key);
+  final int id;
 
   @override
   State<KonfirmasiPembayaran> createState() => _KonfirmasiPembayaranState();
 }
 
 class _KonfirmasiPembayaranState extends State<KonfirmasiPembayaran> {
+  String token = '';
+
+  getPref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      token = prefs.getString('token').toString();
+    });
+  }
+
   @override
+  void initState() {
+    getId();
+    getPref();
+    super.initState();
+  }
+
   XFile _image;
   final imagePicker = ImagePicker();
   Widget build(BuildContext context) {
@@ -43,6 +64,8 @@ class _KonfirmasiPembayaranState extends State<KonfirmasiPembayaran> {
                   child: InkWell(
                     onTap: () async {
                       _selectPhoto();
+                      getId();
+                      print(_id);
                     },
                     child: Container(
                       height: blockVertical * 40,
@@ -86,6 +109,7 @@ class _KonfirmasiPembayaranState extends State<KonfirmasiPembayaran> {
                   height: blockVertical * 5,
                 ),
                 Button(
+                  onPress: upload,
                   text: 'Konfirmasi',
                   color: Color(0xff2BBAEC),
                 )
@@ -124,6 +148,14 @@ class _KonfirmasiPembayaranState extends State<KonfirmasiPembayaran> {
     );
   }
 
+  int _id;
+
+  void getId() async {
+    setState(() {
+      _id = widget.id;
+    });
+  }
+
   void pickImageCamera() async {
     XFile gambar = await ImagePicker().pickImage(source: ImageSource.camera);
     print(gambar.path);
@@ -144,5 +176,38 @@ class _KonfirmasiPembayaranState extends State<KonfirmasiPembayaran> {
     });
     print('---');
     print(_image.path);
+  }
+
+  Future upload() async {
+    EasyLoading.show(
+      status: 'loading...',
+      maskType: EasyLoadingMaskType.black,
+    );
+    print(_image.name);
+    FormData data = FormData.fromMap({
+      "id": _id,
+      "bukti": await MultipartFile.fromFile(
+        _image.path,
+        filename: _image.name,
+      )
+    });
+
+    Dio dio = new Dio();
+    dio.options.headers['content-Type'] = 'application/json';
+    dio.options.headers["authorization"] = "Bearer $token";
+
+    dio
+        .post("https://api.tirtakitaindonesia.com/konfirmasi_order", data: data)
+        .then((response) {
+      if (response.statusCode == 200) {
+        print(response);
+        EasyLoading.showSuccess("Konfirmasi Pembayaran Berhasil");
+        Timer(Duration(seconds: 2), () {
+          Navigator.pop(context);
+        });
+      } else {
+        EasyLoading.showError('Konfirmasi pembayaran Gagal');
+      }
+    }).catchError((error) => print(error));
   }
 }

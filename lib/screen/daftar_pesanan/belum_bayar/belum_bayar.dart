@@ -56,6 +56,7 @@ class _BelumBayarState extends State<BelumBayar> {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: CardOrderProduct(
+                        id: pesanan[index].id,
                         produk: pesanan[index].produk,
                         i: index,
                         invoice: pesanan[index].invoice,
@@ -102,5 +103,3 @@ class _BelumBayarState extends State<BelumBayar> {
     return pesananBaru;
   }
 }
-
-

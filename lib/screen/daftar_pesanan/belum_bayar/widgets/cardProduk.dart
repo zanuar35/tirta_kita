@@ -18,6 +18,7 @@ class CardOrderProduct extends StatelessWidget {
     this.produk,
     this.status,
     this.invoice,
+    this.id,
   }) : super(key: key);
 
   final Size size;
@@ -33,6 +34,7 @@ class CardOrderProduct extends StatelessWidget {
   final String status;
   final int jumlahProduk;
   final String invoice;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -148,8 +150,9 @@ class CardOrderProduct extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        KonfirmasiPembayaran()));
+                                    builder: (context) => KonfirmasiPembayaran(
+                                          id: id,
+                                        )));
                           },
                           child: Text(
                             'Konfirmasi Pembayaran',

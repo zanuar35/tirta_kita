@@ -62,6 +62,16 @@ class _EditProfileState extends State<EditProfile> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _passwordController.dispose();
+    _addressController.dispose();
+    _emailController.dispose();
+    _noTelpController.dispose();
+    super.dispose();
+  }
+
   double lokasiLatitude;
   double lokasiLongitude;
 
@@ -164,9 +174,11 @@ class _EditProfileState extends State<EditProfile> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(
-                                  '${date.year.toString()} - ' +
-                                      '${date.month.toString()} - ' +
-                                      '${date.day.toString()}',
+                                  data.tanggalLahir.year.toString() +
+                                      '-' +
+                                      data.tanggalLahir.month.toString() +
+                                      '-' +
+                                      data.tanggalLahir.day.toString(),
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500)),
@@ -262,7 +274,7 @@ class _EditProfileState extends State<EditProfile> {
   Future<Null> selectTimePicker(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
-        initialDate: date,
+        initialDate: data.tanggalLahir,
         firstDate: DateTime(1950),
         lastDate: DateTime.now());
     if (picked != null && picked != date) {
@@ -288,6 +300,13 @@ class _EditProfileState extends State<EditProfile> {
     print('Get Data User');
     print(data.foto);
     print(data.email);
+    print(date);
+    print((data.tanggalLahir.year).toString() +
+        '-' +
+        (data.tanggalLahir.month).toString() +
+        '-' +
+        (data.tanggalLahir.day).toString());
+
     return userProfile;
   }
 
@@ -319,7 +338,7 @@ class _EditProfileState extends State<EditProfile> {
           },
           body: ({
             'email': _emailController.text,
-            //'Luis4621464@sambako.com', 
+            //'Luis4621464@sambako.com',
             'password': (_passwordController.text == null)
                 ? ''
                 : _passwordController.text,
